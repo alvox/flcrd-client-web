@@ -1,27 +1,32 @@
 <template>
-    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-4">
-            <div class="flex items-center flex-shrink-0 text-white mr-6">
-                <span class="font-semibold text-xl tracking-tight">FLCRD</span>
-            </div>
-            <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-                <div class="text-sm lg:flex-grow">
-                    <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-                        Popular
-                    </a>
-                    <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-                        Link 2
-                    </a>
-                    <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
-                        Link 3
-                    </a>
-                </div>
-                <div>
-                    <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 mr-4">Log in</a>
-                    <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Register</a>
-                </div>
-            </div>
+        <div class="bg-white shadow">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center justify-between py-4">
+                    <span class="font-semibold text-xl tracking-tight">FLCRD</span>
 
-    </nav>
+                    <div class="hidden sm:flex sm:items-center">
+                        <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Curated</a>
+                        <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Popular</a>
+                    </div>
+
+                    <div class="hidden sm:flex sm:items-center">
+                        <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Log in</a>
+                        <a href="#" class="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Register</a>
+                    </div>
+                </div>
+
+                <div class="block sm:hidden bg-white border-t-2 py-2">
+                    <div class="flex flex-col">
+                        <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mb-1">Curated</a>
+                        <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mb-1">Popular</a>
+                        <div class="flex justify-between items-center border-t-2 pt-2">
+                            <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Log in</a>
+                            <a href="#" class="text-gray-800 text-sm font-semibold border px-4 py-1 rounded-lg hover:text-purple-600 hover:border-purple-600">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </template>
 
 <script>
