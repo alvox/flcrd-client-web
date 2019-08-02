@@ -2,7 +2,7 @@
     <div class="index container mx-auto">
         <div class="flex flex-wrap bg-gray-100 items-stretch">
             <div class="w-1/3 p-2 self-stretch" v-for="deck in decks" :key="deck.id">
-                <div class="flex-1 text-gray-700 bg-gray-200 rounded px-4 py-2 m-2">
+                <div class="flex-1 text-gray-700 bg-gray-200 rounded px-4 py-2 m-2 cursor-pointer hover:bg-gray-300" @click="deckSelected(deck.id)">
                     <p class="text-2xl">{{ deck.name }}</p>
                     <p> {{ deck.description }}</p>
                 </div>
@@ -26,6 +26,9 @@
                 this.$http.get(URL).then(result => {
                     this.decks = result.data
                 })
+            },
+            deckSelected(id) {
+                console.log("Selected deck " + id)
             }
         },
         created() {
