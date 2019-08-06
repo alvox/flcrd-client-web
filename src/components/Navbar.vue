@@ -1,6 +1,6 @@
 <template>
         <div class="bg-white shadow">
-            <div class="container mx-auto px-4">
+            <div class="mx-auto max-w-5xl">
                 <div class="flex items-center justify-between py-4">
                     <span class="font-semibold text-2xl text-gray-700 tracking-wide">FLCRD</span>
 
