@@ -1,9 +1,14 @@
 <template>
-    <div class="container">
+    <div class="mx-auto max-w-5xl">
         <p>Add Deck</p>
-        <form>
-            <label for="name">Deck name</label>
-            <input type="text" name="title" v-model="name">
+        <form @submit.prevent="AddDeck">
+            <label>Deck name
+                <input type="text" name="name" v-model="name">
+            </label>
+            <label>Description
+                <input type="text" name="description" v-model="description">
+            </label>
+            <button>Add Deck</button>
         </form>
     </div>
 </template>
@@ -13,7 +18,16 @@
         name: "AddDeck",
         data() {
             return {
-                name: null
+                name: null,
+                description: null
+            }
+        },
+        methods: {
+            AddDeck() {
+                let URL = "https://flashcards.rocks/v0/decks";
+                this.$http.post(URL, {name: this.name, description: this.description}).then(result => {
+                    this.$router.push({name: 'Index'})
+                })
             }
         }
     }
