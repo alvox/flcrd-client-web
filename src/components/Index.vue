@@ -2,7 +2,9 @@
     <div class="index container mx-auto">
         <div class="block flex justify-between px-4">
             <p class="text-3xl text-gray-700">Your decks</p>
-            <button class="border px-4 py-2 rounded-lg">Add new Deck</button>
+            <a href="" class="border px-4 py-2 rounded-lg">
+                <router-link :to="{name: 'AddDeck'}">Add new Deck</router-link>
+            </a>
         </div>
         <div class="flex flex-wrap items-stretch">
             <div class="w-1/3 p-2 self-stretch" v-for="deck in decks" :key="deck.id">

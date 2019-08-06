@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/Index'
+import AddDeck from "@/components/AddDeck"
 import Flashcards from "@/components/Flashcards"
 
 Vue.use(Router);
@@ -13,6 +14,11 @@ export default new Router({
             path: '/',
             name: 'Index',
             component: Index
+        },
+        {
+            path: '/add-deck',
+            name: 'AddDeck',
+            component: AddDeck
         },
         {
             path: '/:deck_id/flashcards',
