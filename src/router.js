@@ -23,7 +23,8 @@ export default new Router({
         {
             path: '/:deck_id/flashcards',
             name: 'Flashcards',
-            component: Flashcards
+            component: Flashcards,
+            props: true
         }
     ]
 })
