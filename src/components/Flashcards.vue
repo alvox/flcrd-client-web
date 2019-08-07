@@ -1,7 +1,12 @@
 <template>
     <div class="flashcards mx-auto max-w-5xl">
-        <p>{{ deck_name }}</p>
-        <div class="flex flex-wrap bg-gray-100 items-stretch">
+        <div class="block flex justify-between">
+            <p class="text-3xl text-gray-700">{{ deck_name }}</p>
+            <a href="" class="border px-4 py-2 rounded-lg">
+                <router-link :to="{name: 'AddFlashcard', params: {deck_id: this.$route.params.deck_id}}">Add new flashcard</router-link>
+            </a>
+        </div>
+        <div class="flex flex-wrap items-stretch">
             <div class="w-1/3 p-2 self-stretch" v-for="flashcard in flashcards" :key="flashcard.id">
                 <div class="flex-1 text-gray-700 bg-gray-200 rounded px-4 py-2 m-2 cursor-pointer hover:bg-gray-300">
                     <p class="text-2xl">{{ flashcard.front }}</p>
