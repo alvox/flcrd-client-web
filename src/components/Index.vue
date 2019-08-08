@@ -9,9 +9,14 @@
         <div class="flex flex-wrap items-stretch">
             <div class="w-1/3 py-2 self-stretch" v-for="deck in decks" :key="deck.id">
                 <router-link :to="{name: 'Flashcards', params: {deck_id: deck.id, deck_name: deck.name}}">
-                    <div class="flex-1 text-gray-700 bg-gray-200 rounded px-4 py-2 m-2 cursor-pointer hover:bg-gray-300">
+                    <div class="flex-1 text-gray-700 bg-gray-200 rounded px-4 py-2 m-2 cursor-pointer hover:bg-gray-300 h-40 min-h-full relative">
                         <p class="text-2xl">{{ deck.name }}</p>
                         <p> {{ deck.description }}</p>
+                        <p class="absolute bottom-0 left-0 py-2 px-4">
+                            {{deck.cards_count}}
+                            <span v-if="deck.cards_count === 1">flashcard</span>
+                            <span v-else>flashcards</span>
+                        </p>
                     </div>
                 </router-link>
             </div>
