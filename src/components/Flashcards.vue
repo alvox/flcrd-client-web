@@ -12,7 +12,10 @@
                 <div class="relative flex-1 text-gray-700 bg-gray-200 rounded px-4 py-2 m-2">
                     <p class="text-2xl">{{ flashcard.front }}</p>
                     <p> {{ flashcard.rear }}</p>
-                    <div class="absolute top-0 right-0 text-red-500 hover:text-red-700 cursor-pointer" @click="deleteCard(flashcard.id)">Delete</div>
+                    <div class="absolute top-0 right-0 px-2 py-2 font-semibold text-xs">
+                        <div class=" text-red-500 hover:text-red-700 cursor-pointer" @click="deleteCard(flashcard.id)">Delete</div>
+                        <div class=" text-gray-500 hover:text-gray-700 cursor-pointer">Edit</div>
+                    </div>
                 </div>
             </div>
         </div>
