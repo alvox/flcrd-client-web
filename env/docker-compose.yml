@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+
+  datacont:
+    container_name: datacont
+    image: registry.gitlab.com/alvox-env/registry/flcrd-client-web:latest
+    volumes:
+      - webdata:/dist
+#    command: 'tail -f /dev/null'
+
+  s1:
+    container_name: s1
+    image: busybox:latest
+    volumes:
+      - webdata:/dist
+    command: 'tail -f /dev/null'
+
+volumes:
+  webdata:
