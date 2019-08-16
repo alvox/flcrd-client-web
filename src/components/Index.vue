@@ -28,21 +28,14 @@
     export default {
         name: 'Index',
         data() {
-            return {
-                decks: []
+            return {}
+        },
+        methods: {},
+        computed: {
+            decks() {
+                return this.$store.getters.decks
             }
         },
-        methods: {
-            fetchDecks() {
-                let URL = "https://flashcards.rocks/v0/decks";
-                this.$http.get(URL).then(result => {
-                    this.decks = result.data
-                })
-            }
-        },
-        created() {
-            this.fetchDecks()
-        }
     }
 </script>
 

@@ -28,9 +28,10 @@
         },
         methods: {
             AddFlashcard() {
-                let URL = "https://flashcards.rocks/v0/decks/" + this.$route.params.deck_id + "/flashcards";
-                this.$http.post(URL, {front: this.front, rear: this.rear}).then(result => {
-                    this.$router.back()
+                this.$store.dispatch('CREATE_CARD', {
+                    deck_id: this.$route.params.deck_id,
+                    front: this.front,
+                    rear: this.rear
                 })
             }
         }

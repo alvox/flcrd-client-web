@@ -28,11 +28,10 @@
         },
         methods: {
             AddDeck() {
-                let URL = "https://flashcards.rocks/v0/decks";
-                this.$http.post(URL, {name: this.name, description: this.description}).then(result => {
-                    let deck = result.data;
-                    this.$router.push({name: 'Flashcards', params: {deck_id: deck.id, deck_name: deck.name}})
-                })
+                this.$store.dispatch('CREATE_DECK', {
+                    name: this.name,
+                    description: this.description
+                });
             }
         }
     }
