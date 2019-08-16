@@ -1,6 +1,6 @@
 <template>
     <div class="bg-white shadow">
-        <div class="mx-auto max-w-5xl">
+        <div class="mx-auto max-w-2xl">
             <div class="flex items-center justify-between py-4">
                 <router-link :to="{name: 'Index'}">
                     <span class="font-semibold text-2xl text-gray-700 tracking-wide">FLCRD</span>
