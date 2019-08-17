@@ -17,8 +17,8 @@
                 </a>
             </div>
         </div>
-        <div class="flex flex-wrap items-stretch border-2 rounded-lg rounded-t-none border-gray-400 pt-4 pl-4">
-            <div class="w-1/2 self-stretch" v-for="flashcard in deck.cards" :key="flashcard.id">
+        <div class="sm:block md:flex flex-wrap items-stretch border-2 rounded-lg rounded-t-none border-gray-400 pt-4 pl-4">
+            <div class="md:w-1/2 self-stretch" v-for="flashcard in deck.cards" :key="flashcard.id">
                 <div class="relative flex-1 text-gray-700 bg-gray-100 border-2 border-gray-400 rounded-lg rounded px-4 py-2 mb-4 mr-4">
                     <p class="text-2xl">{{ flashcard.front }}</p>
                     <p> {{ flashcard.rear }}</p>
