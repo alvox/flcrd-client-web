@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white shadow">
+    <div class="bg-white border-b-2 border-gray-400">
         <div class="mx-auto max-w-2xl">
             <div class="flex items-center justify-between py-4">
                 <router-link :to="{name: 'Index'}">
