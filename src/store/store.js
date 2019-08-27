@@ -44,13 +44,13 @@ export const store = new Vuex.Store({
     },
     actions: {
         GET_DECKS: (context) => {
-            let URL = "https://flashcards.rocks/v0/decks";
+            let URL = "https://flashcards.rocks/v0/public/decks";
             axios.get(URL).then(result => {
                 context.commit('saveDecks', result.data)
             })
         },
         GET_CARDS_FOR_DECK: (context, payload) => {
-            let URL = "https://flashcards.rocks/v0/decks/" + payload.deck_id + "/flashcards";
+            let URL = "https://flashcards.rocks/v0/public/decks/" + payload.deck_id + "/flashcards";
             axios.get(URL).then(result => {
                 context.commit('saveFlashcards', {
                     deck_id: payload.deck_id,
