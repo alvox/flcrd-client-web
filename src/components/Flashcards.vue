@@ -1,6 +1,6 @@
 <template>
-    <div class="mx-auto max-w-2xl bg-white rounded-lg mt-10">
-        <div class="flex justify-between border-2 rounded-lg border-b-0 rounded-b-none border-gray-400">
+    <div class="mx-auto max-w-2xl min-w-2xl rounded-lg mt-10">
+        <div class="flex justify-between border-2 rounded-lg border-b-0 rounded-b-none border-gray-400 bg-white">
             <p class="text-base font-semibold m-4 pt-1 text-gray-800">{{ deck.name }}</p>
             <div class="m-4">
                 <p class="mr-4 cursor-pointer inline-block" title="Delete collection" @click="deleteDeck">
@@ -17,7 +17,7 @@
                 </a>
             </div>
         </div>
-        <div class="sm:block md:flex flex-wrap items-stretch border-2 rounded-lg rounded-t-none border-gray-400 pt-4 pl-4">
+        <div class="sm:block md:flex flex-wrap items-stretch border-2 rounded-lg rounded-t-none border-gray-400 pt-4 pl-4 bg-white">
             <div class="md:w-1/2 self-stretch" v-for="flashcard in deck.cards" :key="flashcard.id">
                 <div class="relative flex-1 text-gray-700 bg-gray-100 border-2 border-gray-400 rounded-lg rounded px-4 py-2 mb-4 mr-4">
                     <p class="text-2xl">{{ flashcard.front }}</p>
@@ -63,6 +63,4 @@
     }
 </script>
 
-<style>
-
-</style>
+<style></style>
