@@ -8,6 +8,9 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         decks: [],
+        userName: null,
+        userEmail: null,
+        userToken: null
     },
     getters: {
         decks: state => {
@@ -40,6 +43,11 @@ export const store = new Vuex.Store({
             let deck = state.decks.filter(deck => deck.id === payload.deck_id)[0];
             deck.cards = deck.cards.filter(card => card.id !== payload.card_id)
             deck.cards_count--
+        },
+        saveCredentials(state, payload) {
+            state.userName = payload.name;
+            state.userEmail = payload.email;
+            state.userToken = payload.token.auth_token;
         }
     },
     actions: {
@@ -90,6 +98,16 @@ export const store = new Vuex.Store({
             let URL = "https://flashcards.rocks/v0/decks/" + payload.deck_id + "/flashcards/" + payload.card_id;
             axios.delete(URL).then(result => {
                 context.commit('deleteCard', {deck_id: payload.deck_id, card_id: payload.card_id})
+            })
+        },
+        REGISTER_USER: (context, payload) => {
+            let URL = "https://flashcards.rocks/v0/users/register";
+            axios.post(URL, {
+                name: payload.name,
+                email: payload.email,
+                password: payload.password
+            }).then(result => {
+                context.commit('saveCredentials', result.data)
             })
         }
     }

@@ -36,12 +36,11 @@
         },
         methods: {
             RegisterUser() {
-                console.log("Creating user: " + this.name + " " + this.email + " " + this.password)
-                // this.$store.dispatch('REGISTER_USER', {
-                //     name: this.name,
-                //     email: this.email,
-                //     password: this.password
-                // });
+                this.$store.dispatch('REGISTER_USER', {
+                    name: this.name,
+                    email: this.email,
+                    password: this.password
+                });
             },
             GoBack() {
                 this.$router.back()
