@@ -4,6 +4,7 @@ import Index from '@/components/Index'
 import AddDeck from "@/components/AddDeck"
 import Flashcards from "@/components/Flashcards"
 import AddFlashcard from "@/components/AddFlashcard"
+import Registration from "@/components/Registration"
 
 Vue.use(Router);
 
@@ -15,6 +16,11 @@ export default new Router({
             path: '/',
             name: 'Index',
             component: Index
+        },
+        {
+            path: '/registration',
+            name: 'Registration',
+            component: Registration
         },
         {
             path: '/add-deck',
