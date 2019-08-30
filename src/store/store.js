@@ -19,6 +19,12 @@ export const store = new Vuex.Store({
         },
         deck: (state) => (id) => {
             return state.decks.filter(deck => deck.id === id)[0]
+        },
+        loggedIn: (state) => {
+            return !!state.userToken && !!state.userName && !!state.userEmail
+        },
+        userName: (state) => {
+            return state.userName
         }
     },
     mutations: {
