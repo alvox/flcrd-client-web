@@ -1,7 +1,7 @@
 <template>
     <div class="mx-auto max-w-2xl rounded-lg mt-10">
         <div class="flex justify-between border-2 rounded-lg border-b-0 rounded-b-none border-gray-400 bg-white">
-            <p class="text-base font-semibold m-4 pt-1 text-gray-800">Public Collections</p>
+            <p class="text-base font-semibold m-4 pt-1 text-gray-800">My Collections</p>
             <a href="" class="m-4" title="Create new collection">
                 <router-link :to="{name: 'AddDeck'}">
                     <svg class="fill-current text-gray-800 inline-block h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -30,10 +30,7 @@
 
 <script>
     export default {
-        name: 'Index',
-        data() {
-            return {}
-        },
+        name: "Decks",
         computed: {
             decks() {
                 return this.$store.getters.decks
@@ -42,4 +39,6 @@
     }
 </script>
 
-<style></style>
+<style scoped>
+
+</style>

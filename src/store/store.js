@@ -83,7 +83,7 @@ export const store = new Vuex.Store({
             let URL = "https://flashcards.rocks/v0/decks/" + payload.deck_id;
             axios.delete(URL).then(result => {
                 context.commit('deleteDeck', {deck_id: payload.deck_id});
-                router.push({name: 'Index'})
+                router.push({name: 'Decks'})
             })
         },
         CREATE_CARD: (context, payload) => {

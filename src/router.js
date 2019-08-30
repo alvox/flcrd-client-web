@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/Index'
 import AddDeck from "@/components/AddDeck"
+import Decks from "@/components/Decks"
 import Flashcards from "@/components/Flashcards"
 import AddFlashcard from "@/components/AddFlashcard"
 import Registration from "@/components/Registration"
@@ -40,6 +41,11 @@ const router =  new Router({
                 public: true,
                 onlyWhenLoggedOut: true
             }
+        },
+        {
+            path: '/decks',
+            name: 'Decks',
+            component: Decks
         },
         {
             path: '/add-deck',
