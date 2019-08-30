@@ -5,22 +5,41 @@ import AddDeck from "@/components/AddDeck"
 import Flashcards from "@/components/Flashcards"
 import AddFlashcard from "@/components/AddFlashcard"
 import Registration from "@/components/Registration"
+import Login from "@/components/Login"
+
+import {TokenService} from "./store/token"
 
 Vue.use(Router);
 
-export default new Router({
+const router =  new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [
         {
             path: '/',
             name: 'Index',
-            component: Index
+            component: Index,
+            meta: {
+                public: true
+            }
         },
         {
             path: '/registration',
             name: 'Registration',
-            component: Registration
+            component: Registration,
+            meta: {
+                public: true,
+                onlyWhenLoggedOut: true
+            }
+        },
+        {
+            path: '/login',
+            name: 'Login',
+            component: Login,
+            meta: {
+                public: true,
+                onlyWhenLoggedOut: true
+            }
         },
         {
             path: '/add-deck',
@@ -38,4 +57,24 @@ export default new Router({
             component: AddFlashcard
         }
     ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+    const isPublic = to.matched.some(record => record.meta.public);
+    const onlyWhenLoggedOut = to.matched.some(record => record.meta.onlyWhenLoggedOut);
+    const loggedIn = !!TokenService.getToken();
+
+    if (!isPublic && !loggedIn) {
+        return next({
+            path:'/login',
+            query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
+        });
+    }
+    // Do not allow user to visit login page or register page if they are logged in
+    if (loggedIn && onlyWhenLoggedOut) {
+        return next('/')
+    }
+    next();
+});
+
+export default router;

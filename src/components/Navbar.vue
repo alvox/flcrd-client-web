@@ -11,7 +11,9 @@
                 <!--                    </div>-->
 
                 <div class="hidden sm:flex sm:items-center">
-                    <a href="#" class="text-gray-700 text-sm font-semibold hover:text-purple-600 mr-4">Log in</a>
+                    <router-link :to="{name: 'Login'}">
+                        <a href="#" class="text-gray-700 text-sm font-semibold hover:text-purple-600 mr-4">Log in</a>
+                    </router-link>
                     <router-link :to="{name: 'Registration'}">
                         <a href="" class="text-gray-700 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Register</a>
                     </router-link>
@@ -39,6 +41,4 @@
     }
 </script>
 
-<style>
-
-</style>
+<style></style>

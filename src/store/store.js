@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 import router from '../router'
+import { TokenService } from './token'
 
 Vue.use(Vuex);
 
@@ -41,10 +42,11 @@ export const store = new Vuex.Store({
         },
         deleteCard(state, payload) {
             let deck = state.decks.filter(deck => deck.id === payload.deck_id)[0];
-            deck.cards = deck.cards.filter(card => card.id !== payload.card_id)
+            deck.cards = deck.cards.filter(card => card.id !== payload.card_id);
             deck.cards_count--
         },
         saveCredentials(state, payload) {
+            TokenService.saveToken(payload.token.auth_token);
             state.userName = payload.name;
             state.userEmail = payload.email;
             state.userToken = payload.token.auth_token;
@@ -107,7 +109,18 @@ export const store = new Vuex.Store({
                 email: payload.email,
                 password: payload.password
             }).then(result => {
-                context.commit('saveCredentials', result.data)
+                context.commit('saveCredentials', result.data);
+                router.back()
+            })
+        },
+        LOGIN_USER: (context, payload) => {
+            let URL = "https://flashcards.rocks/v0/users/login";
+            axios.post(URL, {
+                email: payload.email,
+                password: payload.password
+            }).then(result => {
+                context.commit('saveCredentials', result.data);
+                router.back()
             })
         }
     }
