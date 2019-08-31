@@ -3,16 +3,24 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 import '@/assets/tailwind.css'
-import { store } from './store/store'
+import {store} from './store/store'
+
+import ApiService from './services/api'
+import {TokenService} from "./services/token";
 
 Vue.config.productionTip = false;
 Vue.prototype.$http = axios;
 
+ApiService.init('https://flashcards.rocks/v0/');
+if (TokenService.getToken()) {
+    ApiService.setHeader()
+}
+
 new Vue({
-  router,
-  store,
-  render: h => h(App),
-  created: () => {
-      store.dispatch('GET_DECKS')
-  }
+    router,
+    store,
+    render: h => h(App),
+    created: () => {
+        store.dispatch('GET_DECKS')
+    }
 }).$mount('#app');

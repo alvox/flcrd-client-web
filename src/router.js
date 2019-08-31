@@ -8,7 +8,7 @@ import AddFlashcard from "@/components/AddFlashcard"
 import Registration from "@/components/Registration"
 import Login from "@/components/Login"
 
-import {TokenService} from "./store/token"
+import {TokenService} from "./services/token"
 
 Vue.use(Router);
 

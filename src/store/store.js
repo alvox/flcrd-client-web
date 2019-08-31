@@ -2,7 +2,9 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 import router from '../router'
-import { TokenService } from './token'
+import {TokenService} from '../services/token'
+import {UserService, AuthenticationError} from '../services/user'
+// import ApiService from "../services/api";
 
 Vue.use(Vuex);
 
@@ -11,7 +13,10 @@ export const store = new Vuex.Store({
         decks: [],
         userName: null,
         userEmail: null,
-        userToken: null
+        userToken: TokenService.getToken(),
+        authenticating: false,
+        authenticationErrorCode: 0,
+        authenticationError: ''
     },
     getters: {
         decks: state => {
@@ -51,11 +56,24 @@ export const store = new Vuex.Store({
             deck.cards = deck.cards.filter(card => card.id !== payload.card_id);
             deck.cards_count--
         },
-        saveCredentials(state, payload) {
-            TokenService.saveToken(payload.token.auth_token);
-            state.userName = payload.name;
-            state.userEmail = payload.email;
-            state.userToken = payload.token.auth_token;
+        authRequest(state) {
+            state.authenticating = true;
+            state.authenticationError = '';
+            state.authenticationErrorCode = 0
+        },
+        authSuccess(state, payload) {
+            state.userName = payload.userName;
+            state.userEmail = payload.userEmail;
+            state.userToken = payload.userToken;
+            state.authenticating = false;
+        },
+        authError(state, payload) {
+            state.authenticating = false;
+            state.authenticationErrorCode = payload.errorCode;
+            state.authenticationError = payload.errorMessage
+        },
+        logoutSuccess(state) {
+            state.accessToken = ''
         }
     },
     actions: {
@@ -109,25 +127,31 @@ export const store = new Vuex.Store({
             })
         },
         REGISTER_USER: (context, payload) => {
-            let URL = "https://flashcards.rocks/v0/users/register";
-            axios.post(URL, {
-                name: payload.name,
-                email: payload.email,
-                password: payload.password
-            }).then(result => {
-                context.commit('saveCredentials', result.data);
-                router.back()
-            })
+            context.commit('authRequest');
+            UserService.register(payload.name, payload.email, payload.password)
+                .then(result => {
+                    context.commit('authSuccess', result);
+                    router.push(router.history.current.query.redirect || '/');
+                })
+                .catch (e => {
+                    if (e instanceof AuthenticationError) {
+                        context.commit('authError', {errorCode: e.errorCode, errorMessage: e.message})
+                    }
+                })
         },
         LOGIN_USER: (context, payload) => {
-            let URL = "https://flashcards.rocks/v0/users/login";
-            axios.post(URL, {
-                email: payload.email,
-                password: payload.password
-            }).then(result => {
-                context.commit('saveCredentials', result.data);
-                router.back()
-            })
+            context.commit('authRequest');
+            UserService.login(payload.email, payload.password)
+                .then(result => {
+                    context.commit('authSuccess', result);
+                    router.push(router.history.current.query.redirect || '/');
+                })
+                .catch(e => {
+                    console.log(e);
+                    if (e instanceof AuthenticationError) {
+                        context.commit('authError', {errorCode: e.errorCode, errorMessage: e.message})
+                    }
+                })
         }
     }
 });
