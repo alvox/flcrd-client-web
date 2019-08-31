@@ -21,6 +21,6 @@ new Vue({
     store,
     render: h => h(App),
     created: () => {
-        store.dispatch('GET_DECKS')
+        store.dispatch('GET_PUBLIC_DECKS')
     }
 }).$mount('#app');

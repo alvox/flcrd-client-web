@@ -37,9 +37,11 @@
 <script>
     export default {
         name: "Flashcards",
+        props: ['isPrivate'],
         data() {
             return {}
         },
+
         methods: {
             deleteDeck() {
                 this.$store.dispatch('DELETE_DECK', {deck_id: this.deck.id})
@@ -50,14 +52,20 @@
         },
         computed: {
             deck() {
-                return this.$store.getters.deck(this.$route.params.deck_id)
+                return this.$store.getters.deck(this.$route.params.deck_id, this.isPrivate)
             },
         },
         mounted() {
             if (this.deck.cards == null) {
-                this.$store.dispatch('GET_CARDS_FOR_DECK', {
-                    deck_id: this.deck.id
-                })
+                if (this.deck.private) {
+                    this.$store.dispatch('GET_CARDS_FOR_DECK', {
+                        deck_id: this.deck.id
+                    })
+                } else {
+                    this.$store.dispatch('GET_CARDS_FOR_PUBLIC_DECK', {
+                        deck_id: this.deck.id
+                    })
+                }
             }
         }
     }

@@ -10,6 +10,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         decks: [],
+        publicDecks: [],
         userName: null,
         userEmail: null,
         userToken: TokenService.getToken(),
@@ -21,8 +22,14 @@ export const store = new Vuex.Store({
         decks: state => {
             return state.decks
         },
-        deck: (state) => (id) => {
-            return state.decks.filter(deck => deck.id === id)[0]
+        publicDecks: state => {
+            return state.publicDecks
+        },
+        deck: (state) => (id, isPrivate) => {
+            if (isPrivate) {
+                return state.decks.filter(deck => deck.id === id)[0]
+            }
+            return state.publicDecks.filter(deck => deck.id === id)[0]
         },
         loggedIn: (state) => {
             return !!state.userToken && !!state.userName && !!state.userEmail
@@ -35,6 +42,9 @@ export const store = new Vuex.Store({
         saveDecks(state, decks) {
             state.decks = decks
         },
+        savePublicDecks(state, decks) {
+            state.publicDecks = decks
+        },
         saveDeck(state, payload) {
             state.decks.push(payload.deck)
         },
@@ -43,6 +53,10 @@ export const store = new Vuex.Store({
         },
         saveFlashcards(state, payload) {
             let deck = state.decks.filter(deck => deck.id === payload.deck_id)[0];
+            Vue.set(deck, 'cards', payload.flashcards)
+        },
+        saveFlashcardsForPublicDeck(state, payload) {
+            let deck = state.publicDecks.filter(deck => deck.id === payload.deck_id)[0];
             Vue.set(deck, 'cards', payload.flashcards)
         },
         saveCard(state, payload) {
@@ -78,13 +92,26 @@ export const store = new Vuex.Store({
         }
     },
     actions: {
-        GET_DECKS: (context) => {
+        GET_PUBLIC_DECKS: (context) => {
             ApiService.get("public/decks").then(result => {
+                context.commit('savePublicDecks', result.data)
+            })
+        },
+        GET_DECKS: (context) => {
+            ApiService.get("decks").then(result => {
                 context.commit('saveDecks', result.data)
             })
         },
-        GET_CARDS_FOR_DECK: (context, payload) => {
+        GET_CARDS_FOR_PUBLIC_DECK: (context, payload) => {
             ApiService.get("public/decks/" + payload.deck_id + "/flashcards").then(result => {
+                context.commit('saveFlashcardsForPublicDeck', {
+                    deck_id: payload.deck_id,
+                    flashcards: result.data
+                })
+            })
+        },
+        GET_CARDS_FOR_DECK: (context, payload) => {
+            ApiService.get("decks/" + payload.deck_id + "/flashcards").then(result => {
                 context.commit('saveFlashcards', {
                     deck_id: payload.deck_id,
                     flashcards: result.data
