@@ -4,13 +4,15 @@
             <p class="text-base font-semibold m-4 pt-1 text-gray-800">{{ deck.name }}</p>
             <div class="m-4">
                 <p class="mr-4 cursor-pointer inline-block" title="Delete collection" @click="deleteDeck">
-                    <svg class="fill-current text-red-400 inline-block h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <svg class="fill-current text-red-400 inline-block h-8 w-8" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 20 20">
                         <path d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"></path>
                     </svg>
                 </p>
                 <a href="" title="Create new flashcard">
                     <router-link :to="{name: 'AddFlashcard', params: {deck_id: this.$route.params.deck_id}}">
-                        <svg class="fill-current text-gray-800 inline-block h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <svg class="fill-current text-gray-800 inline-block h-8 w-8" xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 20 20">
                             <path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path>
                         </svg>
                     </router-link>
@@ -18,15 +20,27 @@
             </div>
         </div>
         <div class="sm:block md:flex flex-wrap items-stretch border-2 rounded-lg rounded-t-none border-gray-400 pt-4 pl-4 bg-white">
-            <div class="md:w-1/2 self-stretch" v-for="flashcard in deck.cards" :key="flashcard.id">
-                <div class="relative flex-1 text-gray-700 bg-gray-100 border-2 border-gray-400 rounded-lg rounded px-4 py-2 mb-4 mr-4">
-                    <p class="text-2xl">{{ flashcard.front }}</p>
-                    <p> {{ flashcard.rear }}</p>
-                    <div class="absolute top-0 right-0 px-2 py-2 font-semibold text-xs">
-                        <div class=" text-red-500 hover:text-red-700 cursor-pointer" @click="deleteCard(flashcard.id)">
-                            Delete
+            <div v-if="deck.cards != null && deck.cards.length > 0">
+                <div class="md:w-1/2 self-stretch" v-for="flashcard in deck.cards" :key="flashcard.id">
+                    <div class="relative flex-1 text-gray-700 bg-gray-100 border-2 border-gray-400 rounded-lg rounded px-4 py-2 mb-4 mr-4">
+                        <p class="text-2xl">{{ flashcard.front }}</p>
+                        <p> {{ flashcard.rear }}</p>
+                        <div class="absolute top-0 right-0 px-2 py-2 font-semibold text-xs">
+                            <div class=" text-red-500 hover:text-red-700 cursor-pointer"
+                                 @click="deleteCard(flashcard.id)">
+                                Delete
+                            </div>
+                            <div class=" text-gray-500 hover:text-gray-700 cursor-pointer">Edit</div>
                         </div>
-                        <div class=" text-gray-500 hover:text-gray-700 cursor-pointer">Edit</div>
+                    </div>
+                </div>
+            </div>
+            <div v-else>
+                <div class="md:flex sm:block self-stretch items-center">
+                    <img class="md:object-left sm:object-top object-fit m-20 mt-10" src="../assets/img/undraw_add_cards.svg" width="200px" height="200px"/>
+                    <div class="m-10 md:ml-0 sm:ml-10 text-gray-800 text-base leading-relaxed">
+                        <p class="font-bold text-lg tracking-wide">Awesome!</p>
+                        <p class="mt-5">Now you can start adding flashcards. Use + button on top.</p>
                     </div>
                 </div>
             </div>
