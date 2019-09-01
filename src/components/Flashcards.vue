@@ -19,9 +19,9 @@
                 </a>
             </div>
         </div>
-        <div class="sm:block md:flex flex-wrap items-stretch border-2 rounded-lg rounded-t-none border-gray-400 pt-4 pl-4 bg-white">
-            <div v-if="deck.cards != null && deck.cards.length > 0">
-                <div class="md:w-1/2 self-stretch" v-for="flashcard in deck.cards" :key="flashcard.id">
+        <div v-if="deck.cards != null && deck.cards.length > 0">
+            <div class="sm:block md:flex flex-wrap items-stretch border-2 rounded-lg rounded-t-none border-gray-400 pt-4 pl-4 bg-white">
+                <div class="w-1/2 self-stretch" v-for="flashcard in deck.cards" :key="flashcard.id">
                     <div class="relative flex-1 text-gray-700 bg-gray-100 border-2 border-gray-400 rounded-lg rounded px-4 py-2 mb-4 mr-4">
                         <p class="text-2xl">{{ flashcard.front }}</p>
                         <p> {{ flashcard.rear }}</p>
@@ -35,9 +35,12 @@
                     </div>
                 </div>
             </div>
-            <div v-else>
+        </div>
+        <div v-else>
+            <div class="sm:block md:flex flex-wrap items-stretch border-2 rounded-lg rounded-t-none border-gray-400 pt-4 pl-4 bg-white">
                 <div class="md:flex sm:block self-stretch items-center">
-                    <img class="md:object-left sm:object-top object-fit m-20 mt-10" src="../assets/img/undraw_add_cards.svg" width="200px" height="200px"/>
+                    <img class="md:object-left sm:object-top object-fit m-20 mt-10"
+                         src="../assets/img/undraw_add_cards.svg" width="200px" height="200px"/>
                     <div class="m-10 md:ml-0 sm:ml-10 text-gray-800 text-base leading-relaxed">
                         <p class="font-bold text-lg tracking-wide">Awesome!</p>
                         <p class="mt-5">Now you can start adding flashcards. Use + button on top.</p>
