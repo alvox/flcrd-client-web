@@ -1,6 +1,9 @@
 import ApiService from './api'
 import {TokenService} from './token'
 
+const EMAIL_KEY = 'user_email';
+const NAME_KEY = 'user_name';
+
 class AuthenticationError extends Error {
     constructor(errorCode, message) {
         super(message);
@@ -12,6 +15,14 @@ class AuthenticationError extends Error {
 
 const UserService = {
 
+    getUserName() {
+        return localStorage.getItem(NAME_KEY);
+    },
+
+    getUserEmail() {
+        return localStorage.getItem(EMAIL_KEY);
+    },
+
     register: async function (name, email, password) {
         let requestData = {
             name: name,
@@ -22,6 +33,7 @@ const UserService = {
             .then(result => {
                 TokenService.saveToken(result.data.token.auth_token);
                 ApiService.setHeader();
+                this.saveCredentials(result.data.email, result.data.name);
                 // ApiService.mount401Interceptor();
                 return {
                     userName: result.data.name,
@@ -44,6 +56,7 @@ const UserService = {
             .then(result => {
                 TokenService.saveToken(result.data.token.auth_token);
                 ApiService.setHeader();
+                this.saveCredentials(result.data.email, result.data.name);
                 // ApiService.mount401Interceptor();
                 return {
                     userName: result.data.name,
@@ -61,7 +74,18 @@ const UserService = {
         TokenService.removeToken();
         TokenService.removeRefreshToken();
         ApiService.removeHeader();
+        this.removeCredentials()
         // ApiService.unmount401Interceptor()
+    },
+
+    saveCredentials(email, name) {
+        localStorage.setItem(EMAIL_KEY, email);
+        localStorage.setItem(NAME_KEY, name);
+    },
+
+    removeCredentials() {
+        localStorage.removeItem(EMAIL_KEY);
+        localStorage.removeItem(NAME_KEY);
     }
 
 };

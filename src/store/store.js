@@ -11,8 +11,8 @@ export const store = new Vuex.Store({
     state: {
         decks: [],
         publicDecks: [],
-        userName: null,
-        userEmail: null,
+        userName: UserService.getUserName(),
+        userEmail: UserService.getUserEmail(),
         userToken: TokenService.getToken(),
         authenticating: false,
         authenticationErrorCode: 0,
