@@ -121,11 +121,12 @@ export const store = new Vuex.Store({
         CREATE_DECK: (context, payload) => {
             ApiService.post("decks", {
                 name: payload.name,
-                description: payload.description
+                description: payload.description,
+                private: payload.isPrivate,
             }).then(result => {
                 let deck = result.data;
                 context.commit('saveDeck', {deck: deck});
-                router.push({name: 'Flashcards', params: {deck_id: deck.id}})
+                router.push({name: 'Flashcards', params: {deck_id: deck.id, isPrivate: deck.private}})
             })
         },
         DELETE_DECK: (context, payload) => {
@@ -153,7 +154,8 @@ export const store = new Vuex.Store({
             UserService.register(payload.name, payload.email, payload.password)
                 .then(result => {
                     context.commit('authSuccess', result);
-                    router.push(router.history.current.query.redirect || '/');
+                    router.push({name: 'Decks'})
+                    // router.push(router.history.current.query.redirect || '/');
                 })
                 .catch (e => {
                     if (e instanceof AuthenticationError) {
@@ -166,7 +168,8 @@ export const store = new Vuex.Store({
             UserService.login(payload.email, payload.password)
                 .then(result => {
                     context.commit('authSuccess', result);
-                    router.push(router.history.current.query.redirect || '/');
+                    router.push({name: 'Decks'});
+                    // router.push(router.history.current.query.redirect || '/');
                 })
                 .catch(e => {
                     console.log(e);

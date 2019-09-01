@@ -11,7 +11,7 @@
                 <!--                    </div>-->
 
                 <div v-if="loggedIn" class="hidden sm:flex sm:items-center">
-                    <p class="mr-4">Hi {{ userName }}!</p>
+                    <p class="mr-4 text-sm text-gray-700">Hi {{ userName }}!</p>
                     <p class="text-gray-700 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600 cursor-pointer" @click="LogoutUser">Log out</p>
                 </div>
                 <div v-else class="hidden sm:flex sm:items-center">
