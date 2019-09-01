@@ -11,18 +11,29 @@
             </a>
         </div>
         <div class="items-stretch border-2 rounded-lg rounded-t-none border-gray-400 min-h-full bg-white">
-            <div class="block self-stretch" v-for="deck in decks" :key="deck.id">
-                <router-link :to="{name: 'Flashcards', params: {deck_id: deck.id, deck_name: deck.name}}">
-                    <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg px-4 py-2 m-4 cursor-pointer hover:bg-gray-300 h-40 min-h-full relative">
-                        <p class="text-3xl text-gray-800">{{ deck.name }}</p>
-                        <p class="text-gray-600"> {{ deck.description }}</p>
-                        <p class="absolute bottom-0 left-0 py-2 px-4 text-gray-600 text-sm font-semibold">
-                            {{deck.cards_count}}
-                            <span v-if="deck.cards_count === 1">flashcard</span>
-                            <span v-else>flashcards</span>
-                        </p>
+            <div v-if="decks.length > 0">
+                <div class="block self-stretch" v-for="deck in decks" :key="deck.id">
+                    <router-link :to="{name: 'Flashcards', params: {deck_id: deck.id, deck_name: deck.name}}">
+                        <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg px-4 py-2 m-4 cursor-pointer hover:bg-gray-300 h-40 min-h-full relative">
+                            <p class="text-3xl text-gray-800">{{ deck.name }}</p>
+                            <p class="text-gray-600"> {{ deck.description }}</p>
+                            <p class="absolute bottom-0 left-0 py-2 px-4 text-gray-600 text-sm font-semibold">
+                                {{deck.cards_count}}
+                                <span v-if="deck.cards_count === 1">flashcard</span>
+                                <span v-else>flashcards</span>
+                            </p>
+                        </div>
+                    </router-link>
+                </div>
+            </div>
+            <div v-else>
+                <div class="md:flex sm:block self-stretch items-center">
+                    <img class="md:object-left sm:object-top object-fit m-20" src="../assets/img/undraw_add_content.svg" width="200px" height="200px"/>
+                    <div class="m-10 md:ml-0 sm:ml-10 text-gray-800 text-base leading-relaxed">
+                        <p class="font-bold text-lg tracking-wide">Nothing here yet...</p>
+                        <p class="mt-5">Start by creating new collection!</p>
                     </div>
-                </router-link>
+                </div>
             </div>
         </div>
     </div>
@@ -34,6 +45,11 @@
         computed: {
             decks() {
                 return this.$store.getters.decks
+            }
+        },
+        created() {
+            if (this.decks.length === 0) {
+                this.$store.dispatch('GET_DECKS')
             }
         }
     }
