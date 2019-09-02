@@ -8,14 +8,22 @@
             <div class="p-4 pt-6">
                 <label class="block text-gray-700 text-sm font-bold mb-1" for="name">Name</label>
                 <input class="appearance-none outline-none border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-400"
-                       id="name" type="text" placeholder="Give it a name" v-model="name">
+                       id="name" type="text" placeholder="Give it a name" v-model.trim.lazy="$v.name.$model"
+                       :class="{ 'border-red-400': $v.name.$error }">
+                <p class="text-sm text-red-400" v-if="$v.name.$error && !$v.name.required">Collection should have a
+                    name.</p>
+                <p class="text-sm text-red-400" v-if="!$v.name.maxLength">Collection name should be 50 characters
+                    maximum.</p>
             </div>
             <div class="p-4 pt-6">
                 <label class="block text-gray-700 text-sm font-bold mb-1" for="description">Description</label>
                 <textarea
                         class="appearance-none outline-none focus:outline-none resize-y border-2 rounded-lg py-2 px-3 w-full text-gray-700 leading-tight focus:border-purple-400"
                         id="description" placeholder="You can also add some brief description" rows="4"
-                        v-model="description"></textarea>
+                        v-model.trim.lazy="$v.description.$model"
+                        :class="{ 'border-red-400': $v.description.$error }"></textarea>
+                <p class="text-sm text-red-400" v-if="!$v.description.maxLength">Description should be 250 characters
+                    maximum.</p>
             </div>
             <label class="block text-gray-700 font-bold pl-4">
                 <input class="mr-2 leading-tight" type="checkbox" v-model="isPublic">
@@ -35,17 +43,23 @@
 </template>
 
 <script>
+    import {required, maxLength} from 'vuelidate/lib/validators'
+
     export default {
         name: "AddDeck",
         data() {
             return {
-                name: null,
-                description: null,
+                name: "",
+                description: "",
                 isPublic: false
             }
         },
         methods: {
             AddDeck() {
+                this.$v.$touch();
+                if (this.$v.$invalid) {
+                    return
+                }
                 this.$store.dispatch('CREATE_DECK', {
                     name: this.name,
                     description: this.description,
@@ -55,6 +69,10 @@
             GoBack() {
                 this.$router.back()
             }
+        },
+        validations: {
+            name: {required, maxLength: maxLength(50)},
+            description: {maxLength: maxLength(250)}
         }
     }
 </script>

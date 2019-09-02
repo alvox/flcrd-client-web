@@ -56,12 +56,11 @@
                 if(this.$v.$invalid) {
                     return
                 }
-                // this.$store.dispatch('REGISTER_USER', {
-                //     name: this.name,
-                //     email: this.email,
-                //     password: this.password
-                // });
-                console.log(this.email)
+                this.$store.dispatch('REGISTER_USER', {
+                    name: this.name,
+                    email: this.email,
+                    password: this.password
+                });
             },
             GoBack() {
                 this.$router.back()
