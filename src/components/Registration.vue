@@ -3,22 +3,29 @@
         <div class="border-2 border-gray-400 rounded-lg rounded-b-none">
             <p class="text-base font-semibold m-4 pt-1 text-gray-800">Register</p>
         </div>
-        <form class="border-2 border-gray-400 rounded-lg border-t-0 rounded-t-none" @submit.prevent="RegisterUser">
-            <div class="mb-6 p-4 pt-6">
+        <form class="border-2 border-gray-400 rounded-lg border-t-0 rounded-t-none" autocomplete="off"
+              @submit.prevent="RegisterUser">
+            <div class="p-4 pt-6">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Nickname</label>
-                <input class="appearance-none outline-none border-gray-400 border-b-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="How you want us to call you" v-model="name">
+                <input class="appearance-none outline-none border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-400"
+                       id="name" type="text" placeholder="How you want us to call you" v-model="name">
             </div>
-            <div class="mb-6 p-4">
+            <div class="p-4 pt-6">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
-                <input class="outline-none border-gray-400 border-b-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Your email" v-model="email">
+                <input class="appearance-none outline-none border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-400"
+                       id="email" type="text" placeholder="Your email" v-model="email">
             </div>
-            <div class="mb-6 p-4">
+            <div class="p-4 pt-6">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
-                <input class="outline-none border-gray-400 border-b-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="text" placeholder="Create a password" v-model="password">
+                <input class="appearance-none outline-none border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-400"
+                       id="password" type="password" placeholder="Create a password" v-model="password">
             </div>
             <div class="flex justify-end p-4 content-center">
-                <p class="mr-4 cursor-pointer py-2" title="Cancel" @click="GoBack">Cancel</p>
-                <button class="border rounded-lg py-2 px-6" title="Create">Create</button>
+                <p class="mr-4 cursor-pointer py-2 text-gray-600 text-sm hover:text-red-500" title="Cancel"
+                   @click="GoBack">Cancel</p>
+                <button class="border rounded-lg py-2 px-6 text-gray-700 text-sm font-bold hover:text-purple-600 hover:border-purple-600"
+                        title="Register">Register
+                </button>
             </div>
         </form>
     </div>
