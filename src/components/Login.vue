@@ -7,12 +7,18 @@
             <div class="p-4 pt-6">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
                 <input class="appearance-none outline-none border-gray-400 border-2 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-400"
-                       id="email" type="text" placeholder="Your email" v-model="email">
+                       id="email" type="text" placeholder="Your email" v-model.trim.lazy="$v.email.$model"
+                       :class="{ 'border-red-400': $v.email.$error }">
+                <p class="text-sm text-red-400" v-if="$v.email.$error || !$v.email.email">Please, enter valid email
+                    address.</p>
             </div>
             <div class="p-4 pt-6">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
                 <input class="appearance-none outline-none border-gray-400 border-2 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-400"
-                       id="password" type="password" placeholder="And password" v-model="password">
+                       id="password" type="password" placeholder="And password" v-model.trim.lazy="$v.password.$model"
+                       :class="{ 'border-red-400': $v.password.$error }">
+                <p class="text-sm text-red-400" v-if="$v.password.$error && !$v.password.required">Please, enter your
+                    password.</p>
             </div>
             <div class="flex justify-end p-4 content-center">
                 <p class="mr-4 cursor-pointer py-2 text-gray-600 text-sm hover:text-red-500" title="Cancel"
@@ -26,16 +32,22 @@
 </template>
 
 <script>
+    import {required, email} from 'vuelidate/lib/validators'
+
     export default {
         name: "Login",
         data() {
             return {
-                email: null,
-                password: null
+                email: "",
+                password: "",
             }
         },
         methods: {
             LoginUser() {
+                this.$v.$touch();
+                if (this.$v.$invalid) {
+                    return
+                }
                 this.$store.dispatch('LOGIN_USER', {
                     email: this.email,
                     password: this.password
@@ -44,6 +56,10 @@
             GoBack() {
                 this.$router.back()
             }
+        },
+        validations: {
+            email: {required, email},
+            password: {required}
         }
     }
 </script>
