@@ -25,7 +25,7 @@
                        id="password" type="password" placeholder="Create a password" v-model.trim.lazy="$v.password.$model" :class="{ 'border-red-400': $v.password.$error }">
                 <p class="text-sm text-red-400" v-if="$v.password.$error && !$v.password.required">Please, enter your
                     password.</p>
-                <p class="text-sm text-red-400" v-if="!$v.password.between">Password should be 5 to 30 characters long.</p>
+                <p class="text-sm text-red-400" v-if="!$v.password.minLength || !$v.password.maxLength">Password should be 5 to 30 characters long.</p>
             </div>
             <div class="flex justify-end p-4 content-center">
                 <p class="mr-4 cursor-pointer py-2 text-gray-600 text-sm hover:text-red-500" title="Cancel"
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-    import {required, email, maxLength, between} from 'vuelidate/lib/validators'
+    import {required, email, minLength, maxLength} from 'vuelidate/lib/validators'
 
     export default {
         name: "Registration",
@@ -69,7 +69,7 @@
         validations: {
             name: {required, maxLength: maxLength(50)},
             email: {required, email, maxLength: maxLength(120)},
-            password: {required, between: between(5, 30)}
+            password: {required, minLength: minLength(5), maxLength: maxLength(30)}
         }
     }
 </script>
