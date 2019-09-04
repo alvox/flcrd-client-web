@@ -69,7 +69,7 @@
         },
         computed: {
             deck() {
-                return this.$store.getters.deck(this.$route.params.deck_id, this.isPrivate)
+                return this.$store.getters.deck(this.$route.params.deck_id)
             },
         },
         mounted() {

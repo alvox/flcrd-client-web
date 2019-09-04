@@ -25,11 +25,12 @@ export const store = new Vuex.Store({
         publicDecks: state => {
             return state.publicDecks
         },
-        deck: (state) => (id, isPrivate) => {
-            if (isPrivate) {
-                return state.decks.filter(deck => deck.id === id)[0]
+        deck: (state) => (id) => {
+            let decks = state.decks.filter(deck => deck.id === id);
+            if (decks.length === 0) {
+                decks = state.publicDecks.filter(deck => deck.id === id);
             }
-            return state.publicDecks.filter(deck => deck.id === id)[0]
+            return decks[0]
         },
         loggedIn: (state) => {
             return !!state.userToken && !!state.userName && !!state.userEmail
@@ -157,7 +158,7 @@ export const store = new Vuex.Store({
                     router.push({name: 'Decks'})
                     // router.push(router.history.current.query.redirect || '/');
                 })
-                .catch (e => {
+                .catch(e => {
                     if (e instanceof AuthenticationError) {
                         context.commit('authError', {errorCode: e.errorCode, errorMessage: e.message})
                     }

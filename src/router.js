@@ -56,7 +56,6 @@ const router =  new Router({
             path: '/:deck_id/flashcards',
             name: 'Flashcards',
             component: Flashcards,
-            props: true,
             meta: {
                 public: true
             }
