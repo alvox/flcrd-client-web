@@ -2,7 +2,7 @@
     <div class="mx-auto max-w-2xl min-w-2xl rounded-lg mt-10">
         <div class="flex justify-between border-2 rounded-lg border-b-0 rounded-b-none border-gray-400 bg-white">
             <p class="text-base font-semibold m-4 pt-1 text-gray-800">{{ deck.name }}</p>
-            <div class="m-4">
+            <div class="m-4" v-if="deck.private">
                 <p class="mr-4 cursor-pointer inline-block" title="Delete collection" @click="deleteDeck">
                     <svg class="fill-current text-red-400 inline-block h-8 w-8" xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 20 20">
@@ -54,7 +54,6 @@
 <script>
     export default {
         name: "Flashcards",
-        props: ['isPrivate'],
         data() {
             return {}
         },
