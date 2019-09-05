@@ -39,8 +39,8 @@
         <div v-else>
             <div class="sm:block md:flex flex-wrap items-stretch border-2 rounded-lg rounded-t-none border-gray-400 pt-4 pl-4 bg-white">
                 <div class="md:flex sm:block self-stretch items-center">
-                    <img class="md:object-left sm:object-top object-fit m-20 mt-10"
-                         src="../assets/img/undraw_add_cards.svg" width="200px" height="200px"/>
+                    <img class="md:object-left sm:object-top object-fit m-10 mb-20"
+                         src="../assets/img/undraw_add_cards.svg" width="250px" height="250px"/>
                     <div class="m-10 md:ml-0 sm:ml-10 text-gray-800 text-base leading-relaxed">
                         <p class="font-bold text-lg tracking-wide">Awesome!</p>
                         <p class="mt-5">Now you can start adding flashcards. Use + button on top.</p>
