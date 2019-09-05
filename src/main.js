@@ -14,8 +14,9 @@ Vue.prototype.$http = axios;
 Vue.use(Vuelidate);
 
 ApiService.init('https://flashcards.rocks/v0/');
-if (TokenService.getToken()) {
-    ApiService.setHeader()
+if (TokenService.getAccessToken()) {
+    ApiService.setHeader();
+    ApiService.mount401Interceptor()
 }
 
 new Vue({

@@ -13,10 +13,11 @@ export const store = new Vuex.Store({
         publicDecks: [],
         userName: UserService.getUserName(),
         userEmail: UserService.getUserEmail(),
-        userToken: TokenService.getToken(),
+        accessToken: TokenService.getAccessToken(),
         authenticating: false,
         authenticationErrorCode: 0,
-        authenticationError: ''
+        authenticationError: '',
+        refreshTokenPromise: null
     },
     getters: {
         decks: state => {
@@ -33,7 +34,7 @@ export const store = new Vuex.Store({
             return decks[0]
         },
         loggedIn: (state) => {
-            return !!state.userToken && !!state.userName && !!state.userEmail
+            return !!state.userName && !!state.userEmail
         },
         userName: (state) => {
             return state.userName
@@ -78,7 +79,6 @@ export const store = new Vuex.Store({
         authSuccess(state, payload) {
             state.userName = payload.userName;
             state.userEmail = payload.userEmail;
-            state.userToken = payload.userToken;
             state.authenticating = false;
         },
         authError(state, payload) {
@@ -90,6 +90,9 @@ export const store = new Vuex.Store({
             state.accessToken = null;
             state.userName = null;
             state.userEmail = null;
+        },
+        refreshTokenPromise(state, promise) {
+            state.refreshTokenPromise = promise
         }
     },
     actions: {
@@ -178,6 +181,23 @@ export const store = new Vuex.Store({
                         context.commit('authError', {errorCode: e.errorCode, errorMessage: e.message})
                     }
                 })
+        },
+        REFRESH_TOKEN: (context, payload) => {
+            // If this is the first time the refreshToken has been called, make a request
+            // otherwise return the same promise to the caller
+            if (!context.state.refreshTokenPromise) {
+                let p = UserService.refreshToken(payload.accessToken, payload.refreshToken);
+                context.commit('refreshTokenPromise', p);
+                // Wait for the UserService.refreshToken() to resolve. On success set the token and clear promise
+                // Clear the promise on error as well.
+                p.then(result => {
+                    context.commit('refreshTokenPromise', null);
+                }, error => {
+                    console.log(error);
+                    context.commit('refreshTokenPromise', null)
+                })
+            }
+            return context.state.refreshTokenPromise
         },
         LOGOUT_USER: (context) => {
             UserService.logout();

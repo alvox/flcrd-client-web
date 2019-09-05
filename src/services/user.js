@@ -23,7 +23,7 @@ const UserService = {
         return localStorage.getItem(EMAIL_KEY);
     },
 
-    register: async function (name, email, password) {
+    register(name, email, password) {
         let requestData = {
             name: name,
             email: email,
@@ -31,14 +31,14 @@ const UserService = {
         };
         return ApiService.post("users/register", requestData)
             .then(result => {
-                TokenService.saveToken(result.data.token.auth_token);
+                TokenService.saveAccessToken(result.data.token.auth_token);
+                TokenService.saveRefreshToken(result.data.token.refresh_token);
                 ApiService.setHeader();
                 this.saveCredentials(result.data.email, result.data.name);
-                // ApiService.mount401Interceptor();
+                ApiService.mount401Interceptor();
                 return {
                     userName: result.data.name,
                     userEmail: result.data.email,
-                    userToken: result.data.token.auth_token
                 }
             })
             .catch(e => {
@@ -47,22 +47,39 @@ const UserService = {
             })
     },
 
-    login: async function (email, password) {
+    login(email, password) {
         let requestData = {
             email: email,
             password: password
         };
         return ApiService.post("users/login", requestData)
             .then(result => {
-                TokenService.saveToken(result.data.token.auth_token);
+                TokenService.saveAccessToken(result.data.token.auth_token);
+                TokenService.saveRefreshToken(result.data.token.refresh_token);
                 ApiService.setHeader();
                 this.saveCredentials(result.data.email, result.data.name);
-                // ApiService.mount401Interceptor();
+                ApiService.mount401Interceptor();
                 return {
                     userName: result.data.name,
                     userEmail: result.data.email,
-                    userToken: result.data.token.auth_token
                 }
+            })
+            .catch(e => {
+                console.log(e);
+                throw new AuthenticationError(e.response.status, e.response.data.detail)
+            })
+    },
+
+    refreshToken(accessToken, refreshToken) {
+        let requestData = {
+            auth_token: accessToken,
+            refresh_token: refreshToken
+        };
+        return ApiService.post("/users/refresh", requestData)
+            .then(result => {
+                TokenService.saveAccessToken(result.data.auth_token);
+                TokenService.saveRefreshToken(result.data.refresh_token);
+                ApiService.setHeader();
             })
             .catch(e => {
                 console.log(e);
@@ -71,11 +88,11 @@ const UserService = {
     },
 
     logout() {
-        TokenService.removeToken();
+        TokenService.removeAccessToken();
         TokenService.removeRefreshToken();
         ApiService.removeHeader();
-        this.removeCredentials()
-        // ApiService.unmount401Interceptor()
+        this.removeCredentials();
+        ApiService.unmount401Interceptor()
     },
 
     saveCredentials(email, name) {
