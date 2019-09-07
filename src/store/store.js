@@ -155,7 +155,7 @@ export const store = new Vuex.Store({
                 rear: payload.rear
             }).then(result => {
                 context.commit('saveCard', {deck_id: payload.deck_id, card: result.data});
-                router.back()
+                // router.back()
             })
         },
         DELETE_CARD: (context, payload) => {

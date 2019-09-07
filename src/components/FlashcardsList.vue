@@ -20,7 +20,7 @@
             </div>
         </div>
         <div v-if="deck.cards != null && deck.cards.length > 0">
-            <div class="sm:block border-2 rounded-lg rounded-t-none border-gray-400 pt-4 pl-4 bg-white">
+            <div class="sm:block border-2  border-gray-400 pt-4 pl-4 bg-white">
                 <div class="flex flex-wrap text-gray-700" v-for="flashcard in deck.cards" :key="flashcard.id">
                     <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg rounded-r-none px-4 py-2 mb-4 cursor-pointer">
                         <p class="text-base break-all">{{ flashcard.front }}</p>
@@ -51,24 +51,76 @@
                 </div>
             </div>
         </div>
+        <form class="border-2 rounded-lg border-t-0 rounded-t-none border-gray-400 bg-white" @submit.prevent="saveCard">
+            <p class="p-4 pb-0 text-sm text-gray-700 font-light">Add new card:</p>
+            <div class="flex flex-wrap">
+                <div class="flex-1 m-2 ml-4">
+                    <label class="block text-gray-500 text-sm font-bold hidden" for="front">Front side</label>
+                    <textarea
+                        class="appearance-none outline-none focus:outline-none resize-y border-2 rounded-lg py-2 px-3 w-full text-gray-700 leading-tight focus:border-purple-400"
+                        id="front" placeholder="Front..." rows="2" v-model.trim.lazy="$v.front.$model" :class="{ 'border-red-400': $v.front.$error }"></textarea>
+                    <p class="text-sm text-red-400" v-if="$v.front.$error && !$v.front.required">Card should have something on the front side.</p>
+                    <p class="text-sm text-red-400" v-if="!$v.front.maxLength">Card side should be 250 characters maximum.</p>
+                </div>
+                <div class="flex-1 m-2 mr-4">
+                    <label class="block text-gray-500 text-sm font-bold hidden" for="rear">Rear side</label>
+                    <textarea
+                        class="appearance-none outline-none focus:outline-none resize-y border-2 rounded-lg py-2 px-3 w-full text-gray-700 leading-tight focus:border-purple-400"
+                        id="rear" placeholder="Rear..." rows="2" v-model.trim.lazy="$v.rear.$model" :class="{ 'border-red-400': $v.rear.$error }"></textarea>
+                    <p class="text-sm text-red-400" v-if="$v.rear.$error && !$v.rear.required">Rear side should be in place too.</p>
+                    <p class="text-sm text-red-400" v-if="!$v.rear.maxLength">Card side should be 250 characters maximum.</p>
+                </div>
+            </div>
+            <div class="flex justify-end content-center pr-4 pb-4">
+                <button class="border rounded-lg py-2 px-6 text-gray-700 text-sm font-bold hover:text-purple-600 hover:border-purple-600"
+                        title="Create card">
+                    Save
+                </button>
+            </div>
+        </form>
     </div>
 </template>
 
 <script>
+    import {required, maxLength} from 'vuelidate/lib/validators'
     export default {
         name: "FlashcardsList",
+        data() {
+            return {
+                front: "",
+                rear: ""
+            }
+        },
         methods: {
             deleteDeck() {
                 this.$store.dispatch('DELETE_DECK', {deck_id: this.deck.id})
             },
             deleteCard(id) {
                 this.$store.dispatch('DELETE_CARD', {deck_id: this.deck.id, card_id: id})
+            },
+            saveCard() {
+                this.$v.$touch();
+                if (this.$v.$invalid) {
+                    return
+                }
+                this.$store.dispatch('CREATE_CARD', {
+                    deck_id: this.$route.params.deck_id,
+                    front: this.front,
+                    rear: this.rear
+                });
+                this.front = "";
+                this.rear = "";
+                this.$v.$reset()
             }
         },
         computed: {
             deck() {
                 return this.$store.getters.deck(this.$route.params.deck_id)
             },
+        },
+        validations: {
+            front: {required, maxLength: maxLength(250)},
+            rear: {required, maxLength: maxLength(250)}
         },
         mounted() {
             if (this.deck.cards == null) {
