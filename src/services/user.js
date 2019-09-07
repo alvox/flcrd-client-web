@@ -4,15 +4,6 @@ import {TokenService} from './token'
 const EMAIL_KEY = 'user_email';
 const NAME_KEY = 'user_name';
 
-class AuthenticationError extends Error {
-    constructor(errorCode, message) {
-        super(message);
-        this.name = this.constructor.name;
-        this.message = message;
-        this.errorCode = errorCode
-    }
-}
-
 const UserService = {
 
     getUserName() {
@@ -31,10 +22,8 @@ const UserService = {
         };
         return ApiService.post("users/register", requestData)
             .then(result => {
-                TokenService.saveAccessToken(result.data.token.access_token);
-                TokenService.saveRefreshToken(result.data.token.refresh_token);
-                ApiService.setHeader();
-                this.saveCredentials(result.data.email, result.data.name);
+                saveTokensAndSetHeader(result.data.token);
+                saveCredentials(result.data.email, result.data.name);
                 ApiService.mount401Interceptor();
                 return {
                     userName: result.data.name,
@@ -50,10 +39,8 @@ const UserService = {
         };
         return ApiService.post("users/login", requestData)
             .then(result => {
-                TokenService.saveAccessToken(result.data.token.access_token);
-                TokenService.saveRefreshToken(result.data.token.refresh_token);
-                ApiService.setHeader();
-                this.saveCredentials(result.data.email, result.data.name);
+                saveTokensAndSetHeader(result.data.token);
+                saveCredentials(result.data.email, result.data.name);
                 ApiService.mount401Interceptor();
                 return {
                     userName: result.data.name,
@@ -67,11 +54,9 @@ const UserService = {
             access_token: accessToken,
             refresh_token: refreshToken
         };
-        return ApiService.post("/users/refresh", requestData)
+        return ApiService.post("users/refresh", requestData)
             .then(result => {
-                TokenService.saveAccessToken(result.data.access_token);
-                TokenService.saveRefreshToken(result.data.refresh_token);
-                ApiService.setHeader();
+                saveTokensAndSetHeader(result.data)
             })
     },
 
@@ -79,21 +64,26 @@ const UserService = {
         TokenService.removeAccessToken();
         TokenService.removeRefreshToken();
         ApiService.removeHeader();
-        this.removeCredentials();
+        removeCredentials();
         ApiService.unmount401Interceptor()
-    },
-
-    saveCredentials(email, name) {
-        localStorage.setItem(EMAIL_KEY, email);
-        localStorage.setItem(NAME_KEY, name);
-    },
-
-    removeCredentials() {
-        localStorage.removeItem(EMAIL_KEY);
-        localStorage.removeItem(NAME_KEY);
     }
 
 };
 
-export default UserService
-export {UserService, AuthenticationError}
+function saveTokensAndSetHeader(tokens) {
+    TokenService.saveAccessToken(tokens.access_token);
+    TokenService.saveRefreshToken(tokens.refresh_token);
+    ApiService.setHeader();
+}
+
+function saveCredentials(email, name) {
+    localStorage.setItem(EMAIL_KEY, email);
+    localStorage.setItem(NAME_KEY, name);
+}
+
+function removeCredentials() {
+    localStorage.removeItem(EMAIL_KEY);
+    localStorage.removeItem(NAME_KEY);
+}
+
+export {UserService}

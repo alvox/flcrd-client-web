@@ -27,4 +27,4 @@ const TokenService = {
     }
 };
 
-export { TokenService }
+export {TokenService}

@@ -2,9 +2,8 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import router from '../router'
 import {TokenService} from '../services/token'
-import {UserService, AuthenticationError} from '../services/user'
+import {UserService} from '../services/user'
 import ApiService from "../services/api";
-import {capitalize} from "../services/misc";
 
 Vue.use(Vuex);
 
@@ -173,8 +172,12 @@ export const store = new Vuex.Store({
                     // router.push(router.history.current.query.redirect || '/');
                 })
                 .catch(e => {
-                    if (e instanceof AuthenticationError) {
-                        context.commit('authError', {errorCode: e.errorCode, errorMessage: e.message})
+                    let r = e.response;
+                    if (r.status === 400 || r.status === 500) {
+                        context.commit('authError', {
+                            errorCode: e.response.data.code,
+                            errorMessage: e.response.data.message
+                        })
                     }
                 })
         },
@@ -187,10 +190,11 @@ export const store = new Vuex.Store({
                     // router.push(router.history.current.query.redirect || '/');
                 })
                 .catch(e => {
-                    if (e.response.status === 401) {
+                    let r = e.response;
+                    if (r.status === 401 || r.status === 400 || r.status === 500) {
                         context.commit('authError', {
-                            errorCode: e.response.data.code,
-                            errorMessage: capitalize(e.response.data.message)
+                            errorCode: r.data.code,
+                            errorMessage: r.data.message
                         })
                     }
                 })

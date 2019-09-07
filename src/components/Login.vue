@@ -21,7 +21,7 @@
                     password.</p>
             </div>
             <div v-if="errorMessage !== ''">
-                <p class="text-sm text-red-400 text-center"> {{ errorMessage }} </p>
+                <p class="text-sm text-red-400 text-center"> {{ errorMessage | capitalize }} </p>
             </div>
             <div class="flex justify-end p-4 content-center">
                 <p class="mr-4 cursor-pointer py-2 text-gray-600 text-sm hover:text-red-500" title="Cancel"
