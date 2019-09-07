@@ -4,6 +4,7 @@ import router from '../router'
 import {TokenService} from '../services/token'
 import {UserService, AuthenticationError} from '../services/user'
 import ApiService from "../services/api";
+import {capitalize} from "../services/misc";
 
 Vue.use(Vuex);
 
@@ -15,8 +16,8 @@ export const store = new Vuex.Store({
         userEmail: UserService.getUserEmail(),
         accessToken: TokenService.getAccessToken(),
         authenticating: false,
-        authenticationErrorCode: 0,
-        authenticationError: '',
+        errorCode: '',
+        errorMessage: '',
         refreshTokenPromise: null
     },
     getters: {
@@ -38,6 +39,9 @@ export const store = new Vuex.Store({
         },
         userName: (state) => {
             return state.userName
+        },
+        errorMessage: (state) => {
+            return state.errorMessage
         }
     },
     mutations: {
@@ -73,18 +77,25 @@ export const store = new Vuex.Store({
         },
         authRequest(state) {
             state.authenticating = true;
-            state.authenticationError = '';
-            state.authenticationErrorCode = 0
+            state.errorCode = '';
+            state.errorMessage = '';
         },
         authSuccess(state, payload) {
             state.userName = payload.userName;
             state.userEmail = payload.userEmail;
             state.authenticating = false;
+            state.errorCode = '';
+            state.errorMessage = '';
         },
         authError(state, payload) {
             state.authenticating = false;
-            state.authenticationErrorCode = payload.errorCode;
-            state.authenticationError = payload.errorMessage
+            state.errorCode = payload.errorCode;
+            state.errorMessage = payload.errorMessage
+        },
+        authCancel(state) {
+            state.authenticating = false;
+            state.errorCode = '';
+            state.errorMessage = '';
         },
         logoutSuccess(state) {
             state.accessToken = null;
@@ -176,9 +187,11 @@ export const store = new Vuex.Store({
                     // router.push(router.history.current.query.redirect || '/');
                 })
                 .catch(e => {
-                    console.log(e);
-                    if (e instanceof AuthenticationError) {
-                        context.commit('authError', {errorCode: e.errorCode, errorMessage: e.message})
+                    if (e.response.status === 401) {
+                        context.commit('authError', {
+                            errorCode: e.response.data.code,
+                            errorMessage: capitalize(e.response.data.message)
+                        })
                     }
                 })
         },

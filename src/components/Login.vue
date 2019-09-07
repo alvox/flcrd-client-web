@@ -20,6 +20,9 @@
                 <p class="text-sm text-red-400" v-if="$v.password.$error && !$v.password.required">Please, enter your
                     password.</p>
             </div>
+            <div v-if="errorMessage !== ''">
+                <p class="text-sm text-red-400 text-center"> {{ errorMessage }} </p>
+            </div>
             <div class="flex justify-end p-4 content-center">
                 <p class="mr-4 cursor-pointer py-2 text-gray-600 text-sm hover:text-red-500" title="Cancel"
                    @click="GoBack">Cancel</p>
@@ -42,6 +45,11 @@
                 password: "",
             }
         },
+        computed: {
+            errorMessage() {
+                return this.$store.getters.errorMessage
+            },
+        },
         methods: {
             LoginUser() {
                 this.$v.$touch();
@@ -54,6 +62,7 @@
                 });
             },
             GoBack() {
+                this.$store.commit('authCancel');
                 this.$router.back()
             }
         },

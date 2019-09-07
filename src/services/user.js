@@ -41,10 +41,6 @@ const UserService = {
                     userEmail: result.data.email,
                 }
             })
-            .catch(e => {
-                console.log(e);
-                throw new AuthenticationError(e.response.status, e.response.data.detail)
-            })
     },
 
     login(email, password) {
@@ -64,10 +60,6 @@ const UserService = {
                     userEmail: result.data.email,
                 }
             })
-            .catch(e => {
-                console.log(e);
-                throw new AuthenticationError(e.response.status, e.response.data.detail)
-            })
     },
 
     refreshToken(accessToken, refreshToken) {
@@ -80,10 +72,6 @@ const UserService = {
                 TokenService.saveAccessToken(result.data.access_token);
                 TokenService.saveRefreshToken(result.data.refresh_token);
                 ApiService.setHeader();
-            })
-            .catch(e => {
-                console.log(e);
-                throw new AuthenticationError(e.response.status, e.response.data.detail)
             })
     },
 
