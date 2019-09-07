@@ -4,10 +4,11 @@ import Index from '@/components/Index'
 import AddDeck from "@/components/AddDeck"
 import Decks from "@/components/Decks"
 import Flashcards from "@/components/Flashcards"
+import FlashcardsList from "@/components/FlashcardsList";
 import AddFlashcard from "@/components/AddFlashcard"
 import Registration from "@/components/Registration"
-import Login from "@/components/Login"
 
+import Login from "@/components/Login"
 import {TokenService} from "./services/token"
 
 Vue.use(Router);
@@ -59,6 +60,11 @@ const router =  new Router({
             meta: {
                 public: true
             }
+        },
+        {
+            path: '/:deck_id/flashcards/list',
+            name: 'FlashcardsList',
+            component: FlashcardsList
         },
         {
             path: '/:deck_id/add-flashcard',
