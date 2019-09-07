@@ -31,7 +31,7 @@ const UserService = {
         };
         return ApiService.post("users/register", requestData)
             .then(result => {
-                TokenService.saveAccessToken(result.data.token.auth_token);
+                TokenService.saveAccessToken(result.data.token.access_token);
                 TokenService.saveRefreshToken(result.data.token.refresh_token);
                 ApiService.setHeader();
                 this.saveCredentials(result.data.email, result.data.name);
@@ -54,7 +54,7 @@ const UserService = {
         };
         return ApiService.post("users/login", requestData)
             .then(result => {
-                TokenService.saveAccessToken(result.data.token.auth_token);
+                TokenService.saveAccessToken(result.data.token.access_token);
                 TokenService.saveRefreshToken(result.data.token.refresh_token);
                 ApiService.setHeader();
                 this.saveCredentials(result.data.email, result.data.name);
@@ -72,12 +72,12 @@ const UserService = {
 
     refreshToken(accessToken, refreshToken) {
         let requestData = {
-            auth_token: accessToken,
+            access_token: accessToken,
             refresh_token: refreshToken
         };
         return ApiService.post("/users/refresh", requestData)
             .then(result => {
-                TokenService.saveAccessToken(result.data.auth_token);
+                TokenService.saveAccessToken(result.data.access_token);
                 TokenService.saveRefreshToken(result.data.refresh_token);
                 ApiService.setHeader();
             })

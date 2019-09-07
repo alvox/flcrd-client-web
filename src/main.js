@@ -13,7 +13,8 @@ Vue.config.productionTip = false;
 Vue.prototype.$http = axios;
 Vue.use(Vuelidate);
 
-ApiService.init('https://flashcards.rocks/v0/');
+// ApiService.init('https://flashcards.rocks/v0/');
+ApiService.init('http://localhost/v0/');
 if (TokenService.getAccessToken()) {
     ApiService.setHeader();
     ApiService.mount401Interceptor()
