@@ -21,17 +21,19 @@
         </div>
         <div v-if="deck.cards != null && deck.cards.length > 0">
             <div class="sm:block md:flex flex-wrap items-stretch border-2 rounded-lg rounded-t-none border-gray-400 pt-4 pl-4 bg-white">
-                <div class="w-1/2 self-stretch" v-for="flashcard in deck.cards" :key="flashcard.id">
-                    <div class="relative flex-1 text-gray-700 bg-gray-100 border-2 border-gray-400 rounded-lg rounded px-4 py-2 mb-4 mr-4">
-                        <p class="text-2xl">{{ flashcard.front }}</p>
-                        <p> {{ flashcard.rear }}</p>
-                        <div class="absolute top-0 right-0 px-2 py-2 font-semibold text-xs">
-                            <div class=" text-red-500 hover:text-red-700 cursor-pointer"
-                                 @click="deleteCard(flashcard.id)">
-                                Delete
-                            </div>
-                            <div class=" text-gray-500 hover:text-gray-700 cursor-pointer">Edit</div>
-                        </div>
+                <div class="md:w-1/2" v-for="flashcard in deck.cards" :key="flashcard.id">
+                    <div class="relative flex-1 text-gray-700 bg-gray-100 border-2 border-gray-400 rounded-lg rounded px-4 py-2 mb-4 mr-4 cursor-pointer"
+                         @click="flip(flashcard.id)"
+                         :class="{'border-green-400': isFlipped(flashcard.id)}">
+                        <p class="text-base break-words">{{ isFlipped(flashcard.id) ? flashcard.rear : flashcard.front }}</p>
+<!--                        <p> {{ flashcard.rear }}</p>-->
+<!--                        <div class="absolute top-0 right-0 px-2 py-2 font-semibold text-xs">-->
+<!--                            <div class=" text-red-500 hover:text-red-700 cursor-pointer"-->
+<!--                                 @click="deleteCard(flashcard.id)">-->
+<!--                                Delete-->
+<!--                            </div>-->
+<!--                            <div class=" text-gray-500 hover:text-gray-700 cursor-pointer">Edit</div>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
@@ -55,7 +57,9 @@
     export default {
         name: "Flashcards",
         data() {
-            return {}
+            return {
+                flippedCards: []
+            }
         },
 
         methods: {
@@ -64,6 +68,16 @@
             },
             deleteCard(id) {
                 this.$store.dispatch('DELETE_CARD', {deck_id: this.deck.id, card_id: id})
+            },
+            flip(cardId) {
+                if (this.isFlipped(cardId)) {
+                    this.flippedCards = this.flippedCards.filter(id => id !== cardId)
+                } else {
+                    this.flippedCards.push(cardId)
+                }
+            },
+            isFlipped(id) {
+                return this.flippedCards.includes(id)
             }
         },
         computed: {
