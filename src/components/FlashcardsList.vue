@@ -8,7 +8,7 @@
             </svg>
             <p class="text-gray-600 font-thin ml-2">Back</p>
         </div>
-        <div class="pt-4">
+        <div v-if="deck.cards != null && deck.cards.length > 0" class="pt-4">
             <router-link :to="{name: 'PracticeMode'}">
                 <p class="font-thin text-gray-700 underline">Practice</p>
             </router-link>
