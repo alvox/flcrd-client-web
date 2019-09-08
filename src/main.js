@@ -11,8 +11,8 @@ import {TokenService} from "./services/token";
 Vue.config.productionTip = false;
 Vue.use(Vuelidate);
 
-// ApiService.init('https://flashcards.rocks/v0/');
-ApiService.init('http://localhost/v0/');
+ApiService.init('https://flashcards.rocks/v0/');
+// ApiService.init('http://localhost/v0/');
 if (TokenService.getAccessToken()) {
     ApiService.setHeader();
     ApiService.mount401Interceptor()
