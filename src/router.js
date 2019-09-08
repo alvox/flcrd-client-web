@@ -10,6 +10,7 @@ import Registration from "@/components/Registration"
 
 import Login from "@/components/Login"
 import {TokenService} from "./services/token"
+import PracticeMode from "./components/PracticeMode";
 
 Vue.use(Router);
 
@@ -70,6 +71,14 @@ const router =  new Router({
             path: '/:deck_id/add-flashcard',
             name: 'AddFlashcard',
             component: AddFlashcard
+        },
+        {
+            path: '/:deck_id/practice',
+            name: 'PracticeMode',
+            component: PracticeMode,
+            meta: {
+                public: true
+            }
         }
     ]
 });
