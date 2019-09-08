@@ -11,14 +11,20 @@
         </div>
         <div class="mx-auto max-w-2xl rounded-lg mt-4">
             <div class="flex justify-between border-2 rounded-lg border-b-0 rounded-b-none border-gray-400 bg-white">
-                <p class="text-base font-semibold m-4 text-gray-800"><span class="font-semibold">Practicing </span>{{deck.name }}</p>
+                <p class="text-base font-semibold m-4 text-gray-800">
+                    <span class="font-semibold">Practicing </span>{{deck.name }}
+                </p>
             </div>
-            <div class="block border-2 border-gray-400 rounded-lg rounded-t-none bg-white">
-                <div class="text-center font-semibold text-xl text-gray-700 mt-6">{{currentIdx+1}} of {{deck.cards.length}}</div>
+            <div v-if="!isDone" class="block border-2 border-gray-400 rounded-lg rounded-t-none bg-white">
+                <div class="text-center font-semibold text-xl text-gray-700 mt-6">{{currentIdx+1}} of
+                    {{cardsToPractice.length}}
+                </div>
                 <div class="flex justify-between h-64">
                     <div class="w-1/4"></div>
                     <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg mt-6 mb-5 p-4 align-middle overflow-auto">
-                        <p class="break-words text-gray-800">{{ side === 'front' ? currentCard.front : currentCard.rear }}</p>
+                        <p class="break-words text-gray-800">
+                            {{ side === 'front' ? currentCard.front : currentCard.rear }}
+                        </p>
                     </div>
                     <div class="w-1/4"></div>
                 </div>
@@ -33,20 +39,37 @@
                                 <p class="ml-4 font-semibold text-xl text-red-700">{{wrongAnswers.length}}</p>
                             </div>
                             <div class="flex justify-between mt-2 mb-10">
-                                <p class="flex-1 text-center text-green-900 bg-green-100 border border-green-400 hover:bg-green-200 hover:border-green-500 rounded-lg p-2 mr-4 cursor-pointer"
+                                <p class="flex-1 text-center text-green-900 bg-green-100 border border-green-400 hover:bg-green-200 hover:border-green-500 rounded-lg p-2 mr-4 cursor-pointer select-none"
                                    @click="next(true)">
                                     <span class="text-2xl">😁</span><br>I was right!
                                 </p>
-                                <p class="flex-1 text-center text-red-900 bg-red-100 border border-red-400 hover:bg-red-200 hover:border-red-500 rounded-lg p-2 ml-4 cursor-pointer"
+                                <p class="flex-1 text-center text-red-900 bg-red-100 border border-red-400 hover:bg-red-200 hover:border-red-500 rounded-lg p-2 ml-4 cursor-pointer select-none"
                                    @click="next(false)">
                                     <span class="text-2xl">😧</span><br>I was wrong...
                                 </p>
                             </div>
                         </div>
-
                     </div>
                     <div class="w-1/4"></div>
                 </div>
+            </div>
+            <!-- RESULTS -->
+            <div v-else class="block border-2 border-gray-400 rounded-lg rounded-t-none bg-white">
+                <p class="text-center mt-20 text-4xl font-bold tracking-wide text-gray-800">Done! <span v-if="allCorrect">👏😎</span> </p>
+                <p v-if="allCorrect" class="text-center mt-5 text-gray-800">You've remembered all cards from this
+                    deck!</p>
+                <p v-else class="text-center mt-5 text-gray-800">You've remembered {{correctAnswers.length}}
+                    {{correctAnswers.length === 1 ? 'card' : 'cards'}} out of {{deck.cards.length}}.</p>
+                <div class="flex mx-32 my-10 mb-20">
+                    <p class="flex-1 border py-2 mr-10 text-center text-gray-800 rounded-lg cursor-pointer hover:text-purple-600 hover:border-purple-600"
+                       :class="{'ml-10' : correctAnswers.length === 0 || wrongAnswers.length === 0}"
+                       @click="repeat(false)">Repeat all cards</p>
+                    <p v-if="correctAnswers.length !== 0 && wrongAnswers.length !== 0"
+                       class="flex-1 border p-2 ml-10 text-center text-gray-800 rounded-lg cursor-pointer hover:text-purple-600 hover:border-purple-600"
+                       @click="repeat(true)">
+                        Repeat {{wrongAnswers.length}} {{wrongAnswers.length === 1 ? 'card' : 'cards'}}</p>
+                </div>
+
             </div>
         </div>
     </div>
@@ -57,8 +80,10 @@
         name: "PracticeMode",
         data() {
             return {
+                isDone: false,
                 side: "front",
                 currentIdx: 0,
+                cardsToPractice: [],
                 correctAnswers: [],
                 wrongAnswers: []
             }
@@ -77,12 +102,24 @@
                 } else {
                     this.wrongAnswers.push(this.currentCard)
                 }
-                if (this.currentIdx + 1 === this.deck.cards.length) {
-                    //we're done
+                if (this.currentIdx + 1 === this.cardsToPractice.length) {
+                    this.isDone = true;
                     return
                 }
                 this.currentIdx++;
                 this.side = "front"
+            },
+            repeat(onlyFailed) {
+                if (onlyFailed) {
+                    this.cardsToPractice = this.wrongAnswers
+                } else {
+                    this.cardsToPractice = this.deck.cards
+                }
+                this.wrongAnswers = [];
+                this.correctAnswers = [];
+                this.isDone = false;
+                this.side = "front";
+                this.currentIdx = 0;
             },
             goBack() {
                 this.$router.back()
@@ -93,14 +130,16 @@
                 return this.$store.getters.deck(this.$route.params.deck_id)
             },
             currentCard() {
-                return this.deck.cards[this.currentIdx]
+                return this.cardsToPractice[this.currentIdx]
+            },
+            allCorrect() {
+                return this.wrongAnswers.length === 0
             },
         },
+        created() {
+            this.cardsToPractice = this.deck.cards
+        }
     }
 </script>
 
-<style>
-    .card {
-        height: 16rem;
-    }
-</style>
+<style></style>
