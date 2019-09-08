@@ -9,39 +9,46 @@
                 <p class="text-gray-600 font-thin ml-2">Back</p>
             </div>
         </div>
-    <div class="mx-auto max-w-2xl rounded-lg mt-4">
-        <div class="flex justify-between border-2 rounded-lg border-b-0 rounded-b-none border-gray-400 bg-white">
-            <p class="text-base font-semibold m-4 pt-1 text-gray-800"><span class="font-thin">Practice</span> {{ deck.name }}</p>
-        </div>
-        <div class="block border-2 border-gray-400 rounded-lg rounded-t-none bg-white">
-            <div class="text-center mt-10">{{currentIdx+1}} of {{deck.cards.length}}</div>
-            <div class="flex justify-between">
-                <div class="w-1/4"></div>
-                <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg mt-10 mb-10 p-4">
-                    <p class="break-all">{{ side === 'front' ? currentCard.front : currentCard.rear }}</p>
-                </div>
-                <div class="w-1/4"></div>
+        <div class="mx-auto max-w-2xl rounded-lg mt-4">
+            <div class="flex justify-between border-2 rounded-lg border-b-0 rounded-b-none border-gray-400 bg-white">
+                <p class="text-base font-semibold m-4 text-gray-800"><span class="font-semibold">Practicing </span>{{deck.name }}</p>
             </div>
-            <div class="flex justify-between">
-                <div class="w-1/4"></div>
-                <div class="flex-1" >
-                    <div class="block">
-                            <p class="text-center text-gray-700 font-semibold  border border-gray-400 hover:text-purple-600 hover:border-purple-600 rounded-lg mt-10 p-2 cursor-pointer" @click="flip">Flip</p>
-                        <div class="flex justify-between mt-10 mb-10">
-                            <p class="flex-1 text-center text-green-900 bg-green-100 border border-green-400 hover:bg-green-200 hover:border-green-500 rounded-lg p-2 mr-4 cursor-pointer" @click="next(true)">
-                                <span class="text-2xl">😁</span><br>I was right!
-                            </p>
-                            <p class="flex-1 text-center text-red-900 bg-red-100 border border-red-400 hover:bg-red-200 hover:border-red-500 rounded-lg p-2 ml-4 cursor-pointer" @click="next(false)">
-                                <span class="text-2xl">😧</span><br>I was wrong...
-                            </p>
-                        </div>
+            <div class="block border-2 border-gray-400 rounded-lg rounded-t-none bg-white">
+                <div class="text-center font-semibold text-xl text-gray-700 mt-6">{{currentIdx+1}} of {{deck.cards.length}}</div>
+                <div class="flex justify-between h-64">
+                    <div class="w-1/4"></div>
+                    <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg mt-6 mb-5 p-4 align-middle overflow-auto">
+                        <p class="break-words text-gray-800">{{ side === 'front' ? currentCard.front : currentCard.rear }}</p>
                     </div>
-
+                    <div class="w-1/4"></div>
                 </div>
-                <div class="w-1/4"></div>
+                <div class="flex justify-between">
+                    <div class="w-1/4"></div>
+                    <div class="flex-1">
+                        <div class="block">
+                            <p class="text-center tracking-wide text-gray-700 font-semibold  border border-gray-400 hover:text-purple-600 hover:border-purple-600 rounded-lg p-2 cursor-pointer"
+                               @click="flip">Flip card</p>
+                            <div class="flex justify-around mt-10">
+                                <p class="mr-4 font-semibold text-xl text-green-700">{{correctAnswers.length}}</p>
+                                <p class="ml-4 font-semibold text-xl text-red-700">{{wrongAnswers.length}}</p>
+                            </div>
+                            <div class="flex justify-between mt-2 mb-10">
+                                <p class="flex-1 text-center text-green-900 bg-green-100 border border-green-400 hover:bg-green-200 hover:border-green-500 rounded-lg p-2 mr-4 cursor-pointer"
+                                   @click="next(true)">
+                                    <span class="text-2xl">😁</span><br>I was right!
+                                </p>
+                                <p class="flex-1 text-center text-red-900 bg-red-100 border border-red-400 hover:bg-red-200 hover:border-red-500 rounded-lg p-2 ml-4 cursor-pointer"
+                                   @click="next(false)">
+                                    <span class="text-2xl">😧</span><br>I was wrong...
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="w-1/4"></div>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </template>
 
@@ -70,7 +77,7 @@
                 } else {
                     this.wrongAnswers.push(this.currentCard)
                 }
-                if (this.currentIdx+1 === this.deck.cards.length) {
+                if (this.currentIdx + 1 === this.deck.cards.length) {
                     //we're done
                     return
                 }
@@ -93,5 +100,7 @@
 </script>
 
 <style>
-
+    .card {
+        height: 16rem;
+    }
 </style>
