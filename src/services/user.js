@@ -1,7 +1,7 @@
 import ApiService from './api'
 import {TokenService} from './token'
 
-const EMAIL_KEY = 'user_email';
+const ID_KEY = 'user_id';
 const NAME_KEY = 'user_name';
 
 const UserService = {
@@ -10,8 +10,8 @@ const UserService = {
         return localStorage.getItem(NAME_KEY);
     },
 
-    getUserEmail() {
-        return localStorage.getItem(EMAIL_KEY);
+    getUserId() {
+        return localStorage.getItem(ID_KEY);
     },
 
     register(name, email, password) {
@@ -23,11 +23,11 @@ const UserService = {
         return ApiService.post("users/register", requestData)
             .then(result => {
                 saveTokensAndSetHeader(result.data.token);
-                saveCredentials(result.data.email, result.data.name);
+                saveCredentials(result.data.id, result.data.name);
                 ApiService.mount401Interceptor();
                 return {
                     userName: result.data.name,
-                    userEmail: result.data.email,
+                    userId: result.data.id,
                 }
             })
     },
@@ -40,11 +40,11 @@ const UserService = {
         return ApiService.post("users/login", requestData)
             .then(result => {
                 saveTokensAndSetHeader(result.data.token);
-                saveCredentials(result.data.email, result.data.name);
+                saveCredentials(result.data.id, result.data.name);
                 ApiService.mount401Interceptor();
                 return {
                     userName: result.data.name,
-                    userEmail: result.data.email,
+                    userId: result.data.id,
                 }
             })
     },
@@ -76,13 +76,13 @@ function saveTokensAndSetHeader(tokens) {
     ApiService.setHeader();
 }
 
-function saveCredentials(email, name) {
-    localStorage.setItem(EMAIL_KEY, email);
+function saveCredentials(id, name) {
+    localStorage.setItem(ID_KEY, id);
     localStorage.setItem(NAME_KEY, name);
 }
 
 function removeCredentials() {
-    localStorage.removeItem(EMAIL_KEY);
+    localStorage.removeItem(ID_KEY);
     localStorage.removeItem(NAME_KEY);
 }
 

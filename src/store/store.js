@@ -12,7 +12,7 @@ export const store = new Vuex.Store({
         decks: [],
         publicDecks: [],
         userName: UserService.getUserName(),
-        userEmail: UserService.getUserEmail(),
+        userId: UserService.getUserId(),
         accessToken: TokenService.getAccessToken(),
         authenticating: false,
         errorCode: '',
@@ -34,7 +34,10 @@ export const store = new Vuex.Store({
             return decks[0]
         },
         loggedIn: (state) => {
-            return !!state.userName && !!state.userEmail
+            return !!state.userName && !!state.userId
+        },
+        userId: (state) => {
+            return state.userId
         },
         userName: (state) => {
             return state.userName
@@ -81,7 +84,7 @@ export const store = new Vuex.Store({
         },
         authSuccess(state, payload) {
             state.userName = payload.userName;
-            state.userEmail = payload.userEmail;
+            state.userId = payload.userId;
             state.authenticating = false;
             state.errorCode = '';
             state.errorMessage = '';
@@ -99,7 +102,7 @@ export const store = new Vuex.Store({
         logoutSuccess(state) {
             state.accessToken = null;
             state.userName = null;
-            state.userEmail = null;
+            state.userId = null;
         },
         refreshTokenPromise(state, promise) {
             state.refreshTokenPromise = promise
@@ -140,7 +143,7 @@ export const store = new Vuex.Store({
             }).then(result => {
                 let deck = result.data;
                 context.commit('saveDeck', {deck: deck});
-                router.push({name: 'Flashcards', params: {deck_id: deck.id, isPrivate: deck.private}})
+                router.push({name: 'FlashcardsList', params: {deck_id: deck.id, isPrivate: deck.private}})
             })
         },
         DELETE_DECK: (context, payload) => {

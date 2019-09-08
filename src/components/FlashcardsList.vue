@@ -17,7 +17,7 @@
     <div class="mx-auto max-w-2xl min-w-2xl rounded-lg mt-4">
         <div class="flex justify-between items-center border-2 rounded-lg border-b-0 rounded-b-none border-gray-400 bg-white">
             <p class="text-base font-semibold m-4 text-gray-800">{{ deck.name }}</p>
-            <div class="m-4" v-if="deck.private">
+            <div class="m-4" v-if="deckBelongsToUser">
                 <p class="mr-4 cursor-pointer inline-block" title="Delete collection" @click="deleteDeck">
                     <svg class="fill-current text-red-400 inline-block h-8 w-8" xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 20 20">
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div v-if="deck.cards != null && deck.cards.length > 0">
-            <div class="sm:block border-2  border-gray-400 pt-4 pl-4 bg-white">
+            <div class="sm:block border-2 border-gray-400 pt-4 pl-4 bg-white" :class="{'rounded-lg rounded-t-none': !deckBelongsToUser}">
                 <div class="flex flex-wrap text-gray-700" v-for="flashcard in deck.cards" :key="flashcard.id">
                     <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg rounded-r-none px-4 py-2 mb-4 cursor-pointer">
                         <p class="text-base break-all">{{ flashcard.front }}</p>
@@ -55,7 +55,7 @@
             </div>
         </div>
         <div v-else>
-            <div class="sm:block md:flex flex-wrap items-stretch border-2 rounded-lg rounded-t-none border-gray-400 pt-4 pl-4 bg-white">
+            <div class="sm:block md:flex flex-wrap items-stretch border-2 border-gray-400 pt-4 pl-4 bg-white" :class="{'rounded-lg rounded-t-none': !deckBelongsToUser}">
                 <div class="md:flex sm:block self-stretch items-center">
                     <img class="md:object-left sm:object-top object-fit m-10 mb-20"
                          src="../assets/img/undraw_add_cards.svg" width="250px" height="250px"/>
@@ -66,7 +66,7 @@
                 </div>
             </div>
         </div>
-        <form class="border-2 rounded-lg border-t-0 rounded-t-none border-gray-400 bg-white" @submit.prevent="saveCard">
+        <form v-if="deckBelongsToUser" class="border-2 rounded-lg border-t-0 rounded-t-none border-gray-400 bg-white" @submit.prevent="saveCard">
             <p class="p-4 pb-0 text-sm text-gray-700 font-light">Add new card:</p>
             <div class="flex flex-wrap">
                 <div class="flex-1 m-2 ml-4">
@@ -136,6 +136,9 @@
             deck() {
                 return this.$store.getters.deck(this.$route.params.deck_id)
             },
+            deckBelongsToUser() {
+                return this.$store.getters.userId === this.deck.created_by
+            }
         },
         validations: {
             front: {required, maxLength: maxLength(250)},
@@ -143,7 +146,7 @@
         },
         mounted() {
             if (this.deck.cards == null) {
-                if (this.deck.private) {
+                if (this.deckBelongsToUser) {
                     this.$store.dispatch('GET_CARDS_FOR_DECK', {
                         deck_id: this.deck.id
                     })
