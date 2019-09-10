@@ -4,7 +4,7 @@
             <p class="text-base font-semibold m-4 pt-1 text-gray-800">Add Flashcard</p>
         </div>
         <form class="border-2 border-gray-400 rounded-lg border-t-0 rounded-t-none block" autocomplete="off"
-              @submit.prevent="AddFlashcard">
+              @submit.prevent="addFlashcard">
             <div class="p-4 pt-6">
                 <label class="block text-gray-700 text-sm font-bold mb-1" for="front">Front side</label>
                 <textarea
@@ -23,7 +23,7 @@
             </div>
             <div class="flex justify-end p-4 content-center">
                 <p class="mr-4 cursor-pointer py-2 text-gray-600 text-sm hover:text-red-500" title="Cancel"
-                   @click="GoBack">Cancel</p>
+                   @click="goBack">Cancel</p>
                 <button class="border rounded-lg py-2 px-6 text-gray-700 text-sm font-bold hover:text-purple-600 hover:border-purple-600"
                         title="Create">Save
                 </button>
@@ -43,7 +43,7 @@
             }
         },
         methods: {
-            AddFlashcard() {
+            addFlashcard() {
                 this.$v.$touch();
                 if (this.$v.$invalid) {
                     return
@@ -54,7 +54,7 @@
                     rear: this.rear
                 })
             },
-            GoBack() {
+            goBack() {
                 this.$router.back()
             }
         },
