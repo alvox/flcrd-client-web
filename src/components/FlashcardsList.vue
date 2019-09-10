@@ -122,9 +122,6 @@
             }
         },
         methods: {
-            deleteDeck() {
-                this.$store.dispatch('DELETE_DECK', {deck_id: this.deck.id})
-            },
             deleteCard(id) {
                 this.$store.dispatch('DELETE_CARD', {deck_id: this.deck.id, card_id: id})
             },

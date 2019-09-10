@@ -32,13 +32,19 @@
                 <input class="mr-2 leading-tight" type="checkbox" v-model="isPublic">
                 <span class="text-sm">Make it public</span>
             </label>
-            <div class="flex justify-end p-4 content-center">
-                <p class="mr-4 cursor-pointer py-2 text-gray-600 text-sm hover:text-red-500" title="Cancel" @click="GoBack">
-                    Cancel
+            <div class="flex justify-between px-4 pt-8 pb-4">
+                <p v-if="editMode" class="py-2 text-red-400 text-sm cursor-pointer hover:text-red-600 hover:underline" @click="deleteDeck">
+                    Delete deck
                 </p>
-                <button class="border rounded-lg py-2 px-6 text-gray-700 text-sm font-bold hover:text-purple-600 hover:border-purple-600" title="Create">
-                    Save
-                </button>
+                <div v-else></div>
+                <div class="flex justify-end content-center">
+                    <p class="mr-4 border rounded-lg px-6 cursor-pointer py-2 text-gray-600 text-sm hover:text-purple-500 hover:border-purple-500" title="Cancel" @click="GoBack">
+                        Cancel
+                    </p>
+                    <button class="bg-purple-500 rounded-lg py-2 px-6 text-white text-sm font-bold hover:bg-purple-600" title="Save">
+                        Save
+                    </button>
+                </div>
             </div>
         </form>
     </div>
@@ -75,6 +81,9 @@
                 } else {
                     this.$store.dispatch('CREATE_DECK', payload);
                 }
+            },
+            deleteDeck() {
+                this.$store.dispatch('DELETE_DECK', {deck_id: this.deck.id})
             },
             GoBack() {
                 this.$router.back()
