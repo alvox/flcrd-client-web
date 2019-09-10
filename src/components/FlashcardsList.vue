@@ -18,20 +18,34 @@
         <div class="flex justify-between items-center border-2 rounded-lg border-b-0 rounded-b-none border-gray-400 bg-white">
             <p class="text-base font-semibold m-4 text-gray-800">{{ deck.name }}</p>
             <div class="m-4" v-if="deckBelongsToUser">
-                <p class="mr-4 cursor-pointer inline-block" title="Delete collection" @click="deleteDeck">
-                    <svg class="fill-current text-red-400 inline-block h-8 w-8" xmlns="http://www.w3.org/2000/svg"
+<!--                <p class="mr-4 cursor-pointer inline-block" title="Delete collection" @click="deleteDeck">-->
+<!--                    <svg class="fill-current text-red-400 inline-block h-8 w-8" xmlns="http://www.w3.org/2000/svg"-->
+<!--                         viewBox="0 0 20 20">-->
+<!--                        <path d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"></path>-->
+<!--                    </svg>-->
+<!--                </p>-->
+                <router-link :to="{name: 'AddDeck', params: {deck_id: this.$route.params.deck_id}}">
+                    <p class="mr-4 cursor-pointer inline-block" title="Edit collection">
+                        <svg class="fill-current text-gray-700 inline-block h-5 w-5 hover:text-purple-500" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20">
+                            <path d="M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"/>
+                        </svg>
+                    </p>
+                </router-link>
+                <p class="cursor-pointer inline-block" title="Add new card" @click="focusOnTextarea">
+                    <svg class="fill-current text-gray-700 inline-block h-6 w-6 hover:text-purple-500" xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 20 20">
-                        <path d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"></path>
+                        <path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path>
                     </svg>
                 </p>
-                <a href="" title="Create new flashcard">
-                    <router-link :to="{name: 'AddFlashcard', params: {deck_id: this.$route.params.deck_id}}">
-                        <svg class="fill-current text-gray-800 inline-block h-8 w-8" xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 20 20">
-                            <path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path>
-                        </svg>
-                    </router-link>
-                </a>
+<!--                <a href="" title="Create new flashcard">-->
+<!--                    <router-link :to="{name: 'AddFlashcard', params: {deck_id: this.$route.params.deck_id}}">-->
+<!--                        <svg class="fill-current text-gray-700 inline-block h-6 w-6 hover:text-purple-500" xmlns="http://www.w3.org/2000/svg"-->
+<!--                             viewBox="0 0 20 20">-->
+<!--                            <path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path>-->
+<!--                        </svg>-->
+<!--                    </router-link>-->
+<!--                </a>-->
             </div>
         </div>
         <div v-if="deck.cards != null && deck.cards.length > 0">
@@ -72,8 +86,8 @@
                 <div class="flex-1 m-2 ml-4">
                     <label class="block text-gray-500 text-sm font-bold hidden" for="front">Front side</label>
                     <textarea
-                        class="appearance-none outline-none focus:outline-none resize-y border-2 rounded-lg py-2 px-3 w-full text-gray-700 leading-tight focus:border-purple-400"
-                        id="front" placeholder="Front..." rows="2" v-model.trim.lazy="$v.front.$model" :class="{ 'border-red-400': $v.front.$error }"></textarea>
+                        class="front appearance-none outline-none focus:outline-none resize-y border-2 rounded-lg py-2 px-3 w-full text-gray-700 leading-tight focus:border-purple-400"
+                        id="front" placeholder="Front..." rows="4" v-model.trim.lazy="$v.front.$model" :class="{ 'border-red-400': $v.front.$error }"></textarea>
                     <p class="text-sm text-red-400" v-if="$v.front.$error && !$v.front.required">Card should have something on the front side.</p>
                     <p class="text-sm text-red-400" v-if="!$v.front.maxLength">Card side should be 250 characters maximum.</p>
                 </div>
@@ -81,7 +95,7 @@
                     <label class="block text-gray-500 text-sm font-bold hidden" for="rear">Rear side</label>
                     <textarea
                         class="appearance-none outline-none focus:outline-none resize-y border-2 rounded-lg py-2 px-3 w-full text-gray-700 leading-tight focus:border-purple-400"
-                        id="rear" placeholder="Rear..." rows="2" v-model.trim.lazy="$v.rear.$model" :class="{ 'border-red-400': $v.rear.$error }"></textarea>
+                        id="rear" placeholder="Rear..." rows="4" v-model.trim.lazy="$v.rear.$model" :class="{ 'border-red-400': $v.rear.$error }"></textarea>
                     <p class="text-sm text-red-400" v-if="$v.rear.$error && !$v.rear.required">Rear side should be in place too.</p>
                     <p class="text-sm text-red-400" v-if="!$v.rear.maxLength">Card side should be 250 characters maximum.</p>
                 </div>
@@ -127,6 +141,9 @@
                 this.front = "";
                 this.rear = "";
                 this.$v.$reset()
+            },
+            focusOnTextarea() {
+                document.getElementById('front').focus()
             },
             goBack() {
                 this.$router.back()

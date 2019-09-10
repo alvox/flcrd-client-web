@@ -3,8 +3,8 @@
         <div class="flex justify-between border-2 rounded-lg border-b-0 rounded-b-none border-gray-400 bg-white">
             <p class="text-base font-semibold m-4 pt-1 text-gray-800">My Collections</p>
             <a href="" class="m-4" title="Create new collection">
-                <router-link :to="{name: 'AddDeck'}">
-                    <svg class="fill-current text-gray-800 inline-block h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <router-link :to="{name: 'AddDeck', params: {deck_id: 'new'}}">
+                    <svg class="fill-current text-gray-700 inline-block h-6 w-6 hover:text-purple-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                         <path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path>
                     </svg>
                 </router-link>

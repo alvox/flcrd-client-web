@@ -50,7 +50,7 @@ const router =  new Router({
             component: Decks
         },
         {
-            path: '/add-deck',
+            path: '/add-deck/:deck_id',
             name: 'AddDeck',
             component: AddDeck
         },

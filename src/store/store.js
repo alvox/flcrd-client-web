@@ -56,6 +56,12 @@ export const store = new Vuex.Store({
         saveDeck(state, payload) {
             state.decks.push(payload.deck)
         },
+        updateDeck(state, payload) {
+            let deck = state.decks.filter(deck => deck.id === payload.deck.id)[0];
+            deck.name = payload.deck.name;
+            deck.description = payload.deck.description;
+            deck.private = payload.deck.private;
+        },
         deleteDeck(state, payload) {
             state.decks = state.decks.filter(deck => deck.id !== payload.deck_id)
         },
@@ -144,6 +150,18 @@ export const store = new Vuex.Store({
                 let deck = result.data;
                 context.commit('saveDeck', {deck: deck});
                 router.push({name: 'FlashcardsList', params: {deck_id: deck.id, isPrivate: deck.private}})
+            })
+        },
+        UPDATE_DECK: (context, payload) => {
+            ApiService.put("decks/" + payload.deck_id, {
+                id: payload.deck_id,
+                name: payload.deck.name,
+                description: payload.deck.description,
+                private: payload.deck.isPrivate,
+            }).then(result => {
+                let deck = result.data;
+                context.commit('updateDeck', {deck: deck});
+                router.back();
             })
         },
         DELETE_DECK: (context, payload) => {
