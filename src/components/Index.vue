@@ -47,6 +47,9 @@
             decks() {
                 return this.$store.getters.publicDecks
             }
+        },
+        created() {
+            this.$store.dispatch('GET_PUBLIC_DECKS')
         }
     }
 </script>

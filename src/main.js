@@ -11,8 +11,8 @@ import {TokenService} from "./services/token";
 Vue.config.productionTip = false;
 Vue.use(Vuelidate);
 
-// ApiService.init('https://flashcards.rocks/v0/');
-ApiService.init('http://localhost/v0/');
+ApiService.init('https://flashcards.rocks/v0/');
+// ApiService.init('http://localhost/v0/');
 if (TokenService.getAccessToken()) {
     ApiService.setHeader();
     ApiService.mount401Interceptor()
@@ -29,8 +29,5 @@ Vue.filter('capitalize', function (value) {
 new Vue({
     router,
     store,
-    render: h => h(App),
-    created: () => {
-        store.dispatch('GET_PUBLIC_DECKS')
-    }
+    render: h => h(App)
 }).$mount('#app');

@@ -98,8 +98,13 @@
             }
         },
         created() {
-            this.front = this.card.front;
-            this.rear = this.card.rear;
+            let deck = this.$store.getters.deck(this.deck_id);
+            if (!deck) {
+                this.$router.back();
+            } else {
+                this.front = this.card.front;
+                this.rear = this.card.rear;
+            }
         },
         validations: {
             front: {required, maxLength: maxLength(250)},

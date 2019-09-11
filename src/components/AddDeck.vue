@@ -116,6 +116,9 @@
         },
         created() {
             if (this.editMode) {
+                if (!this.deck) {
+                    this.$router.back()
+                }
                 this.name = this.deck.name;
                 this.description = this.deck.description;
                 this.isPublic = !this.deck.private;

@@ -255,6 +255,32 @@ export const store = new Vuex.Store({
             UserService.logout();
             context.commit('logoutSuccess');
             router.push('/')
+        },
+        REFRESH_DATA: (context, payload) => {
+            if (payload.isPublic) {
+                ApiService
+                    .get("public/decks")
+                    .then(result => {
+                        context.commit('savePublicDecks', result.data)})
+                    .then(
+                        ApiService.get("public/decks/" + payload.deck_id + "/flashcards").then(result => {
+                            context.commit('saveFlashcardsForPublicDeck', {
+                                deck_id: payload.deck_id,
+                                flashcards: result.data
+                            })
+                        })
+                    )
+            } else {
+                ApiService.get("decks").then(result => {
+                    context.commit('saveDecks', result.data);
+                    ApiService.get("decks/" + payload.deck_id + "/flashcards").then(result => {
+                        context.commit('saveFlashcards', {
+                            deck_id: payload.deck_id,
+                            flashcards: result.data
+                        })
+                    })
+                })
+            }
         }
     }
 });

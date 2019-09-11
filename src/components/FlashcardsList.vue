@@ -159,16 +159,25 @@
             front: {required, maxLength: maxLength(250)},
             rear: {required, maxLength: maxLength(250)}
         },
-        mounted() {
-            if (this.deck.cards == null) {
-                if (this.deckBelongsToUser) {
-                    this.$store.dispatch('GET_CARDS_FOR_DECK', {
-                        deck_id: this.deck.id
-                    })
-                } else {
-                    this.$store.dispatch('GET_CARDS_FOR_PUBLIC_DECK', {
-                        deck_id: this.deck.id
-                    })
+        created() {
+            if (!this.deck) {
+                console.log('page been refreshed');
+                // this.$store.dispatch('GET_DECKS')
+                this.$store.dispatch('REFRESH_DATA', {
+                    isPublic: false,
+                    deck_id: this.$route.params.deck_id
+                });
+            } else {
+                if (this.deck.cards == null) {
+                    if (this.deckBelongsToUser) {
+                        this.$store.dispatch('GET_CARDS_FOR_DECK', {
+                            deck_id: this.deck.id
+                        })
+                    } else {
+                        this.$store.dispatch('GET_CARDS_FOR_PUBLIC_DECK', {
+                            deck_id: this.deck.id
+                        })
+                    }
                 }
             }
         }
