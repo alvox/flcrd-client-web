@@ -63,7 +63,7 @@ const router =  new Router({
             }
         },
         {
-            path: '/:deck_id/flashcards/list',
+            path: '/:deck_id/:visibility/flashcards/list',
             name: 'FlashcardsList',
             component: FlashcardsList,
             meta: {

@@ -190,7 +190,7 @@ export const store = new Vuex.Store({
                 .then(result => {
                     context.commit('updateCard', result.data);
                     router.back()
-            })
+                })
         },
         DELETE_CARD: (context, payload) => {
             ApiService.delete("decks/" + payload.deck_id + "/flashcards/" + payload.card_id).then(result => {
@@ -257,24 +257,21 @@ export const store = new Vuex.Store({
             router.push('/')
         },
         REFRESH_DATA: (context, payload) => {
-            if (payload.isPublic) {
-                ApiService
-                    .get("public/decks")
-                    .then(result => {
-                        context.commit('savePublicDecks', result.data)})
-                    .then(
-                        ApiService.get("public/decks/" + payload.deck_id + "/flashcards").then(result => {
-                            context.commit('saveFlashcardsForPublicDeck', {
-                                deck_id: payload.deck_id,
-                                flashcards: result.data
-                            })
-                        })
-                    )
-            } else {
+            if (payload.is_private) {
                 ApiService.get("decks").then(result => {
                     context.commit('saveDecks', result.data);
                     ApiService.get("decks/" + payload.deck_id + "/flashcards").then(result => {
                         context.commit('saveFlashcards', {
+                            deck_id: payload.deck_id,
+                            flashcards: result.data
+                        })
+                    })
+                })
+            } else {
+                ApiService.get("public/decks").then(result => {
+                    context.commit('savePublicDecks', result.data);
+                    ApiService.get("public/decks/" + payload.deck_id + "/flashcards").then(result => {
+                        context.commit('saveFlashcardsForPublicDeck', {
                             deck_id: payload.deck_id,
                             flashcards: result.data
                         })

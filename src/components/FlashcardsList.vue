@@ -116,6 +116,7 @@
                 rear: ""
             }
         },
+        props: ['is_private'],
         methods: {
             deleteCard(id) {
                 this.$store.dispatch('DELETE_CARD', {deck_id: this.deck.id, card_id: id})
@@ -138,7 +139,11 @@
                 document.getElementById('front').focus()
             },
             goBack() {
-                this.$router.back()
+                if (this.isPrivate) {
+                    this.$router.push({name: 'Decks'});
+                } else {
+                    this.$router.push({name: 'Index'});
+                }
             }
         },
         computed: {
@@ -153,6 +158,9 @@
             },
             deckBelongsToUser() {
                 return this.$store.getters.userId === this.deck.created_by
+            },
+            isPrivate() {
+                return this.$route.params.visibility === 'private'
             }
         },
         validations: {
@@ -160,11 +168,11 @@
             rear: {required, maxLength: maxLength(250)}
         },
         created() {
+            console.log(this.$route.params.visibility);
             if (!this.deck) {
                 console.log('page been refreshed');
-                // this.$store.dispatch('GET_DECKS')
                 this.$store.dispatch('REFRESH_DATA', {
-                    isPublic: false,
+                    is_private: this.isPrivate,
                     deck_id: this.$route.params.deck_id
                 });
             } else {
