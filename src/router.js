@@ -5,7 +5,7 @@ import AddDeck from "@/components/AddDeck"
 import Decks from "@/components/Decks"
 import Flashcards from "@/components/Flashcards"
 import FlashcardsList from "@/components/FlashcardsList";
-import AddFlashcard from "@/components/AddFlashcard"
+import EditFlashcard from "@/components/EditFlashcard"
 import Registration from "@/components/Registration"
 
 import Login from "@/components/Login"
@@ -71,9 +71,10 @@ const router =  new Router({
             }
         },
         {
-            path: '/:deck_id/add-flashcard',
-            name: 'AddFlashcard',
-            component: AddFlashcard
+            path: '/:deck_id/edit-flashcard',
+            name: 'EditFlashcard',
+            component: EditFlashcard,
+            props: true
         },
         {
             path: '/:deck_id/practice',

@@ -39,13 +39,17 @@
             <div v-if="deck.cards != null && deck.cards.length > 0">
                 <div class="sm:block border-2 border-gray-400 pt-4 pl-4 bg-white"
                      :class="{'rounded-lg rounded-t-none': !deckBelongsToUser}">
-                    <div class="flex flex-wrap text-gray-700" v-for="flashcard in sortedCards" :key="flashcard.id">
-                        <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg rounded-r-none px-4 py-2 mb-4 cursor-pointer">
-                            <p class="text-base break-all">{{ flashcard.front }}</p>
-                        </div>
-                        <div class="flex-1 bg-gray-100  border-2 border-l-0 border-gray-400 rounded-lg rounded-l-none px-4 py-2 mb-4 mr-4 cursor-pointer">
-                            <p class="text-base break-all">{{ flashcard.rear }}</p>
-                        </div>
+                    <div v-for="flashcard in sortedCards" :key="flashcard.id">
+                        <router-link :to="{name: 'EditFlashcard', params: {deck_id: deck.id, card_id: flashcard.id}}">
+                            <div class="flex flex-wrap text-gray-700">
+                                <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg rounded-r-none px-4 py-2 mb-4 cursor-pointer">
+                                    <p class="text-base break-all">{{ flashcard.front }}</p>
+                                </div>
+                                <div class="flex-1 bg-gray-100  border-2 border-l-0 border-gray-400 rounded-lg rounded-l-none px-4 py-2 mb-4 mr-4 cursor-pointer">
+                                    <p class="text-base break-all">{{ flashcard.rear }}</p>
+                                </div>
+                            </div>
+                        </router-link>
                     </div>
                 </div>
             </div>

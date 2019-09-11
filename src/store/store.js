@@ -78,6 +78,12 @@ export const store = new Vuex.Store({
             deck.cards.push(payload.card);
             deck.cards_count++
         },
+        updateCard(state, payload) {
+            let deck = state.decks.filter(deck => deck.id === payload.deck_id)[0];
+            let card = deck.cards.filter(c => c.id === payload.id)[0];
+            card.front = payload.front;
+            card.rear = payload.rear;
+        },
         deleteCard(state, payload) {
             let deck = state.decks.filter(deck => deck.id === payload.deck_id)[0];
             deck.cards = deck.cards.filter(card => card.id !== payload.card_id);
@@ -176,12 +182,20 @@ export const store = new Vuex.Store({
                 rear: payload.rear
             }).then(result => {
                 context.commit('saveCard', {deck_id: payload.deck_id, card: result.data});
-                // router.back()
+            })
+        },
+        UPDATE_CARD: (context, payload) => {
+            ApiService
+                .put("decks/" + payload.deck_id + "/flashcards/" + payload.id, payload)
+                .then(result => {
+                    context.commit('updateCard', result.data);
+                    router.back()
             })
         },
         DELETE_CARD: (context, payload) => {
             ApiService.delete("decks/" + payload.deck_id + "/flashcards/" + payload.card_id).then(result => {
-                context.commit('deleteCard', {deck_id: payload.deck_id, card_id: payload.card_id})
+                context.commit('deleteCard', {deck_id: payload.deck_id, card_id: payload.card_id});
+                router.back()
             })
         },
         REGISTER_USER: (context, payload) => {
