@@ -1,48 +1,48 @@
 <template>
     <div>
         <div class="mx-auto max-w-2xl min-w-2xl flex items-center justify-between">
-            <div class="flex items-center pt-4 cursor-pointer" @click="goBack">
-                <svg class="fill-current text-gray-600 inline-block h-5 w-5" xmlns="http://www.w3.org/2000/svg"
+            <div class="flex items-center pt-4 cursor-pointer text-gray-700 hover:text-purple-700" @click="goBack">
+                <svg class="fill-current inline-block h-5 w-5" xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 20 20">
                     <path d="M3.828 9l6.071-6.071-1.414-1.414L0 10l.707.707 7.778 7.778 1.414-1.414L3.828 11H20V9H3.828z"/>
                 </svg>
-                <p class="text-gray-600 font-thin ml-2">Back</p>
+                <p class="font-thin ml-2">Back</p>
             </div>
         </div>
         <div class="mx-auto max-w-sm bg-white rounded-lg mt-4">
             <div class="border-2 border-gray-400 rounded-lg rounded-b-none">
-                <p class="text-base font-semibold m-4 pt-1 text-gray-800">{{editMode ? 'Edit' : 'Create new'}}
-                    collection
+                <p class="text-base font-extrabold m-4 pt-1 text-gray-800">{{editMode ? 'Edit' : 'Create new'}}
+                    deck
                 </p>
             </div>
             <form class="border-2 border-gray-400 rounded-lg border-t-0 rounded-t-none block" autocomplete="off"
                   @submit.prevent="addDeck">
                 <div class="p-4 pt-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-1" for="name">Name</label>
-                    <input class="appearance-none outline-none border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-400"
+                    <label class="form-label" for="name">NAME</label>
+                    <input class="appearance-none outline-none border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:border-purple-400"
                            id="name" type="text" placeholder="Give it a name" v-model.trim.lazy="$v.name.$model"
                            :class="{'border-red-400': $v.name.$error}">
-                    <p class="text-sm text-red-400" v-if="$v.name.$error && !$v.name.required">
+                    <p class="error-msg" v-if="$v.name.$error && !$v.name.required">
                         Collection should have a name.
                     </p>
-                    <p class="text-sm text-red-400" v-if="!$v.name.maxLength">
+                    <p class="error-msg" v-if="!$v.name.maxLength">
                         Collection name should be 50 characters maximum.
                     </p>
                 </div>
                 <div class="p-4 pt-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-1" for="description">Description</label>
+                    <label class="form-label" for="description">DESCRIPTION (optional)</label>
                     <textarea
-                            class="appearance-none outline-none focus:outline-none resize-y border-2 rounded-lg py-2 px-3 w-full text-gray-700 leading-tight focus:border-purple-400"
+                            class="appearance-none outline-none focus:outline-none resize-y border-2 rounded-lg py-2 px-3 w-full text-gray-800 leading-tight focus:border-purple-400"
                             id="description" placeholder="You can also add some brief description" rows="4"
                             v-model.trim.lazy="$v.description.$model"
                             :class="{ 'border-red-400': $v.description.$error }"></textarea>
-                    <p class="text-sm text-red-400" v-if="!$v.description.maxLength">
+                    <p class="error-msg" v-if="!$v.description.maxLength">
                         Description should be 250 characters maximum.
                     </p>
                 </div>
                 <label class="block text-gray-700 font-bold pl-4">
-                    <input class="mr-2 leading-tight" type="checkbox" v-model="isPublic">
-                    <span class="text-sm">Make it public</span>
+                    <input class="mr-2 ml-1 leading-tight" type="checkbox" v-model="isPublic">
+                    <span class="text-xs font-bold">MAKE IT PUBLIC</span>
                 </label>
                 <div class="flex justify-between px-4 pt-8 pb-4">
                     <p v-if="editMode"
@@ -52,11 +52,11 @@
                     </p>
                     <div v-else></div>
                     <div class="flex justify-end content-center">
-                        <p class="mr-4 border rounded-lg px-6 cursor-pointer py-2 text-gray-600 text-sm hover:text-purple-500 hover:border-purple-500"
+                        <p class="secondary-btn mr-4 hover:text-purple-500 hover:border-purple-500"
                            title="Cancel" @click="goBack">
                             Cancel
                         </p>
-                        <button class="bg-purple-500 rounded-lg py-2 px-6 text-white text-sm font-bold hover:bg-purple-600"
+                        <button class="primary-btn hover:bg-purple-700"
                                 title="Save">
                             Save
                         </button>

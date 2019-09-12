@@ -3,10 +3,10 @@
         <div class="mx-auto max-w-2xl">
             <div class="flex items-center justify-between py-4">
                 <router-link v-if="loggedIn" :to="{name: 'Decks'}">
-                    <span class="font-semibold text-2xl text-gray-700 tracking-wide">FLCRD</span>
+                    <span class="font-extrabold text-2xl text-gray-700 tracking-wide">FLCRD</span>
                 </router-link>
                 <router-link v-else :to="{name: 'Index'}">
-                    <span class="font-semibold text-2xl text-gray-700 tracking-wide">FLCRD</span>
+                    <span class="font-extrabold text-2xl text-gray-700 tracking-wide">FLCRD</span>
                 </router-link>
                 <!--                    <div class="hidden sm:flex sm:items-center">-->
                 <!--                        <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Curated</a>-->

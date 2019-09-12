@@ -2,4 +2,28 @@
 
 @tailwind components;
 
+.section-header {
+    @apply text-base font-extrabold text-gray-800 m-4;
+}
+
+.primary-btn {
+    @apply bg-purple-600 rounded-lg cursor-pointer text-white text-sm font-extrabold py-2 px-6;
+}
+
+.secondary-btn {
+    @apply border rounded-lg cursor-pointer text-gray-600 text-sm px-6 py-2;
+}
+
+.form-label {
+    @apply block text-gray-700 text-xs font-bold mb-1 ml-1;
+}
+
+.form-field {
+    @apply appearance-none outline-none border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight;
+}
+
+.error-msg {
+    @apply text-sm text-red-400 ml-1;
+}
+
 @tailwind utilities;

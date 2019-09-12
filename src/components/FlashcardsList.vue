@@ -1,12 +1,12 @@
 <template>
     <div>
         <div class="mx-auto max-w-2xl min-w-2xl flex items-center justify-between">
-            <div class="flex items-center pt-4 cursor-pointer" @click="goBack">
-                <svg class="fill-current text-gray-600 inline-block h-5 w-5" xmlns="http://www.w3.org/2000/svg"
+            <div class="flex items-center pt-4 cursor-pointer text-gray-700 hover:text-purple-700" @click="goBack">
+                <svg class="fill-current inline-block h-5 w-5" xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 20 20">
                     <path d="M3.828 9l6.071-6.071-1.414-1.414L0 10l.707.707 7.778 7.778 1.414-1.414L3.828 11H20V9H3.828z"/>
                 </svg>
-                <p class="text-gray-600 font-thin ml-2">Back</p>
+                <p class="font-thin ml-2">Back</p>
             </div>
             <div v-if="deck.cards != null && deck.cards.length > 0" class="pt-4">
                 <router-link :to="{name: 'PracticeMode'}">
@@ -16,7 +16,7 @@
         </div>
         <div class="mx-auto max-w-2xl min-w-2xl rounded-lg mt-4">
             <div class="flex justify-between items-center border-2 rounded-lg border-b-0 rounded-b-none border-gray-400 bg-white">
-                <p class="text-base font-semibold m-4 text-gray-800">{{ deck.name }}</p>
+                <p class="section-header">{{ deck.name }}</p>
                 <div class="m-4" v-if="deckBelongsToUser">
                     <router-link :to="{name: 'AddDeck', params: {deck_id: this.$route.params.deck_id}}">
                         <p class="mr-4 cursor-pointer inline-block" title="Edit collection">
@@ -41,7 +41,7 @@
                      :class="{'rounded-lg rounded-t-none': !deckBelongsToUser}">
                     <div v-for="flashcard in sortedCards" :key="flashcard.id">
                         <router-link :to="{name: 'EditFlashcard', params: {deck_id: deck.id, card_id: flashcard.id}}">
-                            <div class="flex flex-wrap text-gray-700">
+                            <div class="flex flex-wrap text-gray-800">
                                 <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg rounded-r-none px-4 py-2 mb-4 cursor-pointer">
                                     <p class="text-base break-all">{{ flashcard.front }}</p>
                                 </div>
@@ -69,7 +69,7 @@
             <form v-if="deckBelongsToUser"
                   class="border-2 rounded-lg border-t-0 rounded-t-none border-gray-400 bg-white"
                   @submit.prevent="saveCard">
-                <p class="p-4 pb-0 text-sm text-gray-700 font-light">Add new card:</p>
+                <p class="pl-5 pt-4 text-xs text-gray-700 font-bold">ADD NEW CARD:</p>
                 <div class="flex flex-wrap">
                     <div class="flex-1 m-2 ml-4">
                         <label class="block text-gray-500 text-sm font-bold hidden" for="front">Front side</label>
