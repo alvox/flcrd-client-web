@@ -1,5 +1,6 @@
 <template>
     <div>
+<!--BACK BUTTON-->
         <div class="mx-auto max-w-2xl min-w-2xl flex items-center justify-between">
             <div class="flex items-center pt-4 cursor-pointer text-gray-700 hover:text-purple-700" @click="goBack">
                 <svg class="fill-current inline-block h-5 w-5" xmlns="http://www.w3.org/2000/svg"
@@ -9,12 +10,15 @@
                 <p class="font-thin ml-2">Back</p>
             </div>
         </div>
+<!--HEADER-->
         <div class="mx-auto max-w-2xl min-w-2xl rounded-lg mt-4">
             <div class="md:flex justify-between items-center border-2 rounded-t-lg border-gray-400 bg-white">
                 <p class="section-header">{{ deck.name }}</p>
                 <div class="flex m-2 mr-4 items-center justify-between">
                     <router-link :to="{name: 'PracticeMode'}">
-                        <p class="rounded border border-gray-700 text-gray-700 font-extrabold text-sm hover:bg-gray-700 hover:text-white py-1 px-3 cursor-pointer mr-4">Practice!</p>
+                        <p class="rounded border border-gray-700 text-gray-700 font-extrabold text-sm hover:bg-gray-700 hover:text-white py-1 px-3 cursor-pointer mr-4">
+                            Practice!
+                        </p>
                     </router-link>
                     <div v-if="deckBelongsToUser">
                         <router-link :to="{name: 'AddDeck', params: {deck_id: this.$route.params.deck_id}}">
@@ -35,18 +39,18 @@
                         </p>
                     </div>
                 </div>
-
             </div>
+<!--CARDS-->
             <div v-if="deck.cards != null && deck.cards.length > 0">
                 <div class="sm:block border-2 border-t-0 border-gray-400 pt-4 pl-4 bg-white"
                      :class="{'rounded-b-lg': !deckBelongsToUser}">
                     <div v-for="flashcard in sortedCards" :key="flashcard.id">
                         <router-link :to="{name: 'EditFlashcard', params: {deck_id: deck.id, card_id: flashcard.id}}">
-                            <div class="flex flex-wrap text-gray-800 mb-4 mr-4">
-                                <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg rounded-r-none px-4 py-2 cursor-pointer">
+                            <div class="md:flex text-gray-800 mb-4 mr-4">
+                                <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-t-lg md:rounded-l-lg md:rounded-r-none px-4 py-2 cursor-pointer">
                                     <p class="text-base break-all">{{ flashcard.front }}</p>
                                 </div>
-                                <div class="flex-1 bg-gray-100  border-2 border-l-0 border-gray-400 rounded-lg rounded-l-none px-4 py-2 cursor-pointer">
+                                <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-b-lg border-t-0 md:border-t-2 md:border-l-0 md:rounded-r-lg md:rounded-l-none px-4 py-2 cursor-pointer">
                                     <p class="text-base break-all">{{ flashcard.rear }}</p>
                                 </div>
                             </div>
@@ -54,6 +58,7 @@
                     </div>
                 </div>
             </div>
+<!--EMPTY STATE-->
             <div v-else>
                 <div class="sm:block md:flex flex-wrap items-stretch border-2 border-gray-400 pt-4 pl-4 bg-white"
                      :class="{'rounded-b-lg': !deckBelongsToUser}">
@@ -67,6 +72,7 @@
                     </div>
                 </div>
             </div>
+<!--CREATE CARD FORM-->
             <form v-if="deckBelongsToUser"
                   class="border-2 rounded-b-lg border-t-0 border-gray-400 bg-white"
                   @submit.prevent="saveCard">
@@ -78,9 +84,9 @@
                                 class="front appearance-none outline-none focus:outline-none resize-y border-2 rounded-lg py-2 px-3 w-full text-gray-700 leading-tight focus:border-purple-400"
                                 id="front" placeholder="Front..." rows="4" v-model.trim.lazy="$v.front.$model"
                                 :class="{ 'border-red-400': $v.front.$error }"></textarea>
-                        <p class="text-sm text-red-400" v-if="$v.front.$error && !$v.front.required">Card should have
+                        <p class="error-msg" v-if="$v.front.$error && !$v.front.required">Card should have
                             something on the front side.</p>
-                        <p class="text-sm text-red-400" v-if="!$v.front.maxLength">Card side should be 250 characters
+                        <p class="error-msg" v-if="!$v.front.maxLength">Card side should be 250 characters
                             maximum.</p>
                     </div>
                     <div class="flex-1 m-2 mr-4">
@@ -89,9 +95,9 @@
                                 class="appearance-none outline-none focus:outline-none resize-y border-2 rounded-lg py-2 px-3 w-full text-gray-700 leading-tight focus:border-purple-400"
                                 id="rear" placeholder="Rear..." rows="4" v-model.trim.lazy="$v.rear.$model"
                                 :class="{ 'border-red-400': $v.rear.$error }"></textarea>
-                        <p class="text-sm text-red-400" v-if="$v.rear.$error && !$v.rear.required">Rear side should be
+                        <p class="error-msg" v-if="$v.rear.$error && !$v.rear.required">Rear side should be
                             in place too.</p>
-                        <p class="text-sm text-red-400" v-if="!$v.rear.maxLength">Card side should be 250 characters
+                        <p class="error-msg" v-if="!$v.rear.maxLength">Card side should be 250 characters
                             maximum.</p>
                     </div>
                 </div>
@@ -169,7 +175,6 @@
             rear: {required, maxLength: maxLength(250)}
         },
         created() {
-            console.log(this.$route.params.visibility);
             if (!this.deck) {
                 console.log('page been refreshed');
                 this.$store.dispatch('REFRESH_DATA', {
