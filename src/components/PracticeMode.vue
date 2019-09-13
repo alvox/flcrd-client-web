@@ -26,7 +26,8 @@
                 </div>
                 <div class="flex justify-between h-64">
                     <div class="hidden md:block w-1/4"></div>
-                    <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg mt-4 mb-5 p-4 mx-4 md:mx-0 align-middle overflow-auto">
+                    <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg mt-4 mb-5 p-4 mx-4 md:mx-0 align-middle overflow-auto"
+                         :class="{ 'border-green-400': side === 'rear' }">
                         <p class="break-words text-gray-800">
                             {{ side === 'front' ? currentCard.front : currentCard.rear }}
                         </p>
@@ -37,7 +38,7 @@
                     <div class="hidden md:block w-1/4"></div>
                     <div class="flex-1">
                         <div class="block">
-                            <p class="text-center tracking-wide text-gray-700 font-extrabold border border-gray-400 hover:text-purple-600 hover:border-purple-600 rounded-lg p-2 cursor-pointer mx-4 md:mx-0"
+                            <p class="text-center tracking-wide text-gray-700 font-extrabold border border-gray-700 hover:text-white hover:bg-gray-700 rounded p-2 cursor-pointer mx-4 md:mx-0"
                                @click="flip">Flip card</p>
                             <div class="flex justify-around mt-10 mx-4 md:mx-0">
                                 <p class="mr-4 font-semibold text-xl text-green-700">{{correctAnswers.length}}</p>
@@ -67,11 +68,11 @@
                 <p v-else class="text-center mt-5 text-gray-800">You've remembered {{correctAnswers.length}}
                     {{correctAnswers.length === 1 ? 'card' : 'cards'}} out of {{deck.cards.length}}.</p>
                 <div class="flex mx-4 md:mx-32 my-10 mb-20">
-                    <p class="flex-1 border py-2 mr-10 text-center text-gray-800 rounded-lg cursor-pointer hover:text-purple-600 hover:border-purple-600"
+                    <p class="flex-1 border border-gray-700 py-2 mr-10 text-center font-extrabold text-gray-700 rounded cursor-pointer hover:text-white hover:bg-gray-700"
                        :class="{'ml-10' : correctAnswers.length === 0 || wrongAnswers.length === 0}"
                        @click="repeat(false)">Repeat all cards</p>
                     <p v-if="correctAnswers.length !== 0 && wrongAnswers.length !== 0"
-                       class="flex-1 border p-2 ml-10 text-center text-gray-800 rounded-lg cursor-pointer hover:text-purple-600 hover:border-purple-600"
+                       class="flex-1 border border-gray-700 py-2 ml-10 text-center font-extrabold text-gray-700 rounded cursor-pointer hover:text-white hover:bg-gray-700"
                        @click="repeat(true)">
                         Repeat {{wrongAnswers.length}} {{wrongAnswers.length === 1 ? 'card' : 'cards'}}</p>
                 </div>
