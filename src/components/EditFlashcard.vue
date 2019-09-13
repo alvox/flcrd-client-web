@@ -2,7 +2,7 @@
     <div>
 <!--BACK BUTTON-->
         <div class="mx-auto max-w-2xl min-w-2xl hidden md:flex">
-            <div class="flex items-center my-4 cursor-pointer text-gray-700 hover:text-purple-700" @click="goBack">
+            <div class="flex items-center my-4 cursor-pointer text-gray-700 hover:text-gray-600" @click="goBack">
                 <svg class="fill-current inline-block h-5 w-5" xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 20 20">
                     <path d="M3.828 9l6.071-6.071-1.414-1.414L0 10l.707.707 7.778 7.778 1.414-1.414L3.828 11H20V9H3.828z"/>
@@ -40,16 +40,16 @@
                     <p class="error-msg" v-if="!$v.rear.maxLength">Card side should be 250 characters
                         maximum.</p>
                 </div>
-                <div class="flex justify-between px-4 pt-8 pb-4">
-                    <p class="py-2 ml-1 text-red-400 text-sm font-thin cursor-pointer hover:text-red-700 hover:underline"
+                <div class="flex justify-between px-4 pt-8 pb-4 items-center">
+                    <p class="ml-1 tertiary-btn hover:text-gray-600"
                        @click="deleteCard">
                         Delete card
                     </p>
-                    <div class="flex justify-end content-center">
-                        <p class="secondary-btn mr-4 hover:text-purple-500 hover:border-purple-500"
+                    <div class="flex justify-end">
+                        <p class="secondary-btn mr-4 hover:text-gray-600 hover:border-gray-600"
                            title="Cancel"
                            @click="goBack">Cancel</p>
-                        <button class="primary-btn hover:bg-purple-600"
+                        <button class="appearance-none primary-btn hover:bg-gray-600"
                                 title="Save">Save
                         </button>
                     </div>

@@ -16,7 +16,7 @@
                 </router-link>
             </div>
             <div class="block sm:hidden">
-                <button @click="toggle" class="appearance-none outline-none flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-purple-500 hover:border-purple-500">
+                <button @click="toggle" class="appearance-none outline-none flex items-center px-3 py-2 text-gray-700 border rounded hover:text-gray-600 hover:border-gray-600">
                     <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
                 </button>
             </div>
@@ -34,14 +34,14 @@
                 </div>
                 <div v-if="loggedIn" class="flex items-center">
                     <p class="mr-4 text-sm text-gray-800">Hi {{ userName }}!</p>
-                    <p class="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600 cursor-pointer" @click="logoutUser">Log out</p>
+                    <p class="secondary-btn hover:text-gray-600 hover:border-gray-600" @click="logoutUser">Log out</p>
                 </div>
                 <div v-else>
                     <router-link :to="{name: 'Login'}">
-                        <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Log in</a>
+                        <a href="#" class="tertiary-btn hover:text-gray-600 mr-4">Log in</a>
                     </router-link>
                     <router-link :to="{name: 'Registration'}">
-                        <a href="" class="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Register</a>
+                        <a href="" class="primary-btn-outline hover:text-white hover:bg-gray-700">Register</a>
                     </router-link>
                 </div>
             </div>

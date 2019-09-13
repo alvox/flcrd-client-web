@@ -24,9 +24,9 @@
                 <p class="error-msg text-center"> {{ errorMessage | capitalize }} </p>
             </div>
             <div class="flex justify-end p-4 content-center">
-                <p class="secondary-btn mr-4 hover:text-purple-500 hover:border-purple-500" title="Cancel"
+                <p class="secondary-btn mr-4 hover:text-gray-600 hover:border-gray-600" title="Cancel"
                    @click="goBack">Cancel</p>
-                <button class="primary-btn hover:bg-purple-700"
+                <button class="primary-btn hover:bg-gray-600"
                         title="Login">Log in
                 </button>
             </div>
@@ -63,7 +63,7 @@
             },
             goBack() {
                 this.$store.commit('authCancel');
-                this.$router.back()
+                this.$router.push({name: 'Index'})
             }
         },
         validations: {

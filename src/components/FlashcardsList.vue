@@ -2,7 +2,7 @@
     <div>
 <!--BACK BUTTON-->
         <div class="mx-auto max-w-2xl min-w-2xl hidden md:flex">
-            <div class="flex items-center my-4 cursor-pointer text-gray-700 hover:text-purple-700" @click="goBack">
+            <div class="flex items-center my-4 cursor-pointer text-gray-700 hover:text-gray-600" @click="goBack">
                 <svg class="fill-current inline-block h-5 w-5" xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 20 20">
                     <path d="M3.828 9l6.071-6.071-1.414-1.414L0 10l.707.707 7.778 7.778 1.414-1.414L3.828 11H20V9H3.828z"/>
@@ -16,7 +16,7 @@
                 <p class="section-header">{{ deck.name }}</p>
                 <div class="flex m-2 mr-4 items-center justify-between">
                     <router-link v-if="deck.cards != null && deck.cards.length > 0" :to="{name: 'PracticeMode'}">
-                        <p class="rounded border border-gray-700 text-gray-700 font-extrabold text-sm hover:bg-gray-700 hover:text-white py-1 px-3 cursor-pointer mx-2 md:mr-4">
+                        <p class="primary-btn-outline hover:bg-gray-700 hover:text-white ml-2">
                             Practice!
                         </p>
                     </router-link>
@@ -24,7 +24,7 @@
                     <div v-if="deckBelongsToUser">
                         <router-link :to="{name: 'AddDeck', params: {deck_id: this.$route.params.deck_id}}">
                             <p class="mr-4 cursor-pointer inline-block" title="Edit collection">
-                                <svg class="fill-current text-gray-700 inline-block h-5 w-5 hover:text-purple-500"
+                                <svg class="fill-current text-gray-700 inline-block h-5 w-5 hover:text-gray-600"
                                      xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 20 20">
                                     <path d="M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"/>
@@ -32,7 +32,7 @@
                             </p>
                         </router-link>
                         <p class="cursor-pointer inline-block" title="Add new card" @click="focusOnTextarea">
-                            <svg class="fill-current text-gray-700 inline-block h-6 w-6 hover:text-purple-500"
+                            <svg class="fill-current text-gray-700 inline-block h-6 w-6 hover:text-gray-600"
                                  xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 20 20">
                                 <path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path>
@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="flex justify-end content-center pr-4 pb-4">
-                    <button class="border rounded-lg py-2 px-6 text-gray-700 text-sm font-bold hover:text-purple-600 hover:border-purple-600"
+                    <button class="primary-btn-outline hover:text-white hover:bg-gray-700"
                             title="Create card">
                         Save
                     </button>
