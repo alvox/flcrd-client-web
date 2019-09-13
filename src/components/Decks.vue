@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-auto max-w-2xl rounded-lg mt-10">
+    <div class="mx-auto max-w-2xl rounded-lg mt-12">
         <div class="flex justify-between border-2 rounded-t-lg border-b-0 border-gray-400 bg-white">
             <p class="text-base font-extrabold m-4 pt-1 text-gray-800">My Decks</p>
             <a href="" class="m-4" title="Create new collection">

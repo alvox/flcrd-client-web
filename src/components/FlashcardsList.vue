@@ -1,8 +1,8 @@
 <template>
     <div>
 <!--BACK BUTTON-->
-        <div class="mx-auto max-w-2xl min-w-2xl flex items-center justify-between">
-            <div class="flex items-center pt-4 cursor-pointer text-gray-700 hover:text-purple-700" @click="goBack">
+        <div class="mx-auto max-w-2xl min-w-2xl hidden md:flex">
+            <div class="flex flex-row items-center my-4 cursor-pointer text-gray-700 hover:text-purple-700" @click="goBack">
                 <svg class="fill-current inline-block h-5 w-5" xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 20 20">
                     <path d="M3.828 9l6.071-6.071-1.414-1.414L0 10l.707.707 7.778 7.778 1.414-1.414L3.828 11H20V9H3.828z"/>
@@ -11,7 +11,7 @@
             </div>
         </div>
 <!--HEADER-->
-        <div class="mx-auto max-w-2xl min-w-2xl rounded-lg mt-4">
+        <div class="mx-auto max-w-2xl min-w-2xl rounded-lg mt-10 md:mt-0">
             <div class="md:flex justify-between items-center border-2 rounded-t-lg border-gray-400 bg-white">
                 <p class="section-header">{{ deck.name }}</p>
                 <div class="flex m-2 mr-4 items-center justify-between">
@@ -77,8 +77,8 @@
                   class="border-2 rounded-b-lg border-t-0 border-gray-400 bg-white"
                   @submit.prevent="saveCard">
                 <p class="pl-5 pt-4 text-xs text-gray-700 font-bold">ADD NEW CARD:</p>
-                <div class="flex flex-wrap">
-                    <div class="flex-1 m-2 ml-4">
+                <div class="md:flex">
+                    <div class="flex-1 m-2 mx-4 md:mr-2">
                         <label class="block text-gray-500 text-sm font-bold hidden" for="front">Front side</label>
                         <textarea
                                 class="front appearance-none outline-none focus:outline-none resize-y border-2 rounded-lg py-2 px-3 w-full text-gray-700 leading-tight focus:border-purple-400"
@@ -89,7 +89,7 @@
                         <p class="error-msg" v-if="!$v.front.maxLength">Card side should be 250 characters
                             maximum.</p>
                     </div>
-                    <div class="flex-1 m-2 mr-4">
+                    <div class="flex-1 m-2 mx-4 md:ml-2">
                         <label class="block text-gray-500 text-sm font-bold hidden" for="rear">Rear side</label>
                         <textarea
                                 class="appearance-none outline-none focus:outline-none resize-y border-2 rounded-lg py-2 px-3 w-full text-gray-700 leading-tight focus:border-purple-400"
