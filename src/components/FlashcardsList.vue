@@ -60,14 +60,13 @@
             </div>
 <!--EMPTY STATE-->
             <div v-else>
-                <div class="sm:block md:flex flex-wrap items-stretch border-2 border-gray-400 pt-4 pl-4 bg-white"
+                <div class="sm:block md:flex flex-wrap items-stretch border-2 border-t-0 border-gray-400 pt-4 pl-4 bg-white"
                      :class="{'rounded-b-lg': !deckBelongsToUser}">
                     <div class="md:flex sm:block self-stretch items-center">
-                        <img class="md:object-left sm:object-top object-fit m-10 mb-20"
+                        <img class="mx-auto object-fit md:ml-10 mt-10 md:mb-16"
                              src="../assets/img/undraw_add_cards.svg" width="250px" height="250px"/>
-                        <div class="m-10 md:ml-0 sm:ml-10 text-gray-800 text-base leading-relaxed">
-                            <p class="font-bold text-lg tracking-wide">Awesome!</p>
-                            <p class="mt-5">Now you can start adding flashcards. Use + button on top.</p>
+                        <div class="m-10 text-gray-800 text-base leading-relaxed">
+                            <p class="mt-5">Cool, now add some flashcards!<br/> Use form below <span class="text-2xl">👇</span></p>
                         </div>
                     </div>
                 </div>
