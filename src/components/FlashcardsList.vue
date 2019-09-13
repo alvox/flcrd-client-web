@@ -8,33 +8,34 @@
                 </svg>
                 <p class="font-thin ml-2">Back</p>
             </div>
-            <div v-if="deck.cards != null && deck.cards.length > 0" class="pt-4">
-                <router-link :to="{name: 'PracticeMode'}">
-                    <p class="font-thin text-gray-700 underline">Practice</p>
-                </router-link>
-            </div>
         </div>
         <div class="mx-auto max-w-2xl min-w-2xl rounded-lg mt-4">
             <div class="flex justify-between items-center border-2 rounded-t-lg border-b-0 border-gray-400 bg-white">
                 <p class="section-header">{{ deck.name }}</p>
-                <div class="m-4" v-if="deckBelongsToUser">
-                    <router-link :to="{name: 'AddDeck', params: {deck_id: this.$route.params.deck_id}}">
-                        <p class="mr-4 cursor-pointer inline-block" title="Edit collection">
-                            <svg class="fill-current text-gray-700 inline-block h-5 w-5 hover:text-purple-500"
+                <div class="flex m-2 mr-4 items-center">
+                    <router-link :to="{name: 'PracticeMode'}">
+                        <p class="rounded border border-gray-700 text-gray-700 font-extrabold text-sm hover:bg-gray-700 hover:text-white py-1 px-3 cursor-pointer mr-4">Practice!</p>
+                    </router-link>
+                    <div v-if="deckBelongsToUser">
+                        <router-link :to="{name: 'AddDeck', params: {deck_id: this.$route.params.deck_id}}">
+                            <p class="mr-4 cursor-pointer inline-block" title="Edit collection">
+                                <svg class="fill-current text-gray-700 inline-block h-5 w-5 hover:text-purple-500"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 20 20">
+                                    <path d="M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"/>
+                                </svg>
+                            </p>
+                        </router-link>
+                        <p class="cursor-pointer inline-block" title="Add new card" @click="focusOnTextarea">
+                            <svg class="fill-current text-gray-700 inline-block h-6 w-6 hover:text-purple-500"
                                  xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 20 20">
-                                <path d="M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"/>
+                                <path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path>
                             </svg>
                         </p>
-                    </router-link>
-                    <p class="cursor-pointer inline-block" title="Add new card" @click="focusOnTextarea">
-                        <svg class="fill-current text-gray-700 inline-block h-6 w-6 hover:text-purple-500"
-                             xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 20 20">
-                            <path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path>
-                        </svg>
-                    </p>
+                    </div>
                 </div>
+
             </div>
             <div v-if="deck.cards != null && deck.cards.length > 0">
                 <div class="sm:block border-2 border-gray-400 pt-4 pl-4 bg-white"
