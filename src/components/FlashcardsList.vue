@@ -15,11 +15,12 @@
             <div class="md:flex justify-between items-center border-2 rounded-t-lg border-gray-400 bg-white">
                 <p class="section-header">{{ deck.name }}</p>
                 <div class="flex m-2 mr-4 items-center justify-between">
-                    <router-link :to="{name: 'PracticeMode'}">
-                        <p class="rounded border border-gray-700 text-gray-700 font-extrabold text-sm hover:bg-gray-700 hover:text-white py-1 px-3 cursor-pointer mr-4">
+                    <router-link v-if="deck.cards != null && deck.cards.length > 0" :to="{name: 'PracticeMode'}">
+                        <p class="rounded border border-gray-700 text-gray-700 font-extrabold text-sm hover:bg-gray-700 hover:text-white py-1 px-3 cursor-pointer mx-2 md:mr-4">
                             Practice!
                         </p>
                     </router-link>
+                    <div v-else></div>
                     <div v-if="deckBelongsToUser">
                         <router-link :to="{name: 'AddDeck', params: {deck_id: this.$route.params.deck_id}}">
                             <p class="mr-4 cursor-pointer inline-block" title="Edit collection">
