@@ -1,9 +1,9 @@
 <template>
 
     <div>
-        <div class="mx-auto max-w-2xl rounded-lg mt-10 border-2 border-gray-400 bg-white md:flex sm:block items-center">
-            <img class="md:object-left sm:object-top object-fit m-10" src="../assets/img/undraw_memory_storage.svg" width="200px" height="200px"/>
-            <div class="m-10 md:ml-0 sm:ml-10 text-gray-800 text-base leading-relaxed">
+        <div class="mx-auto max-w-2xl rounded-lg mt-10 border-2 border-gray-400 bg-white md:flex md:items-center">
+            <img class="object-fit mx-auto mt-10 md:m-10" src="../assets/img/undraw_memory_storage.svg" width="200px" height="200px"/>
+            <div class="m-10 md:ml-0 text-gray-800 text-base leading-relaxed">
                 <p class>
                     <span class="font-bold text-lg tracking-wide">Flashcards</span>
                     – is one of the most natural methods to memorize things.
