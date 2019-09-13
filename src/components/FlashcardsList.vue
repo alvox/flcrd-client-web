@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="mx-auto max-w-2xl min-w-2xl rounded-lg mt-4">
-            <div class="flex justify-between items-center border-2 rounded-lg border-b-0 rounded-b-none border-gray-400 bg-white">
+            <div class="flex justify-between items-center border-2 rounded-t-lg border-b-0 border-gray-400 bg-white">
                 <p class="section-header">{{ deck.name }}</p>
                 <div class="m-4" v-if="deckBelongsToUser">
                     <router-link :to="{name: 'AddDeck', params: {deck_id: this.$route.params.deck_id}}">
@@ -38,14 +38,14 @@
             </div>
             <div v-if="deck.cards != null && deck.cards.length > 0">
                 <div class="sm:block border-2 border-gray-400 pt-4 pl-4 bg-white"
-                     :class="{'rounded-lg rounded-t-none': !deckBelongsToUser}">
+                     :class="{'rounded-b-lg': !deckBelongsToUser}">
                     <div v-for="flashcard in sortedCards" :key="flashcard.id">
                         <router-link :to="{name: 'EditFlashcard', params: {deck_id: deck.id, card_id: flashcard.id}}">
-                            <div class="flex flex-wrap text-gray-800">
-                                <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg rounded-r-none px-4 py-2 mb-4 cursor-pointer">
+                            <div class="flex flex-wrap text-gray-800 mb-4 mr-4">
+                                <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg rounded-r-none px-4 py-2 cursor-pointer">
                                     <p class="text-base break-all">{{ flashcard.front }}</p>
                                 </div>
-                                <div class="flex-1 bg-gray-100  border-2 border-l-0 border-gray-400 rounded-lg rounded-l-none px-4 py-2 mb-4 mr-4 cursor-pointer">
+                                <div class="flex-1 bg-gray-100  border-2 border-l-0 border-gray-400 rounded-lg rounded-l-none px-4 py-2 cursor-pointer">
                                     <p class="text-base break-all">{{ flashcard.rear }}</p>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
             </div>
             <div v-else>
                 <div class="sm:block md:flex flex-wrap items-stretch border-2 border-gray-400 pt-4 pl-4 bg-white"
-                     :class="{'rounded-lg rounded-t-none': !deckBelongsToUser}">
+                     :class="{'rounded-b-lg': !deckBelongsToUser}">
                     <div class="md:flex sm:block self-stretch items-center">
                         <img class="md:object-left sm:object-top object-fit m-10 mb-20"
                              src="../assets/img/undraw_add_cards.svg" width="250px" height="250px"/>
@@ -67,7 +67,7 @@
                 </div>
             </div>
             <form v-if="deckBelongsToUser"
-                  class="border-2 rounded-lg border-t-0 rounded-t-none border-gray-400 bg-white"
+                  class="border-2 rounded-b-lg border-t-0 border-gray-400 bg-white"
                   @submit.prevent="saveCard">
                 <p class="pl-5 pt-4 text-xs text-gray-700 font-bold">ADD NEW CARD:</p>
                 <div class="flex flex-wrap">

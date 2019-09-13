@@ -10,10 +10,10 @@
             </div>
         </div>
         <div class="mx-auto max-w-sm bg-white rounded-lg mt-4">
-            <div class="border-2 border-gray-400 rounded-lg rounded-b-none">
+            <div class="border-2 border-gray-400 rounded-t-lg">
                 <p class="section-header">Edit Flashcard</p>
             </div>
-            <form class="border-2 border-gray-400 rounded-lg border-t-0 rounded-t-none block" autocomplete="off"
+            <form class="border-2 border-gray-400 rounded-b-lg border-t-0 block" autocomplete="off"
                   @submit.prevent="updateCard">
                 <div class="p-4 pt-6">
                     <label class="form-label" for="front">FRONT SIDE</label>
@@ -21,9 +21,9 @@
                             class="appearance-none outline-none focus:outline-none resize-y border-2 rounded-lg py-2 px-3 w-full text-gray-800 leading-tight focus:border-purple-400"
                             id="front" placeholder="Front..." rows="5" v-model.trim.lazy="$v.front.$model"
                             :class="{ 'border-red-400': $v.front.$error }"></textarea>
-                    <p class="text-sm text-red-400" v-if="$v.front.$error && !$v.front.required">Card should have
+                    <p class="error-msg" v-if="$v.front.$error && !$v.front.required">Card should have
                         something on the front side.</p>
-                    <p class="text-sm text-red-400" v-if="!$v.front.maxLength">Card side should be 250 characters
+                    <p class="error-msg" v-if="!$v.front.maxLength">Card side should be 250 characters
                         maximum.</p>
                 </div>
                 <div class="p-4 pt-6">
@@ -32,9 +32,9 @@
                             class="appearance-none outline-none focus:outline-none resize-y border-2 rounded-lg py-2 px-3 w-full text-gray-800 leading-tight focus:border-purple-400"
                             id="rear" placeholder="Rear..." rows="5" v-model.trim.lazy="$v.rear.$model"
                             :class="{ 'border-red-400': $v.rear.$error }"></textarea>
-                    <p class="text-sm text-red-400" v-if="$v.rear.$error && !$v.rear.required">Rear side should be in
+                    <p class="error-msg" v-if="$v.rear.$error && !$v.rear.required">Rear side should be in
                         place too.</p>
-                    <p class="text-sm text-red-400" v-if="!$v.rear.maxLength">Card side should be 250 characters
+                    <p class="error-msg" v-if="!$v.rear.maxLength">Card side should be 250 characters
                         maximum.</p>
                 </div>
                 <div class="flex justify-between px-4 pt-8 pb-4">

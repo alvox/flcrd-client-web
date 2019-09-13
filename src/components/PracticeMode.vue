@@ -9,12 +9,12 @@
             </div>
         </div>
         <div class="mx-auto max-w-2xl rounded-lg mt-4">
-            <div class="flex justify-between border-2 rounded-lg border-b-0 rounded-b-none border-gray-400 bg-white">
+            <div class="flex justify-between border-2 rounded-t-lg border-b-0 border-gray-400 bg-white">
                 <p class="section-header">
                     <span>Practicing </span>{{deck.name }}
                 </p>
             </div>
-            <div v-if="!isDone" class="block border-2 border-gray-400 rounded-lg rounded-t-none bg-white">
+            <div v-if="!isDone" class="block border-2 border-gray-400 rounded-b-lg bg-white">
                 <div class="text-center text-base font-thin text-gray-800 my-6 mx-10">
                     <p>Look at the card and try to remember what was at the rear side.<br/>Then flip the card and check yourself!</p>
                 </div>
@@ -56,7 +56,7 @@
                 </div>
             </div>
             <!-- RESULTS -->
-            <div v-else class="block border-2 border-gray-400 rounded-lg rounded-t-none bg-white">
+            <div v-else class="block border-2 border-gray-400 rounded-b-lg bg-white">
                 <p class="text-center mt-20 text-4xl font-bold tracking-wide text-gray-800">Done! <span v-if="allCorrect">👏😎</span> </p>
                 <p v-if="allCorrect" class="text-center mt-5 text-gray-800">You've remembered all cards from this
                     deck!</p>

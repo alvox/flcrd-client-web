@@ -1,6 +1,6 @@
 <template>
     <div class="mx-auto max-w-2xl rounded-lg mt-10">
-        <div class="flex justify-between border-2 rounded-lg border-b-0 rounded-b-none border-gray-400 bg-white">
+        <div class="flex justify-between border-2 rounded-t-lg border-b-0 border-gray-400 bg-white">
             <p class="text-base font-extrabold m-4 pt-1 text-gray-800">My Decks</p>
             <a href="" class="m-4" title="Create new collection">
                 <router-link :to="{name: 'AddDeck', params: {deck_id: 'new'}}">
@@ -10,7 +10,7 @@
                 </router-link>
             </a>
         </div>
-        <div class="items-stretch border-2 rounded-lg rounded-t-none border-gray-400 min-h-full bg-white">
+        <div class="items-stretch border-2 rounded-b-lg border-gray-400 min-h-full bg-white">
             <div v-if="decks.length > 0">
                 <div class="block self-stretch" v-for="deck in sortedDecks" :key="deck.id">
                     <router-link :to="{name: 'FlashcardsList', params: {deck_id: deck.id, visibility: 'private'}}">

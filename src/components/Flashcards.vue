@@ -1,6 +1,6 @@
 <template>
     <div class="mx-auto max-w-2xl min-w-2xl rounded-lg mt-10">
-        <div class="flex justify-between border-2 rounded-lg border-b-0 rounded-b-none border-gray-400 bg-white">
+        <div class="flex justify-between border-2 rounded-t-lg border-b-0 border-gray-400 bg-white">
             <p class="text-base font-semibold m-4 pt-1 text-gray-800">{{ deck.name }}</p>
             <div class="m-4" v-if="deck.private">
                 <p class="mr-4 cursor-pointer inline-block" title="Delete collection" @click="deleteDeck">
@@ -20,26 +20,18 @@
             </div>
         </div>
         <div v-if="deck.cards != null && deck.cards.length > 0">
-            <div class="sm:block md:flex flex-wrap items-stretch border-2 rounded-lg rounded-t-none border-gray-400 pt-4 pl-4 bg-white">
+            <div class="sm:block md:flex flex-wrap items-stretch border-2 rounded-b-lg border-gray-400 pt-4 pl-4 bg-white">
                 <div class="md:w-1/2" v-for="flashcard in deck.cards" :key="flashcard.id">
-                    <div class="relative flex-1 text-gray-700 bg-gray-100 border-2 border-gray-400 rounded-lg rounded px-4 py-2 mb-4 mr-4 cursor-pointer"
+                    <div class="flex-1 text-gray-700 bg-gray-100 border-2 border-gray-400 rounded-lg rounded px-4 py-2 mb-4 mr-4 cursor-pointer"
                          @click="flip(flashcard.id)"
                          :class="{'border-green-400': isFlipped(flashcard.id)}">
                         <p class="text-base break-words">{{ isFlipped(flashcard.id) ? flashcard.rear : flashcard.front }}</p>
-<!--                        <p> {{ flashcard.rear }}</p>-->
-<!--                        <div class="absolute top-0 right-0 px-2 py-2 font-semibold text-xs">-->
-<!--                            <div class=" text-red-500 hover:text-red-700 cursor-pointer"-->
-<!--                                 @click="deleteCard(flashcard.id)">-->
-<!--                                Delete-->
-<!--                            </div>-->
-<!--                            <div class=" text-gray-500 hover:text-gray-700 cursor-pointer">Edit</div>-->
-<!--                        </div>-->
                     </div>
                 </div>
             </div>
         </div>
         <div v-else>
-            <div class="sm:block md:flex flex-wrap items-stretch border-2 rounded-lg rounded-t-none border-gray-400 pt-4 pl-4 bg-white">
+            <div class="sm:block md:flex flex-wrap items-stretch border-2 rounded-b-lg border-gray-400 pt-4 pl-4 bg-white">
                 <div class="md:flex sm:block self-stretch items-center">
                     <img class="md:object-left sm:object-top object-fit m-10 mb-20"
                          src="../assets/img/undraw_add_cards.svg" width="250px" height="250px"/>

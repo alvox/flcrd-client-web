@@ -10,12 +10,12 @@
             </div>
         </div>
         <div class="mx-auto max-w-sm bg-white rounded-lg mt-4">
-            <div class="border-2 border-gray-400 rounded-lg rounded-b-none">
+            <div class="border-2 border-gray-400 rounded-t-lg">
                 <p class="text-base font-extrabold m-4 pt-1 text-gray-800">{{editMode ? 'Edit' : 'Create new'}}
                     deck
                 </p>
             </div>
-            <form class="border-2 border-gray-400 rounded-lg border-t-0 rounded-t-none block" autocomplete="off"
+            <form class="border-2 border-gray-400 rounded-b-lg border-t-0 block" autocomplete="off"
                   @submit.prevent="addDeck">
                 <div class="p-4 pt-6">
                     <label class="form-label" for="name">NAME</label>
