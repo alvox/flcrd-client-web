@@ -175,13 +175,13 @@
                 return this.$route.params.visibility === 'private'
             },
             deckIsPacked() {
-                return this.cardsLeft === 0
+                return this.cardsLeft <= 0
             },
             cardsLeft() {
                 if (!this.deck.cards) {
-                    return 5
+                    return 100
                 }
-                return 5 - this.deck.cards.length
+                return 100 - this.deck.cards.length
             }
         },
         validations: {
