@@ -28,7 +28,7 @@
             </div>
             <div v-else>
                 <div class="md:flex sm:block self-stretch items-center">
-                    <img class="md:object-left sm:object-top object-fit m-20" src="../assets/img/undraw_add_content.svg" width="200px" height="200px"/>
+                    <img class="md:object-left sm:object-top object-fit m-20" src="../assets/img/undraw_add_content.svg" width="200px" height="200px" alt="add content"/>
                     <div class="m-10 md:ml-0 sm:ml-10 text-gray-800 text-base leading-relaxed">
                         <p class="font-bold text-lg tracking-wide">Nothing here yet...</p>
                         <p class="mt-5">Start by creating new collection!</p>

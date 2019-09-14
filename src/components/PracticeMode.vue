@@ -117,9 +117,9 @@
             },
             repeat(onlyFailed) {
                 if (onlyFailed) {
-                    this.cardsToPractice = this.wrongAnswers
+                    this.cardsToPractice = this.shuffleCards(this.wrongAnswers)
                 } else {
-                    this.cardsToPractice = this.deck.cards
+                    this.cardsToPractice = this.shuffleCards(this.deck.cards)
                 }
                 this.wrongAnswers = [];
                 this.correctAnswers = [];
@@ -129,6 +129,14 @@
             },
             goBack() {
                 this.$router.back()
+            },
+            shuffleCards(cards) {
+                let shuffled = [...cards];
+                for (let i = shuffled.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                }
+                return shuffled
             }
         },
         computed: {
@@ -143,7 +151,7 @@
             },
         },
         created() {
-            this.cardsToPractice = this.deck.cards
+            this.cardsToPractice = this.shuffleCards(this.deck.cards)
         }
     }
 </script>

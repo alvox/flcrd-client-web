@@ -65,7 +65,7 @@
                      :class="{'rounded-b-lg': !deckBelongsToUser}">
                     <div class="md:flex sm:block self-stretch items-center">
                         <img class="mx-auto object-fit md:ml-10 mt-10 md:mb-16"
-                             src="../assets/img/undraw_add_cards.svg" width="250px" height="250px"/>
+                             src="../assets/img/undraw_add_cards.svg" width="250px" height="250px" alt="add flashcards"/>
                         <div class="m-10 text-gray-800 text-base leading-relaxed">
                             <p class="mt-5">Cool, now add some flashcards!<br/> Use form below <span class="text-2xl">👇</span></p>
                         </div>
