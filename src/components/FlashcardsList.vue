@@ -128,7 +128,6 @@
                 rear: ""
             }
         },
-        props: ['is_private'],
         methods: {
             deleteCard(id) {
                 this.$store.dispatch('DELETE_CARD', {deck_id: this.deck.id, card_id: id})

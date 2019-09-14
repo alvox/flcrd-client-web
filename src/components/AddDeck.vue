@@ -79,7 +79,7 @@
             return {
                 name: "",
                 description: "",
-                isPublic: false
+                is_public: false
             }
         },
         methods: {
@@ -91,7 +91,7 @@
                 let payload = {
                     name: this.name,
                     description: this.description,
-                    isPrivate: !this.isPublic
+                    is_public: this.is_public
                 };
                 if (this.editMode) {
                     this.$store.dispatch('UPDATE_DECK', {
@@ -124,7 +124,7 @@
                 }
                 this.name = this.deck.name;
                 this.description = this.deck.description;
-                this.isPublic = !this.deck.private;
+                this.is_public = this.deck.public;
             }
         },
         validations: {
