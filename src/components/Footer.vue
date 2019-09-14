@@ -22,8 +22,4 @@
     }
 </script>
 
-<style>
-    .nobr {
-        white-space: nowrap
-    }
-</style>
+<style></style>

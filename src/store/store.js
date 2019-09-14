@@ -155,7 +155,8 @@ export const store = new Vuex.Store({
             }).then(result => {
                 let deck = result.data;
                 context.commit('saveDeck', {deck: deck});
-                router.push({name: 'FlashcardsList', params: {deck_id: deck.id, isPrivate: deck.private}})
+                let visibility = deck.private ? 'private' : 'public';
+                router.push({name: 'FlashcardsList', params: {deck_id: deck.id, visibility: visibility}})
             })
         },
         UPDATE_DECK: (context, payload) => {

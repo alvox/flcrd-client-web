@@ -23,7 +23,7 @@
                     <div v-else></div>
                     <div v-if="deckBelongsToUser">
                         <router-link :to="{name: 'AddDeck', params: {deck_id: this.$route.params.deck_id}}">
-                            <p class="mr-4 cursor-pointer inline-block" title="Edit collection">
+                            <p class="cursor-pointer inline-block" title="Edit collection">
                                 <svg class="fill-current text-gray-700 inline-block h-5 w-5 hover:text-gray-600"
                                      xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 20 20">
@@ -31,7 +31,7 @@
                                 </svg>
                             </p>
                         </router-link>
-                        <p class="cursor-pointer inline-block" title="Add new card" @click="focusOnTextarea">
+                        <p v-if="!deckIsPacked" class="cursor-pointer inline-block ml-4" title="Add new card" @click="focusOnTextarea">
                             <svg class="fill-current text-gray-700 inline-block h-6 w-6 hover:text-gray-600"
                                  xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 20 20">
@@ -73,10 +73,9 @@
                 </div>
             </div>
 <!--CREATE CARD FORM-->
-            <form v-if="deckBelongsToUser"
-                  class="border-2 rounded-b-lg border-t-0 border-gray-400 bg-white"
-                  @submit.prevent="saveCard">
-                <p class="pl-5 pt-4 text-xs text-gray-700 font-bold">ADD NEW CARD:</p>
+            <div v-if="deckBelongsToUser" class="border-2 rounded-b-lg border-t-0 border-gray-400 bg-white">
+            <form v-if="!deckIsPacked" @submit.prevent="saveCard">
+                <p class="font-bold px-5 pt-4 text-gray-700 text-xs">ADD NEW CARD:</p>
                 <div class="md:flex">
                     <div class="flex-1 m-2 mx-4 md:mr-2">
                         <label class="block text-gray-500 text-sm font-bold hidden" for="front">Front side</label>
@@ -101,13 +100,19 @@
                             maximum.</p>
                     </div>
                 </div>
-                <div class="flex justify-end content-center pr-4 pb-4">
+                <div class="flex justify-between items-center pr-4 pl-5 pb-4">
+                    <p class="text-sm text-gray-700">You can add {{cardsLeft}} more {{cardsLeft === 1 ? 'card' : 'cards'}}.</p>
                     <button class="primary-btn-outline hover:text-white hover:bg-gray-700"
                             title="Create card">
                         Save
                     </button>
                 </div>
             </form>
+                <div v-else class="font-thin text-center text-gray-700 p-4">
+                    <p>Nice, you got 100 cards here! It's a reasonable limit for a deck to keep it learnable.</p>
+                    <p>To continue adding cards, <router-link :to="{name: 'AddDeck', params: {deck_id: 'new'}}"><span class="text-blue-500 underline">create a new deck.</span></router-link></p>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -168,6 +173,15 @@
             },
             isPrivate() {
                 return this.$route.params.visibility === 'private'
+            },
+            deckIsPacked() {
+                return this.cardsLeft === 0
+            },
+            cardsLeft() {
+                if (!this.deck.cards) {
+                    return 5
+                }
+                return 5 - this.deck.cards.length
             }
         },
         validations: {
