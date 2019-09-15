@@ -42,7 +42,7 @@
                 </div>
                 <div class="flex justify-between px-4 pt-8 pb-4 items-center">
                     <p class="ml-1 tertiary-btn hover:text-gray-600"
-                       @click="deleteCard">
+                       @click="showModal">
                         Delete card
                     </p>
                     <div class="flex justify-end">
@@ -55,19 +55,28 @@
                     </div>
                 </div>
             </form>
+            <ConfirmationModal v-show="is_confirm_visible" @close="closeModal" @confirm="deleteCard">
+                <template v-slot:header>Delete Flashcard</template>
+                <template v-slot:body>Delete this flashcard?</template>
+            </ConfirmationModal>
         </div>
     </div>
 </template>
 
 <script>
     import {required, maxLength} from 'vuelidate/lib/validators'
+    import ConfirmationModal from './ConfirmationModal'
 
     export default {
         name: "EditFlashcard",
+        components: {
+            ConfirmationModal
+        },
         data() {
             return {
                 front: "",
-                rear: ""
+                rear: "",
+                is_confirm_visible: false
             }
         },
         props: ['deck_id', 'card_id'],
@@ -92,6 +101,12 @@
             },
             goBack() {
                 this.$router.back()
+            },
+            showModal() {
+                this.is_confirm_visible = true;
+            },
+            closeModal() {
+                this.is_confirm_visible = false;
             }
         },
         computed: {
