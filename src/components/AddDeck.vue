@@ -44,13 +44,13 @@
                     </p>
                 </div>
                 <label class="block text-gray-700 font-bold pl-4">
-                    <input class="mr-2 ml-1 leading-tight" type="checkbox" v-model="isPublic">
+                    <input class="mr-2 ml-1 leading-tight" type="checkbox" v-model="is_public">
                     <span class="text-xs font-bold">MAKE IT PUBLIC</span>
                 </label>
                 <div class="flex justify-between items-center px-4 pt-8 pb-4">
                     <p v-if="editMode"
                        class="tertiary-btn hover:text-gray-600"
-                       @click="deleteDeck">
+                       @click="showModal">
                         Delete deck
                     </p>
                     <div v-else></div>
@@ -66,20 +66,26 @@
                     </div>
                 </div>
             </form>
+            <ConfirmationModal v-show="is_confirm_visible" @close="closeModal" @confirm="deleteDeck"></ConfirmationModal>
         </div>
     </div>
 </template>
 
 <script>
     import {required, maxLength} from 'vuelidate/lib/validators'
+    import ConfirmationModal from "./ConfirmationModal";
 
     export default {
         name: "AddDeck",
+        components: {
+            ConfirmationModal
+        },
         data() {
             return {
                 name: "",
                 description: "",
-                is_public: false
+                is_public: false,
+                is_confirm_visible: false
             }
         },
         methods: {
@@ -107,6 +113,12 @@
             },
             goBack() {
                 this.$router.back()
+            },
+            showModal() {
+                this.is_confirm_visible = true;
+            },
+            closeModal() {
+                this.is_confirm_visible = false;
             }
         },
         computed: {
