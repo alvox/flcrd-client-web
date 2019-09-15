@@ -168,7 +168,7 @@
                 })
             },
             deckBelongsToUser() {
-                return this.$store.getters.userId === this.deck.created_by
+                return this.$store.getters.userId === this.deck.created_by.id
             },
             isPrivate() {
                 return this.$route.params.visibility === 'private'
