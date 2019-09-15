@@ -14,12 +14,15 @@ export const store = new Vuex.Store({
         userName: UserService.getUserName(),
         userId: UserService.getUserId(),
         accessToken: TokenService.getAccessToken(),
-        authenticating: false,
+        loading: false,
         errorCode: '',
         errorMessage: '',
         refreshTokenPromise: null
     },
     getters: {
+        isLoading: state => {
+            return state.loading
+        },
         decks: state => {
             return state.decks
         },
@@ -47,6 +50,9 @@ export const store = new Vuex.Store({
         }
     },
     mutations: {
+        loading(state, loading) {
+            state.loading = loading
+        },
         saveDecks(state, decks) {
             state.decks = decks
         },
@@ -127,24 +133,33 @@ export const store = new Vuex.Store({
             })
         },
         GET_DECKS: (context) => {
+            context.commit('loading', true);
             ApiService.get("decks").then(result => {
                 context.commit('saveDecks', result.data)
+            }).finally(() => {
+                context.commit('loading', false)
             })
         },
         GET_CARDS_FOR_PUBLIC_DECK: (context, payload) => {
+            context.commit('loading', true);
             ApiService.get("public/decks/" + payload.deck_id + "/flashcards").then(result => {
                 context.commit('saveFlashcardsForPublicDeck', {
                     deck_id: payload.deck_id,
                     flashcards: result.data
                 })
+            }).finally(() => {
+                context.commit('loading', false)
             })
         },
         GET_CARDS_FOR_DECK: (context, payload) => {
+            context.commit('loading', true);
             ApiService.get("decks/" + payload.deck_id + "/flashcards").then(result => {
                 context.commit('saveFlashcards', {
                     deck_id: payload.deck_id,
                     flashcards: result.data
                 })
+            }).finally(() => {
+                context.commit('loading', false)
             })
         },
         CREATE_DECK: (context, payload) => {

@@ -11,7 +11,8 @@
             </div>
         </div>
 <!--HEADER-->
-        <div class="mx-auto max-w-2xl min-w-2xl rounded-lg mt-10 md:mt-0">
+        <Spinner v-if="isLoading"></Spinner>
+        <div v-else class="mx-auto max-w-2xl min-w-2xl rounded-lg mt-10 md:mt-0">
             <div class="md:flex justify-between items-center border-2 rounded-t-lg border-gray-400 bg-white">
                 <p class="section-header">{{ deck.name }}</p>
                 <div class="flex m-2 mr-4 items-center justify-between">
@@ -119,9 +120,13 @@
 
 <script>
     import {required, maxLength} from 'vuelidate/lib/validators'
+    import Spinner from './Spinner';
 
     export default {
         name: "FlashcardsList",
+        components: {
+            Spinner
+        },
         data() {
             return {
                 front: "",
@@ -158,6 +163,9 @@
             }
         },
         computed: {
+            isLoading() {
+                return this.$store.getters.isLoading
+            },
             deck() {
                 return this.$store.getters.deck(this.$route.params.deck_id)
             },
