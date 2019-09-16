@@ -17,12 +17,12 @@
                 <p class="section-header">{{ deck.name }}</p>
                 <div class="flex m-2 mr-4 items-center justify-between">
                     <router-link v-if="deck.cards != null && deck.cards.length > 0" :to="{name: 'PracticeMode'}">
-                        <p class="primary-btn-outline hover:bg-gray-700 hover:text-white ml-2 md:mr-4">
+                        <p class="primary-btn-outline hover:bg-gray-700 hover:text-white ml-2">
                             Practice!
                         </p>
                     </router-link>
                     <div v-else></div>
-                    <div v-if="deckBelongsToUser">
+                    <div v-if="deckBelongsToUser" class="ml-4">
                         <router-link :to="{name: 'AddDeck', params: {deck_id: this.$route.params.deck_id}}">
                             <p class="cursor-pointer inline-block" title="Edit collection">
                                 <svg class="fill-current text-gray-700 inline-block h-5 w-5 hover:text-gray-600"
