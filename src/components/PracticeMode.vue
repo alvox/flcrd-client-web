@@ -68,11 +68,11 @@
                 <p v-else class="text-center mt-5 text-gray-800">You've remembered {{correctAnswers.length}}
                     {{correctAnswers.length === 1 ? 'card' : 'cards'}} out of {{deck.cards.length}}.</p>
                 <div class="flex mx-4 md:mx-32 my-10 mb-20">
-                    <p class="flex-1 border border-gray-700 py-2 mr-10 text-center font-extrabold text-gray-700 rounded cursor-pointer hover:text-white hover:bg-gray-700"
+                    <p class="flex-1 border border-gray-700 p-2 mr-10 text-center font-extrabold text-gray-700 rounded cursor-pointer hover:text-white hover:bg-gray-700"
                        :class="{'ml-10' : correctAnswers.length === 0 || wrongAnswers.length === 0}"
                        @click="repeat(false)">Repeat all cards</p>
                     <p v-if="correctAnswers.length !== 0 && wrongAnswers.length !== 0"
-                       class="flex-1 border border-gray-700 py-2 ml-10 text-center font-extrabold text-gray-700 rounded cursor-pointer hover:text-white hover:bg-gray-700"
+                       class="flex-1 border border-gray-700 p-2 ml-10 text-center font-extrabold text-gray-700 rounded cursor-pointer hover:text-white hover:bg-gray-700"
                        @click="repeat(true)">
                         Repeat {{wrongAnswers.length}} {{wrongAnswers.length === 1 ? 'card' : 'cards'}}</p>
                 </div>
