@@ -26,9 +26,9 @@
                 </div>
                 <div class="flex justify-between h-64">
                     <div class="hidden md:block w-1/4"></div>
-                    <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg mt-4 mb-5 p-4 mx-4 md:mx-0 align-middle overflow-auto"
+                    <div class="flex-1 bg-gray-100 border-2 border-gray-400 text-lg rounded-lg mt-4 mb-5 p-4 mx-4 md:mx-0 overflow-auto flex flex-wrap justify-around"
                          :class="{ 'border-green-400': side === 'rear' }">
-                        <p class="break-words text-gray-800">
+                        <p class="whitespace-pre-line text-gray-800 self-center -mt-6">
                             {{ side === 'front' ? currentCard.front : currentCard.rear }}
                         </p>
                     </div>
