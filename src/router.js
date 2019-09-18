@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Index from '@/components/Index'
 import AddDeck from "@/components/AddDeck"
 import Decks from "@/components/Decks"
-import Flashcards from "@/components/Flashcards"
 import FlashcardsList from "@/components/FlashcardsList";
 import EditFlashcard from "@/components/EditFlashcard"
 import Registration from "@/components/Registration"
@@ -53,14 +52,6 @@ const router =  new Router({
             path: '/add-deck/:deck_id',
             name: 'AddDeck',
             component: AddDeck
-        },
-        {
-            path: '/:deck_id/flashcards',
-            name: 'Flashcards',
-            component: Flashcards,
-            meta: {
-                public: true
-            }
         },
         {
             path: '/:deck_id/:visibility/flashcards/list',

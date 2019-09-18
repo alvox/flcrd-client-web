@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /v0/
+Disallow: /registration
+Disallow: /login
+Disallow: /decks
+Disallow: /*/private/*
