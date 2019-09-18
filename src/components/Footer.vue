@@ -2,7 +2,7 @@
         <div class="mx-auto max-w-2xl text-center">
             <div class="flex items-center">
                 <p class="mt-10 mb-5 text-gray-700 text-sm font-thin tracking-wide">
-                    <span class="text-base">🚧</span>WIP by <a class="text-blue-700" href="https://github.com/alvox" target="_blank">@alvox</a>   /
+                    <span class="text-base">🚧</span>WIP by <a class="text-blue-700" href="https://github.com/alvox" target="_blank" rel="noopener">@alvox</a>   /
                 </p>
                 <p class="mt-10 mb-5 text-gray-700 text-sm font-thin tracking-wide ml-2">
                     <a href="mailto:al@alvox.net">
