@@ -1,11 +1,11 @@
 <template>
     <div class="md:flex text-gray-800 mb-4 mr-4 bg-gray-100 hover:bg-gray-200"
          :class="{'cursor-pointer': belongs_to_user}">
-        <div class="flex-1 border-2 border-gray-400 rounded-t-lg md:rounded-l-lg md:rounded-r-none px-4 py-2">
+        <div class="flex-1 border-2 border-gray-400 rounded-t-lg md:rounded-l-lg md:rounded-r-none p-4">
             <p class="text-base whitespace-pre-wrap">{{ flashcard.front }}</p>
         </div>
         <div class="flex-1 border-2 border-gray-400 rounded-b-lg border-t-0 md:border-t-2 md:border-l-0
-                    md:rounded-r-lg md:rounded-l-none px-4 py-2">
+                    md:rounded-r-lg md:rounded-l-none p-4">
             <p class="text-base whitespace-pre-wrap">{{ flashcard.rear }}</p>
         </div>
     </div>
