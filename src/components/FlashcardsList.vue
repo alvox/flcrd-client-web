@@ -47,16 +47,14 @@
                 <div class="sm:block border-2 border-t-0 border-gray-400 pt-4 pl-4 bg-white"
                      :class="{'rounded-b-lg': !deckBelongsToUser}">
                     <div v-for="flashcard in sortedCards" :key="flashcard.id">
-                        <router-link :to="{name: 'EditFlashcard', params: {deck_id: deck.id, card_id: flashcard.id}}">
-                            <div class="md:flex text-gray-800 mb-4 mr-4">
-                                <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-t-lg md:rounded-l-lg md:rounded-r-none px-4 py-2 cursor-pointer">
-                                    <p class="text-base whitespace-pre-wrap">{{ flashcard.front }}</p>
-                                </div>
-                                <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-b-lg border-t-0 md:border-t-2 md:border-l-0 md:rounded-r-lg md:rounded-l-none px-4 py-2 cursor-pointer">
-                                    <p class="text-base whitespace-pre-wrap">{{ flashcard.rear }}</p>
-                                </div>
-                            </div>
-                        </router-link>
+                        <div v-if="deckBelongsToUser">
+                            <router-link :to="{name: 'EditFlashcard', params: {deck_id: deck.id, card_id: flashcard.id}}">
+                                <Card :flashcard=flashcard></Card>
+                            </router-link>
+                        </div>
+                        <div v-else>
+                            <Card :flashcard=flashcard :belongs_to_user=deckBelongsToUser></Card>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -120,12 +118,13 @@
 
 <script>
     import {required, maxLength} from 'vuelidate/lib/validators'
-    import Spinner from './Spinner';
+    import Spinner from './Spinner'
+    import Card from './elements/Card'
 
     export default {
         name: "FlashcardsList",
         components: {
-            Spinner
+            Spinner, Card
         },
         data() {
             return {
