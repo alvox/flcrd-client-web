@@ -3,13 +3,14 @@ import Router from 'vue-router'
 import Index from '@/components/Index'
 import AddDeck from "@/components/AddDeck"
 import Decks from "@/components/Decks"
-import FlashcardsList from "@/components/FlashcardsList";
+import FlashcardsList from "@/components/FlashcardsList"
 import EditFlashcard from "@/components/EditFlashcard"
 import Registration from "@/components/Registration"
+import Terms from "@/components/Terms"
 
 import Login from "@/components/Login"
 import {TokenService} from "./services/token"
-import PracticeMode from "./components/PracticeMode";
+import PracticeMode from "./components/PracticeMode"
 
 Vue.use(Router);
 
@@ -71,6 +72,14 @@ const router =  new Router({
             path: '/:deck_id/practice',
             name: 'PracticeMode',
             component: PracticeMode,
+            meta: {
+                public: true
+            }
+        },
+        {
+            path: '/terms',
+            name: 'Terms',
+            component: Terms,
             meta: {
                 public: true
             }
