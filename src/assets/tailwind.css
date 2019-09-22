@@ -35,3 +35,25 @@
 }
 
 @tailwind utilities;
+
+/*:root {*/
+/*    --bg-background-primary: white;*/
+/*    --bg-background-secondary: #EDF2F7;*/
+/*    --bg-background-ternary: #CBD5E0;*/
+/*}*/
+
+.theme-light {
+    --bg-background-primary: white;
+    --bg-background-secondary: #EDF2F7;
+    --bg-background-ternary: #CBD5E0;
+
+    --text-copy-primary: #2D3748
+}
+
+.theme-dark {
+    --bg-background-primary: #0D2438;
+    --bg-background-secondary: #102c44;
+    --bg-background-ternary: #1e3951;
+
+    --text-copy-primary: #cbd5e0;
+}

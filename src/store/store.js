@@ -3,23 +3,28 @@ import Vuex from 'vuex';
 import router from '../router'
 import {TokenService} from '../services/token'
 import {UserService} from '../services/user'
+import {SettingsService} from '../services/settings'
 import ApiService from "../services/api";
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
+        theme: SettingsService.getTheme(),
+        loading: false,
         decks: [],
         publicDecks: [],
         userName: UserService.getUserName(),
         userId: UserService.getUserId(),
         accessToken: TokenService.getAccessToken(),
-        loading: false,
         errorCode: '',
         errorMessage: '',
         refreshTokenPromise: null
     },
     getters: {
+        theme: state => {
+            return state.theme
+        },
         isLoading: state => {
             return state.loading
         },
@@ -50,6 +55,9 @@ export const store = new Vuex.Store({
         }
     },
     mutations: {
+        switchTheme(state, t) {
+            state.theme = t
+        },
         loading(state, loading) {
             state.loading = loading
         },
@@ -127,6 +135,9 @@ export const store = new Vuex.Store({
         }
     },
     actions: {
+        SWITCH_THEME: (context) => {
+            context.commit('switchTheme', SettingsService.switchTheme())
+        },
         GET_PUBLIC_DECKS: (context) => {
             ApiService.get("public/decks").then(result => {
                 context.commit('savePublicDecks', result.data)

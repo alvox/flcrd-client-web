@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="min-h-screen flex flex-col">
+    <div id="app" class="min-h-screen flex flex-col bg-background-secondary" :class="theme">
         <Navbar/>
         <div class="flex-grow">
             <router-view/>
@@ -15,6 +15,11 @@
         components: {
             Navbar,
             Footer
+        },
+        computed: {
+            theme() {
+                return this.$store.getters.theme
+            }
         }
     }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div class="font-sans antialiased">
-        <nav class="flex items-center justify-between flex-wrap bg-white py-2 px-4 mx-auto max-w-2xl min-w-2xl border-2 border-t-0 rounded-b-lg border-gray-400">
+        <nav class="flex items-center justify-between flex-wrap bg-background-primary py-2 px-4 mx-auto max-w-2xl min-w-2xl border-2 border-t-0 rounded-b-lg border-gray-400">
             <div class="flex items-center flex-no-shrink text-gray-800 mr-6">
                 <svg class="fill-current h-12 w-12 mr-2" width="134" height="114" viewBox="0 0 134 114" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="2.67387" y="47.2078" width="101.694" height="63.8602" rx="8" transform="rotate(-25.9714 2.67387 47.2078)" fill="#D6D6D6" stroke="#656565" stroke-width="4"/>
@@ -48,7 +48,7 @@
                     <p>Theme: Light</p>
                     <p>Language: EN</p>
                 </div>
-                <button class="text-gray-700 hidden md:block md:ml-2" @click="showSettingsTooltip">
+                <button class="text-gray-700 hidden md:block md:ml-2" @click="switchTheme">
                     <svg class="fill-current h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                         <path d="M10 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
                     </svg>
@@ -81,8 +81,8 @@
             toggle() {
                 this.open = !this.open
             },
-            showSettingsTooltip() {
-
+            switchTheme() {
+                this.$store.dispatch('SWITCH_THEME')
             }
         }
     }

@@ -17,7 +17,7 @@
                 <div v-if="decks.length > 0">
                     <div class="block self-stretch" v-for="deck in sortedDecks" :key="deck.id">
                         <router-link :to="{name: 'FlashcardsList', params: {deck_id: deck.id, visibility: 'private'}}">
-                            <div class="flex-1 bg-gray-100 border-2 border-gray-400 rounded-lg px-4 py-2 m-4 cursor-pointer hover:bg-gray-300 h-40 min-h-full relative">
+                            <div class="flex-1 bg-gray-200 border-2 border-gray-400 rounded-lg px-4 py-2 m-4 cursor-pointer hover:bg-gray-300 h-40 min-h-full relative">
                                 <p class="text-3xl font-extrabold text-gray-800">{{ deck.name }}</p>
                                 <p class="text-gray-800 font-thin"> {{ deck.description }}</p>
                                 <p class="absolute bottom-0 left-0 py-2 px-4 text-gray-700 text-xs font-bold">
