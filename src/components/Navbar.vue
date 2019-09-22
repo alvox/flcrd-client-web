@@ -44,6 +44,15 @@
                         <a href="" class="primary-btn-outline hover:text-white hover:bg-gray-700">Register</a>
                     </router-link>
                 </div>
+                <div class="sm:hidden mt-4 text-sm text-gray-800">
+                    <p>Theme: Light</p>
+                    <p>Language: EN</p>
+                </div>
+                <button class="text-gray-700 hidden md:block md:ml-2" @click="showSettingsTooltip">
+                    <svg class="fill-current h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M10 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+                    </svg>
+                </button>
             </div>
         </nav>
     </div>
@@ -71,6 +80,9 @@
             },
             toggle() {
                 this.open = !this.open
+            },
+            showSettingsTooltip() {
+
             }
         }
     }
