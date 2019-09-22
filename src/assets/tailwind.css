@@ -36,12 +36,6 @@
 
 @tailwind utilities;
 
-/*:root {*/
-/*    --bg-background-primary: white;*/
-/*    --bg-background-secondary: #EDF2F7;*/
-/*    --bg-background-ternary: #CBD5E0;*/
-/*}*/
-
 .theme-light {
     --bg-background-primary: white;
     --bg-background-secondary: #EDF2F7;
@@ -56,4 +50,8 @@
     --bg-background-ternary: #1e3951;
 
     --text-copy-primary: #cbd5e0;
+}
+
+.content-wrapper {
+    transition: background-color .25s;
 }
