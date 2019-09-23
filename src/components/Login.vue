@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-auto max-w-sm bg-white rounded-lg mt-10">
+    <div class="mx-auto max-w-sm bg-background-secondary rounded-lg mt-10">
         <div class="border-2 border-border-primary rounded-t-lg">
             <p class="section-header">Log in</p>
         </div>
@@ -26,7 +26,7 @@
             <div class="flex justify-end p-4 content-center">
                 <p class="secondary-btn mr-4 hover:text-gray-600 hover:border-gray-600" title="Cancel"
                    @click="goBack">Cancel</p>
-                <button class="primary-btn hover:bg-gray-600"
+                <button class="primary-btn-outline hover:text-copy-secondary hover:bg-background-ternary"
                         title="Login">Log in
                 </button>
             </div>

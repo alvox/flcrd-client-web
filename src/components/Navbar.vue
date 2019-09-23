@@ -33,7 +33,7 @@
 <!--                    </a>-->
                 </div>
                 <div v-if="loggedIn" class="flex items-center">
-                    <p class="mr-4 text-sm text-gray-800">Hi {{ userName }}!</p>
+                    <p class="mr-4 text-sm text-copy-primary">Hi {{ userName }}!</p>
                     <p class="secondary-btn hover:text-gray-600 hover:border-gray-600" @click="logoutUser">Log out</p>
                 </div>
                 <div v-else>
@@ -41,7 +41,7 @@
                         <a href="#" class="tertiary-btn hover:text-gray-600 mr-4">Log in</a>
                     </router-link>
                     <router-link :to="{name: 'Registration'}">
-                        <a href="" class="primary-btn-outline hover:text-white hover:bg-gray-700">Register</a>
+                        <a href="" class="primary-btn-outline hover:text-copy-secondary hover:bg-background-ternary">Register</a>
                     </router-link>
                 </div>
                 <a href="" class="text-copy-secondary block mt-4 md:mt-0 md:ml-4" @click.prevent="switchTheme">

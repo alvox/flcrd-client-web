@@ -7,7 +7,7 @@
 }
 
 .primary-btn {
-    @apply bg-gray-700 rounded cursor-pointer text-copy-secondary text-sm font-extrabold py-1 px-4;
+    @apply bg-background-ternary rounded cursor-pointer text-copy-secondary text-sm font-extrabold py-1 px-4;
 }
 
 .primary-btn-outline {
@@ -27,7 +27,7 @@
 }
 
 .form-field {
-    @apply appearance-none outline-none border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-copy-secondary leading-tight;
+    @apply appearance-none outline-none border-2 border-border-primary bg-background-ternary rounded-lg w-full py-2 px-3 text-copy-secondary leading-tight;
 }
 
 .error-msg {
@@ -39,25 +39,46 @@
 .theme-light {
     --bg-background-primary: #EDF2F7;
     --bg-background-secondary: white;
-    --bg-background-ternary: #CBD5E0;
+    --bg-background-ternary: #EDF2F7;
+    --bg-background-hover: #E2E8F0;
+
+    --gb-background-green-button: #F0FFF4;
+    --gb-background-green-button-hover: #C6F6D5;
+    --gb-background-red-button: #FFF5F5;
+    --gb-background-red-button-hover: #FED7D7;
 
     --border-color-primary: #CBD5E0;
 
     --text-copy-primary: #2D3748;
     --text-copy-secondary: #4A5568;
+    --text-copy-hover: #718096;
+    --text-copy-green: #2F855A;
+    --text-copy-green-btn: #22543D;
+    --text-copy-red-btn: #742A2A;
+    --text-copy-red: #C53030;
 }
 
 .theme-dark {
-    /*--bg-background-primary: #1F2933;*/
     --bg-background-primary: #101720;
-    /*--bg-background-secondary: #323F4B;*/
     --bg-background-secondary: #1F2933;
-    --bg-background-ternary: #52606D;
+    --bg-background-ternary: #303e4b;
+    --bg-background-hover: #3a4855;
+
+    --gb-background-green-button: #9AE6B4;
+    --gb-background-green-button-hover: #68D391;
+    --gb-background-red-button: #FEB2B2;
+    --gb-background-red-button-hover: #FC8181;
 
     --border-color-primary: #52606D;
 
     --text-copy-primary: #F7FAFC;
-    --text-copy-secondary: #EDF2F7;
+    --text-copy-secondary: #E2E8F0;
+    --text-copy-hover: #718096;
+    --text-copy-green: #48BB78;
+    --text-copy-green-btn: #22543D;
+    --text-copy-red-btn: #742A2A;
+    --text-copy-red: #F56565;
+
 }
 
 .content-wrapper {

@@ -1,5 +1,5 @@
 <template>
-    <div class="md:flex text-gray-800 mb-4 mr-4 bg-gray-100 hover:bg-gray-200"
+    <div class="md:flex text-copy-primary mb-4 mr-4 rounded-lg bg-background-ternary hover:bg-background-hover"
          :class="{'cursor-pointer': belongs_to_user}">
         <div class="flex-1 border-2 border-border-primary rounded-t-lg md:rounded-l-lg md:rounded-r-none p-4">
             <p class="text-base whitespace-pre-wrap">{{ flashcard.front }}</p>

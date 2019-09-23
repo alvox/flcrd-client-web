@@ -10,10 +10,10 @@
                 <p class="font-thin ml-2">Back</p>
             </div>
         </div>
-        <div class="mx-auto max-w-sm bg-white rounded-lg mt-10 md:mt-0">
+        <div class="mx-auto max-w-sm bg-background-secondary rounded-lg mt-10 md:mt-0">
 <!--HEADER-->
             <div class="border-2 border-border-primary rounded-t-lg">
-                <p class="text-base font-extrabold m-4 pt-1 text-gray-800">{{editMode ? 'Edit' : 'Create new'}}
+                <p class="text-base font-extrabold m-4 pt-1 text-copy-secondary">{{editMode ? 'Edit' : 'Create new'}}
                     deck
                 </p>
             </div>
@@ -22,7 +22,7 @@
                   @submit.prevent="addDeck">
                 <div class="p-4 pt-6">
                     <label class="form-label" for="name">NAME</label>
-                    <input class="appearance-none outline-none border-2 border-border-primary rounded-lg w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:border-purple-400"
+                    <input class="appearance-none outline-none border-2 border-border-primary rounded-lg w-full py-2 px-3 text-copy-secondary bg-background-ternary leading-tight focus:outline-none focus:border-purple-400"
                            id="name" type="text" placeholder="Give it a name" v-model.trim.lazy="$v.name.$model"
                            :class="{'border-red-400': $v.name.$error}">
                     <p class="error-msg" v-if="$v.name.$error && !$v.name.required">
@@ -35,7 +35,7 @@
                 <div class="p-4 pt-6">
                     <label class="form-label" for="description">DESCRIPTION (optional)</label>
                     <textarea
-                            class="appearance-none outline-none focus:outline-none resize-y border-2 rounded-lg py-2 px-3 w-full text-gray-800 leading-tight focus:border-purple-400"
+                            class="appearance-none outline-none focus:outline-none resize-y border-2 border-border-primary rounded-lg py-2 px-3 w-full text-copy-secondary bg-background-ternary leading-tight focus:border-purple-400"
                             id="description" placeholder="You can also add some brief description" rows="4"
                             v-model.trim.lazy="$v.description.$model"
                             :class="{ 'border-red-400': $v.description.$error }"></textarea>
@@ -43,7 +43,7 @@
                         Description should be 250 characters maximum.
                     </p>
                 </div>
-                <label class="block text-gray-700 font-bold pl-4">
+                <label class="block text-copy-secondary font-bold pl-4">
                     <input class="mr-2 ml-1 leading-tight" type="checkbox" v-model="is_public">
                     <span class="text-xs font-bold">MAKE IT PUBLIC</span>
                 </label>

@@ -11,24 +11,24 @@
         </div>
         <div class="mx-auto max-w-2xl rounded-lg mt-10 md:mt-0">
 <!--HEADER-->
-            <div class="flex justify-between border-2 rounded-t-lg border-b-0 border-border-primary bg-white">
+            <div class="flex justify-between border-2 rounded-t-lg border-b-0 border-border-primary bg-background-secondary">
                 <p class="section-header">
                     <span>Practicing </span>{{deck.name }}
                 </p>
             </div>
 <!--PRACTICE-->
-            <div v-if="!isDone" class="block border-2 border-border-primary rounded-b-lg bg-white">
-                <div class="text-center text-base font-thin text-gray-800 my-6 mx-10">
+            <div v-if="!isDone" class="block border-2 border-border-primary rounded-b-lg bg-background-secondary">
+                <div class="text-center text-base font-thin text-copy-secondary my-6 mx-10">
                     <p>Look at the card and try to remember what was at the rear side.<br/>Then flip the card and check yourself!</p>
                 </div>
-                <div class="text-center font-extrabold text-sm text-gray-700">{{currentIdx+1}} of
+                <div class="text-center font-extrabold text-sm text-copy-secondary">{{currentIdx+1}} of
                     {{cardsToPractice.length}}
                 </div>
                 <div class="flex justify-between h-64">
                     <div class="hidden md:block w-1/4"></div>
-                    <div class="flex-1 bg-gray-100 border-2 border-border-primary text-lg rounded-lg mt-4 mb-5 p-4 mx-4 md:mx-0 overflow-auto flex flex-wrap justify-around"
+                    <div class="flex-1 bg-background-ternary border-4 border-border-primary text-lg rounded-lg mt-4 mb-5 p-4 mx-4 md:mx-0 overflow-auto flex flex-wrap justify-around"
                          :class="{ 'border-green-400': side === 'rear' }">
-                        <p class="whitespace-pre-line text-gray-800 self-center -mt-6">
+                        <p class="whitespace-pre-line text-copy-primary self-center -mt-6">
                             {{ side === 'front' ? currentCard.front : currentCard.rear }}
                         </p>
                     </div>
@@ -38,18 +38,18 @@
                     <div class="hidden md:block w-1/4"></div>
                     <div class="flex-1">
                         <div class="block">
-                            <p class="text-center tracking-wide text-gray-700 font-extrabold border border-gray-700 hover:text-white hover:bg-gray-700 rounded p-2 cursor-pointer mx-4 md:mx-0"
+                            <p class="text-center tracking-wide text-copy-secondary font-extrabold border-2 border-gray-700 hover:text-white hover:bg-gray-700 rounded p-2 cursor-pointer mx-4 md:mx-0"
                                @click="flip">Flip card</p>
                             <div class="flex justify-around mt-10 mx-4 md:mx-0">
-                                <p class="mr-4 font-semibold text-xl text-green-700">{{correctAnswers.length}}</p>
-                                <p class="ml-4 font-semibold text-xl text-red-700">{{wrongAnswers.length}}</p>
+                                <p class="mr-4 font-semibold text-xl text-copy-green">{{correctAnswers.length}}</p>
+                                <p class="ml-4 font-semibold text-xl text-copy-red">{{wrongAnswers.length}}</p>
                             </div>
                             <div class="flex justify-between mt-2 mb-10 mx-4 md:mx-0">
-                                <p class="flex-1 text-center text-green-900 bg-green-100 border border-green-400 hover:bg-green-200 hover:border-green-500 rounded-lg p-2 mr-4 cursor-pointer select-none"
+                                <p class="flex-1 text-center text-copy-green-btn bg-background-green-button border-2 border-green-400 hover:bg-background-green-button-hover hover:border-green-500 rounded-lg p-2 mr-4 cursor-pointer select-none"
                                    @click="next(true)">
                                     <span class="text-2xl">😁</span><br>I was right!
                                 </p>
-                                <p class="flex-1 text-center text-red-900 bg-red-100 border border-red-400 hover:bg-red-200 hover:border-red-500 rounded-lg p-2 ml-4 cursor-pointer select-none"
+                                <p class="flex-1 text-center text-copy-red-btn bg-background-red-button border-2 border-red-400 hover:bg-background-red-button-hover hover:border-red-500 rounded-lg p-2 ml-4 cursor-pointer select-none"
                                    @click="next(false)">
                                     <span class="text-2xl">😧</span><br>I was wrong...
                                 </p>

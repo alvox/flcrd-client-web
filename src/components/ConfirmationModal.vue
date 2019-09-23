@@ -4,13 +4,13 @@
              role="dialog"
              aria-labelledby="modalTitle"
              aria-describedby="modalDescription">
-            <div class="bg-white shadow-md flex flex-col rounded-lg">
-                <header class="p-4 border-b-2 font-extrabold text-gray-800" id="modalTitle">
+            <div class="bg-background-ternary text-copy-primary shadow-md flex flex-col rounded-lg">
+                <header class="p-4 border-b-2 border-border-primary font-extrabold" id="modalTitle">
                     <slot name="header">
                         Delete deck
                     </slot>
                 </header>
-                <section class="p-4 text-center text-gray-800 font-thin" id="modalDescription">
+                <section class="p-4 text-center font-thin" id="modalDescription">
                     <slot name="body">
                         Delete this deck?
                     </slot>
@@ -47,7 +47,7 @@
 
 <style>
     .bg-alpha {
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.7);
     }
     .modal-fade-enter,
     .modal-fade-leave-active {

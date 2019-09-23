@@ -21,7 +21,7 @@
             <div class="items-stretch border-2 rounded-b-lg border-border-primary min-h-full bg-background-secondary text-copy-primary">
                 <div class="block self-stretch" v-for="deck in nonEmptyDecks" :key="deck.id">
                     <router-link :to="{name: 'FlashcardsList', params: {deck_id: deck.id, visibility: 'public'}}">
-                        <div class="flex-1 bg-background-primary border-2 border-border-primary rounded-lg px-4 py-2 m-4 cursor-pointer hover:bg-gray-300 h-40 min-h-full relative">
+                        <div class="flex-1 bg-background-ternary border-2 border-border-primary rounded-lg px-4 py-2 m-4 cursor-pointer hover:bg-background-hover h-40 min-h-full relative">
                             <p class="text-3xl font-extrabold">{{ deck.name }}</p>
                             <p class="font-thin"> {{ deck.description }}</p>
 
