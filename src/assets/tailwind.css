@@ -3,7 +3,7 @@
 @tailwind components;
 
 .section-header {
-    @apply text-base font-extrabold text-gray-800 m-4;
+    @apply text-base font-extrabold text-copy-primary m-4;
 }
 
 .primary-btn {
