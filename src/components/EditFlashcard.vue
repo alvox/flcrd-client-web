@@ -12,11 +12,11 @@
         </div>
         <div class="mx-auto max-w-sm bg-white rounded-lg mt-10 md:mt-0">
 <!--HEADER-->
-            <div class="border-2 border-gray-400 rounded-t-lg">
+            <div class="border-2 border-border-primary rounded-t-lg">
                 <p class="section-header">Edit Flashcard</p>
             </div>
 <!--FORM-->
-            <form class="border-2 border-gray-400 rounded-b-lg border-t-0 block" autocomplete="off"
+            <form class="border-2 border-border-primary rounded-b-lg border-t-0 block" autocomplete="off"
                   @submit.prevent="updateCard">
                 <div class="p-4 pt-6">
                     <label class="form-label" for="front">FRONT SIDE</label>

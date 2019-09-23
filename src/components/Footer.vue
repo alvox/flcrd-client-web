@@ -1,6 +1,6 @@
 <template>
     <div class="mx-auto max-w-2xl text-center">
-        <div class="flex items-center mt-10 mb-5 text-gray-700 text-sm font-thin tracking-wide">
+        <div class="flex items-center mt-10 mb-5 text-copy-secondary text-sm font-thin tracking-wide">
             <p>
                 <span class="text-base">🚧</span>WIP by
                 <a class="text-blue-700" href="https://github.com/alvox" target="_blank" rel="noopener">@alvox</a>

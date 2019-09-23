@@ -13,7 +13,7 @@
 <!--HEADER-->
         <Spinner v-if="isLoading"></Spinner>
         <div v-else class="mx-auto max-w-2xl min-w-2xl rounded-lg mt-10 md:mt-0">
-            <div class="md:flex justify-between items-center border-2 rounded-t-lg border-gray-400 bg-white">
+            <div class="md:flex justify-between items-center border-2 rounded-t-lg border-border-primary bg-white">
                 <p class="section-header">{{ deck.name }}</p>
                 <div class="flex m-2 mr-4 items-center justify-between">
                     <router-link v-if="deck.cards != null && deck.cards.length > 0" :to="{name: 'PracticeMode'}">
@@ -44,7 +44,7 @@
             </div>
 <!--CARDS-->
             <div v-if="deck.cards != null && deck.cards.length > 0">
-                <div class="sm:block border-2 border-t-0 border-gray-400 pt-4 pl-4 bg-white"
+                <div class="sm:block border-2 border-t-0 border-border-primary pt-4 pl-4 bg-white"
                      :class="{'rounded-b-lg': !deckBelongsToUser}">
                     <div v-for="flashcard in sortedCards" :key="flashcard.id">
                         <div v-if="deckBelongsToUser">
@@ -60,7 +60,7 @@
             </div>
 <!--EMPTY STATE-->
             <div v-else>
-                <div class="sm:block md:flex flex-wrap items-stretch border-2 border-t-0 border-gray-400 pt-4 pl-4 bg-white"
+                <div class="sm:block md:flex flex-wrap items-stretch border-2 border-t-0 border-border-primary pt-4 pl-4 bg-white"
                      :class="{'rounded-b-lg': !deckBelongsToUser}">
                     <div class="md:flex sm:block self-stretch items-center">
                         <img class="mx-auto object-fit md:ml-10 mt-10 md:mb-16"
@@ -72,7 +72,7 @@
                 </div>
             </div>
 <!--CREATE CARD FORM-->
-            <div v-if="deckBelongsToUser" class="border-2 rounded-b-lg border-t-0 border-gray-400 bg-white">
+            <div v-if="deckBelongsToUser" class="border-2 rounded-b-lg border-t-0 border-border-primary bg-white">
             <form v-if="!deckIsPacked" @submit.prevent="saveCard">
                 <p class="font-bold px-5 pt-4 text-gray-700 text-xs">ADD NEW CARD:</p>
                 <div class="md:flex">

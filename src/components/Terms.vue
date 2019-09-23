@@ -2,7 +2,7 @@
     <div>
         <!--BACK BUTTON-->
         <div class="mx-auto max-w-2xl min-w-2xl hidden md:flex">
-            <div class="flex items-center my-4 cursor-pointer text-gray-700 hover:text-gray-600" @click="goBack">
+            <div class="flex items-center my-4 cursor-pointer text-copy-secondary hover:text-gray-600" @click="goBack">
                 <svg class="fill-current inline-block h-5 w-5" xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 20 20">
                     <path d="M3.828 9l6.071-6.071-1.414-1.414L0 10l.707.707 7.778 7.778 1.414-1.414L3.828 11H20V9H3.828z"/>
@@ -11,10 +11,10 @@
             </div>
         </div>
         <div class="mx-auto max-w-2xl min-w-2xl mt-10 md:mt-0">
-            <div class="md:flex items-center border-2 rounded-t-lg border-gray-400 bg-white">
+            <div class="md:flex items-center border-2 rounded-t-lg border-border-primary bg-background-secondary">
                 <p class="section-header">Terms of Use and Privacy Policy</p>
             </div>
-            <div class="sm:block border-2 border-t-0 rounded-b-lg border-gray-400 p-5 bg-white text-gray-800 leading-relaxed">
+            <div class="sm:block border-2 border-t-0 rounded-b-lg border-border-primary p-5 bg-background-secondary text-copy-primary leading-relaxed">
                 <p class="font-thin">
                     This page here is to inform website visitors about terms of use and policies with the collection,
                     use, and disclosure of Personal Information on this (flashcards.rocks) website.

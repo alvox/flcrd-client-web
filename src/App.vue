@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="min-h-screen flex flex-col bg-background-secondary content-wrapper" :class="theme">
+    <div id="app" class="min-h-screen flex flex-col bg-background-primary content-wrapper" :class="theme">
         <Navbar/>
         <div class="flex-grow">
             <router-view/>

@@ -12,17 +12,17 @@
         </div>
         <div class="mx-auto max-w-sm bg-white rounded-lg mt-10 md:mt-0">
 <!--HEADER-->
-            <div class="border-2 border-gray-400 rounded-t-lg">
+            <div class="border-2 border-border-primary rounded-t-lg">
                 <p class="text-base font-extrabold m-4 pt-1 text-gray-800">{{editMode ? 'Edit' : 'Create new'}}
                     deck
                 </p>
             </div>
 <!--FORM-->
-            <form class="border-2 border-gray-400 rounded-b-lg border-t-0 block" autocomplete="off"
+            <form class="border-2 border-border-primary rounded-b-lg border-t-0 block" autocomplete="off"
                   @submit.prevent="addDeck">
                 <div class="p-4 pt-6">
                     <label class="form-label" for="name">NAME</label>
-                    <input class="appearance-none outline-none border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:border-purple-400"
+                    <input class="appearance-none outline-none border-2 border-border-primary rounded-lg w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:border-purple-400"
                            id="name" type="text" placeholder="Give it a name" v-model.trim.lazy="$v.name.$model"
                            :class="{'border-red-400': $v.name.$error}">
                     <p class="error-msg" v-if="$v.name.$error && !$v.name.required">

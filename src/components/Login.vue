@@ -1,9 +1,9 @@
 <template>
     <div class="mx-auto max-w-sm bg-white rounded-lg mt-10">
-        <div class="border-2 border-gray-400 rounded-t-lg">
+        <div class="border-2 border-border-primary rounded-t-lg">
             <p class="section-header">Log in</p>
         </div>
-        <form class="border-2 border-gray-400 rounded-b-lg border-t-0" @submit.prevent="loginUser">
+        <form class="border-2 border-border-primary rounded-b-lg border-t-0" @submit.prevent="loginUser">
             <div class="p-4 pt-6 block">
                 <label class="form-label" for="email">EMAIL</label>
                 <input class="form-field focus:outline-none focus:border-purple-400"

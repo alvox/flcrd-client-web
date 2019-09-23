@@ -7,27 +7,27 @@
 }
 
 .primary-btn {
-    @apply bg-gray-700 rounded cursor-pointer text-white text-sm font-extrabold py-1 px-4;
+    @apply bg-gray-700 rounded cursor-pointer text-copy-secondary text-sm font-extrabold py-1 px-4;
 }
 
 .primary-btn-outline {
-    @apply border border-gray-700 rounded cursor-pointer text-gray-700 text-sm font-extrabold py-1 px-4;
+    @apply border border-gray-700 rounded cursor-pointer text-copy-secondary text-sm font-extrabold py-1 px-4;
 }
 
 .secondary-btn {
-    @apply border border-gray-400 rounded cursor-pointer text-gray-700 text-sm py-1 px-4;
+    @apply border border-gray-400 rounded cursor-pointer text-copy-secondary text-sm py-1 px-4;
 }
 
 .tertiary-btn {
-    @apply underline text-gray-700 cursor-pointer text-sm
+    @apply underline text-copy-secondary cursor-pointer text-sm
 }
 
 .form-label {
-    @apply block text-gray-700 text-xs font-bold mb-1 ml-1;
+    @apply block text-copy-secondary text-xs font-bold mb-1 ml-1;
 }
 
 .form-field {
-    @apply appearance-none outline-none border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight;
+    @apply appearance-none outline-none border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-copy-secondary leading-tight;
 }
 
 .error-msg {
@@ -37,19 +37,27 @@
 @tailwind utilities;
 
 .theme-light {
-    --bg-background-primary: white;
-    --bg-background-secondary: #EDF2F7;
+    --bg-background-primary: #EDF2F7;
+    --bg-background-secondary: white;
     --bg-background-ternary: #CBD5E0;
 
-    --text-copy-primary: #2D3748
+    --border-color-primary: #CBD5E0;
+
+    --text-copy-primary: #2D3748;
+    --text-copy-secondary: #4A5568;
 }
 
 .theme-dark {
-    --bg-background-primary: #0D2438;
-    --bg-background-secondary: #102c44;
-    --bg-background-ternary: #1e3951;
+    /*--bg-background-primary: #1F2933;*/
+    --bg-background-primary: #101720;
+    /*--bg-background-secondary: #323F4B;*/
+    --bg-background-secondary: #1F2933;
+    --bg-background-ternary: #52606D;
 
-    --text-copy-primary: #cbd5e0;
+    --border-color-primary: #52606D;
+
+    --text-copy-primary: #F7FAFC;
+    --text-copy-secondary: #EDF2F7;
 }
 
 .content-wrapper {

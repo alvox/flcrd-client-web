@@ -6,6 +6,7 @@ module.exports = {
             content: [
                 './src/**/*.vue',
                 './public/index.html',
+                './src/assets/tailwind.css',
             ],
             defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
         })

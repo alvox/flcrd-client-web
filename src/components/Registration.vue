@@ -1,9 +1,9 @@
 <template>
     <div class="mx-auto max-w-sm bg-white rounded-lg mt-10">
-        <div class="border-2 border-gray-400 rounded-t-lg">
+        <div class="border-2 border-border-primary rounded-t-lg">
             <p class="section-header">Register</p>
         </div>
-        <form class="border-2 border-gray-400 rounded-b-lg border-t-0" autocomplete="off"
+        <form class="border-2 border-border-primary rounded-b-lg border-t-0" autocomplete="off"
               @submit.prevent="registerUser">
             <div class="p-4 pt-6">
                 <label class="form-label" for="name">NAME</label>

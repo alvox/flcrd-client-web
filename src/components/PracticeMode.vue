@@ -11,13 +11,13 @@
         </div>
         <div class="mx-auto max-w-2xl rounded-lg mt-10 md:mt-0">
 <!--HEADER-->
-            <div class="flex justify-between border-2 rounded-t-lg border-b-0 border-gray-400 bg-white">
+            <div class="flex justify-between border-2 rounded-t-lg border-b-0 border-border-primary bg-white">
                 <p class="section-header">
                     <span>Practicing </span>{{deck.name }}
                 </p>
             </div>
 <!--PRACTICE-->
-            <div v-if="!isDone" class="block border-2 border-gray-400 rounded-b-lg bg-white">
+            <div v-if="!isDone" class="block border-2 border-border-primary rounded-b-lg bg-white">
                 <div class="text-center text-base font-thin text-gray-800 my-6 mx-10">
                     <p>Look at the card and try to remember what was at the rear side.<br/>Then flip the card and check yourself!</p>
                 </div>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="flex justify-between h-64">
                     <div class="hidden md:block w-1/4"></div>
-                    <div class="flex-1 bg-gray-100 border-2 border-gray-400 text-lg rounded-lg mt-4 mb-5 p-4 mx-4 md:mx-0 overflow-auto flex flex-wrap justify-around"
+                    <div class="flex-1 bg-gray-100 border-2 border-border-primary text-lg rounded-lg mt-4 mb-5 p-4 mx-4 md:mx-0 overflow-auto flex flex-wrap justify-around"
                          :class="{ 'border-green-400': side === 'rear' }">
                         <p class="whitespace-pre-line text-gray-800 self-center -mt-6">
                             {{ side === 'front' ? currentCard.front : currentCard.rear }}
@@ -60,7 +60,7 @@
                 </div>
             </div>
 <!-- RESULTS -->
-            <div v-else class="block border-2 border-gray-400 rounded-b-lg bg-white text-center">
+            <div v-else class="block border-2 border-border-primary rounded-b-lg bg-white text-center">
                 <p class="mt-20 text-4xl font-bold tracking-wide text-gray-800">Done!</p>
                 <p v-if="allCorrect" class="text-4xl">👏 🎉 🤓</p>
                 <p v-if="allCorrect" class="mt-5 text-gray-800">You've remembered all cards from this
