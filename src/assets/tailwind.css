@@ -39,8 +39,8 @@
 .theme-light {
     --bg-background-primary: #EDF2F7;
     --bg-background-secondary: white;
-    --bg-background-ternary: #EDF2F7;
-    --bg-background-hover: #E2E8F0;
+    --bg-background-ternary: #F7FAFC;
+    --bg-background-hover: #EDF2F7;
 
     --gb-background-green-button: #F0FFF4;
     --gb-background-green-button-hover: #C6F6D5;
