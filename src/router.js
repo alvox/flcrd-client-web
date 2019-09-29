@@ -11,6 +11,7 @@ import Terms from "@/components/Terms"
 import Login from "@/components/Login"
 import {TokenService} from "./services/token"
 import PracticeMode from "./components/PracticeMode"
+import VerifyEmail from "./components/VerifyEmail";
 
 Vue.use(Router);
 
@@ -43,6 +44,11 @@ const router =  new Router({
                 public: true,
                 onlyWhenLoggedOut: true
             }
+        },
+        {
+          path: '/confirm',
+          name: 'VerifyEmail',
+          component: VerifyEmail,
         },
         {
             path: '/decks',

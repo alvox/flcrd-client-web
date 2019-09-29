@@ -230,7 +230,7 @@ export const store = new Vuex.Store({
             UserService.register(payload.name, payload.email, payload.password)
                 .then(result => {
                     context.commit('authSuccess', result);
-                    router.push({name: 'Decks'})
+                    router.push({name: 'VerifyEmail'})
                     // router.push(router.history.current.query.redirect || '/');
                 })
                 .catch(e => {

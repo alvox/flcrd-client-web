@@ -25,7 +25,7 @@
 <!--                    </a>-->
                 </div>
                 <div v-if="loggedIn" class="flex items-center">
-                    <p class="mr-4 text-sm text-copy-primary">Hi {{ userName }}!</p>
+                    <p class="mr-4 text-sm text-copy-primary">{{ userName }}</p>
                     <p class="secondary-btn hover:border-border-s-btn-hover" @click="logoutUser">Log out</p>
                 </div>
                 <div v-else>
