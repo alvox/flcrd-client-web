@@ -230,7 +230,7 @@ export const store = new Vuex.Store({
             UserService.register(payload.name, payload.email, payload.password)
                 .then(result => {
                     context.commit('authSuccess', result);
-                    router.push({name: 'VerifyEmail'})
+                    router.push({name: 'VerifyEmail', params: {code: 'email'}})
                     // router.push(router.history.current.query.redirect || '/');
                 })
                 .catch(e => {
@@ -282,6 +282,22 @@ export const store = new Vuex.Store({
             UserService.logout();
             context.commit('logoutSuccess');
             router.push('/')
+        },
+        CONFIRM_EMAIL: (context, payload) => {
+            UserService.confirmEmail(payload.code)
+                .then(result => {
+                    router.push({name: 'Decks'})
+                })
+                .catch(e => {
+                    console.log(e);
+                    router.push({name: 'VerifyEmail', params: {code: 'error'}})
+                })
+        },
+        RESEND_CONFIRMATION: (context) => {
+            UserService.resendConfirmation()
+                .then(result => {
+                    router.push({name: 'VerifyEmail', params: {code: 'email'}})
+                })
         },
         REFRESH_DATA: (context, payload) => {
             if (payload.is_private) {

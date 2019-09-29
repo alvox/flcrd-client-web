@@ -15,7 +15,7 @@ import VerifyEmail from "./components/VerifyEmail";
 
 Vue.use(Router);
 
-const router =  new Router({
+const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [
@@ -46,9 +46,9 @@ const router =  new Router({
             }
         },
         {
-          path: '/confirm',
-          name: 'VerifyEmail',
-          component: VerifyEmail,
+            path: '/confirm/:code',
+            name: 'VerifyEmail',
+            component: VerifyEmail
         },
         {
             path: '/decks',
@@ -100,7 +100,7 @@ router.beforeEach((to, from, next) => {
 
     if (!isPublic && !loggedIn) {
         return next({
-            path:'/login',
+            path: '/login',
             query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
         });
     }

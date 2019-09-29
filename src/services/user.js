@@ -60,6 +60,14 @@ const UserService = {
             })
     },
 
+    confirmEmail(code) {
+        return ApiService.post("users/activate/" + code)
+    },
+
+    resendConfirmation() {
+        return ApiService.post("users/code")
+    },
+
     logout() {
         TokenService.removeAccessToken();
         TokenService.removeRefreshToken();
