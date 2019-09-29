@@ -35,7 +35,7 @@
                              src="../assets/img/undraw_add_content.svg" width="200px" height="200px" alt="add content"/>
                         <div class="m-10 md:ml-0 sm:ml-10 text-copy-secondary text-base leading-relaxed">
                             <p class="font-bold text-lg tracking-wide">Nothing here yet...</p>
-                            <p class="mt-5">Start by creating new deck!</p>
+                            <p class="mt-5">Start by creating a new deck!</p>
                         </div>
                     </div>
                 </div>
