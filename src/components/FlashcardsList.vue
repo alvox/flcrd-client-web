@@ -17,7 +17,7 @@
                 <p class="section-header">{{ deck.name }}</p>
                 <div class="flex m-2 mr-4 items-center justify-between">
                     <router-link v-if="deck.cards != null && deck.cards.length > 0" :to="{name: 'PracticeMode'}">
-                        <p class="primary-btn-outline hover:bg-gray-700 hover:text-white ml-2">
+                        <p class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover ml-2">
                             Practice!
                         </p>
                     </router-link>
@@ -101,7 +101,7 @@
                 </div>
                 <div class="flex justify-between items-center pr-4 pl-5 pb-4">
                     <p class="text-sm text-copy-secondary">You can add {{cardsLeft}} more {{cardsLeft === 1 ? 'card' : 'cards'}}.</p>
-                    <button class="primary-btn-outline hover:text-white hover:bg-gray-700"
+                    <button class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover"
                             title="Create card">
                         Save
                     </button>

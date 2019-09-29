@@ -15,10 +15,14 @@ module.exports = {
                 'green-button-hover': 'var(--gb-background-green-button-hover)',
                 'red-button': 'var(--gb-background-red-button)',
                 'red-button-hover': 'var(--gb-background-red-button-hover)',
+                'p-btn-hover': 'var(--bg-background-p-btn-hover)',
             },
 
             border: {
                 'primary': 'var(--border-color-primary)',
+                'p-btn': 'var(--border-p-btn)',
+                's-btn': 'var(--border-s-btn)',
+                's-btn-hover': 'var(--border-s-btn-hover)',
             },
 
             copy: {
@@ -29,6 +33,7 @@ module.exports = {
                 'red': 'var(--text-copy-red)',
                 'green-btn': 'var(--text-copy-green-btn)',
                 'red-btn': 'var(--text-copy-red-btn)',
+                'p-btn-hover': 'var(--text-copy-p-btn-hover)',
             },
 
             black: colors.black,

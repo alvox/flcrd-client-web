@@ -24,9 +24,9 @@
                 <p class="error-msg text-center"> {{ errorMessage | capitalize }} </p>
             </div>
             <div class="flex justify-end p-4 content-center">
-                <p class="secondary-btn mr-4 hover:text-gray-600 hover:border-gray-600" title="Cancel"
+                <p class="secondary-btn mr-4 hover:border-border-s-btn-hover" title="Cancel"
                    @click="goBack">Cancel</p>
-                <button class="primary-btn-outline hover:text-copy-secondary hover:bg-background-ternary"
+                <button class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover"
                         title="Login">Log in
                 </button>
             </div>

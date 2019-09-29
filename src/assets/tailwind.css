@@ -6,16 +6,12 @@
     @apply text-base font-extrabold text-copy-primary m-4;
 }
 
-.primary-btn {
-    @apply bg-background-ternary rounded cursor-pointer text-copy-secondary text-sm font-extrabold py-1 px-4;
-}
-
 .primary-btn-outline {
-    @apply border border-gray-700 rounded cursor-pointer text-copy-secondary text-sm font-extrabold py-1 px-4;
+    @apply border border-border-p-btn rounded cursor-pointer text-copy-secondary text-sm font-extrabold py-1 px-4;
 }
 
 .secondary-btn {
-    @apply border border-gray-400 rounded cursor-pointer text-copy-secondary text-sm py-1 px-4;
+    @apply border border-border-s-btn rounded cursor-pointer text-copy-secondary text-sm py-1 px-4;
 }
 
 .tertiary-btn {
@@ -47,6 +43,15 @@
     --gb-background-red-button: #FFF5F5;
     --gb-background-red-button-hover: #FED7D7;
 
+    /*primary button*/
+    --bg-background-p-btn-hover: #4A5568;
+    --border-p-btn: #4A5568;
+    --text-copy-p-btn-hover: #FFFFFF;
+
+    /*secondary-button*/
+    --border-s-btn: #CBD5E0;
+    --border-s-btn-hover: #718096;
+
     --border-color-primary: #CBD5E0;
 
     --text-copy-primary: #2D3748;
@@ -68,6 +73,15 @@
     --gb-background-green-button-hover: #68D391;
     --gb-background-red-button: #FEB2B2;
     --gb-background-red-button-hover: #FC8181;
+
+    /*primary button*/
+    --bg-background-p-btn-hover: #101720;
+    --border-p-btn: #CBD5E0;
+    --text-copy-p-btn-hover: #FFFFFF;
+
+    /*secondary-button*/
+    --border-s-btn: #718096;
+    --border-s-btn-hover: #CBD5E0;
 
     --border-color-primary: #52606D;
 

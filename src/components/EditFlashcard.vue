@@ -46,10 +46,10 @@
                         Delete card
                     </p>
                     <div class="flex justify-end">
-                        <p class="secondary-btn mr-4 hover:text-gray-600 hover:border-gray-600"
+                        <p class="secondary-btn mr-4 hover:border-border-s-btn-hover"
                            title="Cancel"
                            @click="goBack">Cancel</p>
-                        <button class="appearance-none primary-btn hover:bg-gray-600"
+                        <button class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover"
                                 title="Save">Save
                         </button>
                     </div>

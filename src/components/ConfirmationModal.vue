@@ -17,11 +17,11 @@
                 </section>
                 <footer class="p-4 flex justify-end">
                     <slot name="footer">
-                        <button type="button" class="secondary-btn hover:text-gray-600 hover:border-gray-600 mr-4"
+                        <button type="button" class="secondary-btn hover:border-border-s-btn-hover mr-4"
                                 @click="close" aria-label="Close modal">
                             Cancel
                         </button>
-                        <button type="button" class="primary-btn hover:bg-gray-600" @click="confirm" aria-label="Confirm modal">
+                        <button type="button" class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover" @click="confirm" aria-label="Confirm modal">
                             Yes, delete
                         </button>
                     </slot>
