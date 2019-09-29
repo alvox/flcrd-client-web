@@ -1,5 +1,4 @@
 <template>
-
     <div>
         <div class="mx-auto max-w-2xl rounded-lg mt-10 border-2 border-border-primary bg-background-secondary md:flex md:items-center">
             <img class="object-fit mx-auto mt-10 md:m-10" src="../assets/img/undraw_memory_storage.svg" width="200px" height="200px" alt="memory storage"/>
@@ -34,7 +33,6 @@
                                     <span class="font-normal">by {{deck.created_by.name}}</span>
                                 </p>
                             </div>
-
                         </div>
                     </router-link>
                 </div>
