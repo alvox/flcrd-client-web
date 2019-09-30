@@ -1,17 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/components/Index'
-import AddDeck from "@/components/AddDeck"
-import Decks from "@/components/Decks"
-import FlashcardsList from "@/components/FlashcardsList"
-import EditFlashcard from "@/components/EditFlashcard"
-import Registration from "@/components/Registration"
-import Terms from "@/components/Terms"
 
-import Login from "@/components/Login"
-import {TokenService} from "./services/token"
-import PracticeMode from "./components/PracticeMode"
+import Index from './components/Index'
+import Registration from "./components/Registration"
+import Login from "./components/Login"
+import User from "./components/User";
+import Terms from "./components/Terms"
 import VerifyEmail from "./components/VerifyEmail";
+import Decks from "./components/Decks"
+import AddDeck from "./components/AddDeck"
+import FlashcardsList from "./components/FlashcardsList"
+import EditFlashcard from "./components/EditFlashcard"
+import PracticeMode from "./components/PracticeMode"
+
+import {TokenService} from "./services/token"
 
 Vue.use(Router);
 
@@ -44,6 +46,11 @@ const router = new Router({
                 public: true,
                 onlyWhenLoggedOut: true
             }
+        },
+        {
+            path: '/user',
+            name: 'User',
+            component: User
         },
         {
             path: '/confirm/:code',
