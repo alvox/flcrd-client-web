@@ -11,6 +11,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         theme: SettingsService.getTheme(),
+        lang: '',
         loading: false,
         decks: [],
         publicDecks: [],
@@ -25,6 +26,9 @@ export const store = new Vuex.Store({
     getters: {
         theme: state => {
             return state.theme
+        },
+        lang: state => {
+            return state.lang
         },
         isLoading: state => {
             return state.loading

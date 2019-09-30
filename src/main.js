@@ -4,9 +4,10 @@ import Vuelidate from 'vuelidate'
 import router from './router'
 import '@/assets/tailwind.css'
 import {store} from './store/store'
+import {i18n} from './services/i18n'
 
 import ApiService from './services/api'
-import {TokenService} from "./services/token";
+import {TokenService} from "./services/token"
 
 Vue.config.productionTip = false;
 Vue.use(Vuelidate);
@@ -29,5 +30,6 @@ Vue.filter('capitalize', function (value) {
 new Vue({
     router,
     store,
+    i18n,
     render: h => h(App)
 }).$mount('#app');

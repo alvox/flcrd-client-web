@@ -28,7 +28,7 @@
                     <router-link :to="{name: 'User'}">
                         <p class="mr-4 text-sm text-copy-primary underline">{{ userName }}</p>
                     </router-link>
-                    <p class="secondary-btn hover:border-border-s-btn-hover" @click="logoutUser">Log out</p>
+                    <p class="secondary-btn hover:border-border-s-btn-hover" @click="logoutUser">{{$t('logout')}}</p>
                 </div>
                 <div v-else>
                     <router-link :to="{name: 'Login'}">
