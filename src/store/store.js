@@ -19,7 +19,8 @@ export const store = new Vuex.Store({
         accessToken: TokenService.getAccessToken(),
         errorCode: '',
         errorMessage: '',
-        refreshTokenPromise: null
+        refreshTokenPromise: null,
+        user: null
     },
     getters: {
         theme: state => {
@@ -52,6 +53,9 @@ export const store = new Vuex.Store({
         },
         errorMessage: (state) => {
             return state.errorMessage
+        },
+        user: (state) => {
+            return state.user
         }
     },
     mutations: {
@@ -132,6 +136,9 @@ export const store = new Vuex.Store({
         },
         refreshTokenPromise(state, promise) {
             state.refreshTokenPromise = promise
+        },
+        setUser(state, payload) {
+            state.user = payload
         }
     },
     actions: {
@@ -298,6 +305,22 @@ export const store = new Vuex.Store({
                 .then(result => {
                     router.push({name: 'VerifyEmail', params: {code: 'email'}})
                 })
+        },
+        GET_USER: (context) => {
+            context.commit('loading', true);
+            ApiService.get("users")
+                .then(result => {
+                    context.commit('setUser', result.data)
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+                .finally(() => {
+                    context.commit('loading', false)
+                })
+        },
+        CLEAR_USER: (context) => {
+            context.commit('setUser', null)
         },
         REFRESH_DATA: (context, payload) => {
             if (payload.is_private) {
