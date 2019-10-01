@@ -319,6 +319,19 @@ export const store = new Vuex.Store({
                     context.commit('loading', false)
                 })
         },
+        UPDATE_USER: (context, payload) => {
+            context.commit('loading', true);
+            ApiService.put("users", payload)
+                .then(result => {
+                    context.commit('setUser', result.data)
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+                .finally(() => {
+                    context.commit('loading', false)
+                })
+        },
         CLEAR_USER: (context) => {
             context.commit('setUser', null)
         },
