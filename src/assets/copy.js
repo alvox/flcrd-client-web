@@ -10,6 +10,13 @@ export const messages = {
             'Just put what you want to learn on it and practice every day. Easy!',
         index_copy_2: 'Check out public cards decks below or register to create your own.',
         by: 'by',
+        email: 'email',
+        email_placeholder: 'Your email',
+        password: 'password',
+        password_placeholder: 'And password',
+        invalid_email: 'Please, enter valid email address.',
+        invalid_password: 'Please, enter your password.',
+        cancel: 'Cancel',
     },
     ru: {
         lang_emoji: '🇷🇺',
@@ -22,5 +29,12 @@ export const messages = {
             'Запиши то что хочешь выучить и повторяй каждый день. Проще некуда!',
         index_copy_2: 'Попробуйте что-нибудь из доступных коллекций или зарегистрируйтесь чтобы создать свою.',
         by: 'от',
+        email: 'эл. почта',
+        email_placeholder: 'Ваш адрес эл. почты',
+        password: 'пароль',
+        password_placeholder: 'И пароль',
+        invalid_email: 'Пожалуйста, введите правильный адрес эл. почты.',
+        invalid_password: 'Пожалуйста, введите пароль.',
+        cancel: 'Отмена',
     }
 };

@@ -19,7 +19,7 @@
 }
 
 .form-label {
-    @apply block text-copy-secondary text-xs font-bold mb-1 ml-1;
+    @apply block text-copy-secondary text-xs font-bold mb-1 ml-1 uppercase;
 }
 
 .form-field {
