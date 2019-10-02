@@ -4,18 +4,17 @@
             <img class="object-fit mx-auto mt-10 md:m-10" src="../assets/img/undraw_memory_storage.svg" width="200px" height="200px" alt="memory storage"/>
             <div class="m-10 md:ml-0 text-copy-primary text-base leading-relaxed">
                 <p class>
-                    <span class="font-bold text-lg tracking-wide">Flashcards</span>
-                    – is one of the most natural methods to memorize things.
-                    Just put what you want to learn on it and practice every day. Easy!
+                    <span class="font-bold text-lg tracking-wide">{{$t('flashcards')}}</span>
+                    {{$t('index_copy_1')}}
                 </p>
                 <p class="mt-5">
-                    Check out public cards decks below or register to create your own.
+                    {{$t('index_copy_2')}}
                 </p>
             </div>
         </div>
         <div class="mx-auto max-w-2xl rounded-lg mt-10">
             <div class="flex justify-between border-2 rounded-t-lg border-b-0 border-border-primary bg-background-secondary">
-                <p class="section-header">Public Decks</p>
+                <p class="section-header">{{$t('public_decks')}}</p>
             </div>
             <div class="items-stretch border-2 rounded-b-lg border-border-primary min-h-full bg-background-secondary text-copy-primary">
                 <div class="block self-stretch" v-for="deck in nonEmptyDecks" :key="deck.id">
@@ -30,7 +29,7 @@
                                     <span v-if="deck.cards_count === 1">FLASHCARD</span>
                                     <span v-else>FLASHCARDS</span>
                                     <span class="px-2">•</span>
-                                    <span class="font-normal">by {{deck.created_by.name}}</span>
+                                    <span class="font-normal">{{$t('by')}} {{deck.created_by.name}}</span>
                                 </p>
                             </div>
                         </div>

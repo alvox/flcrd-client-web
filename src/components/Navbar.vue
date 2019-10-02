@@ -32,10 +32,10 @@
                 </div>
                 <div v-else>
                     <router-link :to="{name: 'Login'}">
-                        <a href="#" class="tertiary-btn hover:text-gray-600 mr-4">Log in</a>
+                        <a href="#" class="tertiary-btn hover:text-gray-600 mr-4">{{$t('login')}}</a>
                     </router-link>
                     <router-link :to="{name: 'Registration'}">
-                        <a href="" class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover">Register</a>
+                        <a href="" class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover">{{$t('register')}}</a>
                     </router-link>
                 </div>
                 <div class="flex items-center justify-between mt-4 md:mt-0 md:ml-4">
