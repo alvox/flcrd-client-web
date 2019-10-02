@@ -5,13 +5,14 @@ import {TokenService} from '../services/token'
 import {UserService} from '../services/user'
 import {SettingsService} from '../services/settings'
 import ApiService from "../services/api";
+import {i18n} from "../services/i18n";
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
         theme: SettingsService.getTheme(),
-        lang: '',
+        lang: SettingsService.getLang(),
         loading: false,
         decks: [],
         publicDecks: [],
@@ -65,6 +66,9 @@ export const store = new Vuex.Store({
     mutations: {
         switchTheme(state, t) {
             state.theme = t
+        },
+        setLang(state, lang) {
+            state.lang = lang
         },
         loading(state, loading) {
             state.loading = loading
@@ -148,6 +152,11 @@ export const store = new Vuex.Store({
     actions: {
         SWITCH_THEME: (context) => {
             context.commit('switchTheme', SettingsService.switchTheme())
+        },
+        SELECT_LANG: (context, payload) => {
+            i18n.locale = payload.lang;
+            SettingsService.setLang(payload.lang);
+            context.commit('setLang', payload.lang)
         },
         GET_PUBLIC_DECKS: (context) => {
             ApiService.get("public/decks").then(result => {
