@@ -7,23 +7,26 @@
                      viewBox="0 0 20 20">
                     <path d="M3.828 9l6.071-6.071-1.414-1.414L0 10l.707.707 7.778 7.778 1.414-1.414L3.828 11H20V9H3.828z"/>
                 </svg>
-                <p class="font-thin ml-2">Back</p>
+                <p class="font-thin ml-2">{{$t('back')}}</p>
             </div>
         </div>
         <div class="mx-auto max-w-sm bg-background-secondary rounded-lg mt-10 md:mt-0">
 <!--HEADER-->
             <div class="border-2 border-border-primary rounded-t-lg">
-                <p class="text-base font-extrabold m-4 pt-1 text-copy-secondary">{{editMode ? 'Edit' : 'Create new'}}
-                    deck
+                <p v-if="editMode" class="text-base font-extrabold m-4 pt-1 text-copy-secondary">
+                    {{$t('edit_deck')}}
+                </p>
+                <p v-else class="text-base font-extrabold m-4 pt-1 text-copy-secondary">
+                    {{$t('create_new_deck')}}
                 </p>
             </div>
 <!--FORM-->
             <form class="border-2 border-border-primary rounded-b-lg border-t-0 block" autocomplete="off"
                   @submit.prevent="addDeck">
                 <div class="p-4 pt-6">
-                    <label class="form-label" for="name">NAME</label>
+                    <label class="form-label" for="name">{{$t('deck_name')}}</label>
                     <input class="appearance-none outline-none border-2 border-border-primary rounded-lg w-full py-2 px-3 text-copy-secondary bg-background-ternary leading-tight focus:outline-none focus:border-purple-400"
-                           id="name" type="text" placeholder="Give it a name" v-model.trim.lazy="$v.name.$model"
+                           id="name" type="text" :placeholder="$t('deck_name_placeholder')" v-model.trim.lazy="$v.name.$model"
                            :class="{'border-red-400': $v.name.$error}">
                     <p class="error-msg" v-if="$v.name.$error && !$v.name.required">
                         Collection should have a name.
@@ -33,10 +36,10 @@
                     </p>
                 </div>
                 <div class="p-4 pt-6">
-                    <label class="form-label" for="description">DESCRIPTION (optional)</label>
+                    <label class="form-label" for="description">{{$t('deck_desc')}}</label>
                     <textarea
                             class="appearance-none outline-none focus:outline-none resize-y border-2 border-border-primary rounded-lg py-2 px-3 w-full text-copy-secondary bg-background-ternary leading-tight focus:border-purple-400"
-                            id="description" placeholder="You can also add some brief description" rows="4"
+                            id="description" :placeholder="$t('deck_desc_placeholder')" rows="4"
                             v-model.trim.lazy="$v.description.$model"
                             :class="{ 'border-red-400': $v.description.$error }"></textarea>
                     <p class="error-msg" v-if="!$v.description.maxLength">
@@ -45,23 +48,23 @@
                 </div>
                 <label class="block text-copy-secondary font-bold pl-4">
                     <input class="mr-2 ml-1 leading-tight" type="checkbox" v-model="is_public">
-                    <span class="text-xs font-bold">MAKE IT PUBLIC</span>
+                    <span class="text-xs font-bold uppercase">{{$t('make_it_public')}}</span>
                 </label>
                 <div class="flex justify-between items-center px-4 pt-8 pb-4">
                     <p v-if="editMode"
                        class="tertiary-btn hover:text-gray-600"
                        @click="showModal">
-                        Delete deck
+                        {{$t('delete_deck')}}
                     </p>
                     <div v-else></div>
                     <div class="flex justify-end">
                         <p class="secondary-btn mr-4 hover:border-border-s-btn-hover"
                            title="Cancel" @click="goBack">
-                            Cancel
+                            {{$t('cancel')}}
                         </p>
                         <button class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover"
                                 title="Save">
-                            Save
+                            {{$t('save')}}
                         </button>
                     </div>
                 </div>
