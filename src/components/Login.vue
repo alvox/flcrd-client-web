@@ -4,14 +4,14 @@
             <p class="section-header">{{$t('login')}}</p>
         </div>
         <form class="border-2 border-border-primary rounded-b-lg border-t-0" @submit.prevent="loginUser">
-            <div class="p-4 pt-6 block">
+            <div class="p-4 block">
                 <label class="form-label" for="email">{{$t('email')}}</label>
                 <input class="form-field focus:outline-none focus:border-purple-400"
                        id="email" type="text" :placeholder="$t('email_placeholder')" v-model.trim.lazy="$v.email.$model"
                        :class="{ 'border-red-400': $v.email.$error }">
                 <p class="error-msg" v-if="$v.email.$error || !$v.email.email">{{$t('invalid_email')}}</p>
             </div>
-            <div class="p-4 pt-6">
+            <div class="p-4">
                 <label class="form-label" for="password">{{$t('password')}}</label>
                 <input class="form-field focus:outline-none focus:border-purple-400"
                        id="password" type="password" :placeholder="$t('password_placeholder')" v-model.trim.lazy="$v.password.$model"
@@ -60,13 +60,15 @@
                 });
             },
             goBack() {
-                this.$store.commit('authCancel');
                 this.$router.push({name: 'Index'})
             }
         },
         validations: {
             email: {required, email},
             password: {required}
+        },
+        beforeDestroy() {
+            this.$store.commit('authCancel');
         }
     }
 </script>
