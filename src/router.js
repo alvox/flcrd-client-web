@@ -33,6 +33,7 @@ const router = new Router({
             path: '/registration',
             name: 'Registration',
             component: Registration,
+            props: true,
             meta: {
                 public: true,
                 onlyWhenLoggedOut: true
@@ -93,6 +94,7 @@ const router = new Router({
             path: '/terms',
             name: 'Terms',
             component: Terms,
+            props: true,
             meta: {
                 public: true
             }

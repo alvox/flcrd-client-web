@@ -80,9 +80,14 @@
 <script>
     export default {
         name: "Terms",
+        props: ['reg_name', 'reg_email'],
         methods: {
             goBack() {
-                this.$router.back()
+                if (this.reg_name || this.reg_email) {
+                    this.$router.push({name: 'Registration', params: {reg_name: this.reg_name, reg_email: this.reg_email}})
+                } else {
+                    this.$router.back()
+                }
             }
         }
     }

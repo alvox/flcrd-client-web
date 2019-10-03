@@ -30,7 +30,7 @@
             <div class="p-4">
                 <label class="block text-copy-secondary font-bold">
                     <input class="mr-2 ml-1 leading-tight" type="checkbox" v-model.lazy="$v.consent.$model">
-                    <span class="font-thin">I agree with <router-link class="underline" :to="{name: 'Terms'}">terms of use</router-link>.</span>
+                    <span class="font-thin">I agree with <router-link class="underline" :to="{name: 'Terms', params: {reg_name: name, reg_email: email}}">terms of use</router-link>.</span>
                 </label>
                 <p class="error-msg" v-if="$v.consent.$error">Sorry, but you must agree with them.</p>
             </div>
@@ -53,6 +53,7 @@
 
     export default {
         name: "Registration",
+        props: ['reg_name', 'reg_email'],
         data() {
             return {
                 name: "",
@@ -87,6 +88,10 @@
             email: {required, email, maxLength: maxLength(120)},
             password: {required, minLength: minLength(5), maxLength: maxLength(30)},
             consent: {sameAs: sameAs(() => true)}
+        },
+        created() {
+            this.name = this.reg_name;
+            this.email = this.reg_email;
         },
         beforeDestroy() {
             this.$store.commit('authCancel');
