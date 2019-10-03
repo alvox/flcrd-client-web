@@ -10,6 +10,8 @@ export const messages = {
             'Just put what you want to learn on it and practice every day. Easy!',
         index_copy_2: 'Check out public cards decks below or register to create your own.',
         by: 'by',
+        name: 'name',
+        name_placeholder: 'How you want us to call you',
         email: 'email',
         email_placeholder: 'Your email',
         password: 'password',
@@ -17,6 +19,10 @@ export const messages = {
         invalid_email: 'Please, enter valid email address.',
         invalid_password: 'Please, enter your password.',
         cancel: 'Cancel',
+        consent_1: 'I agree with',
+        consent_2: 'terms of use',
+        terms: 'Terms and Privacy',
+        contact_me: 'Contact me!'
     },
     ru: {
         lang_emoji: '🇷🇺',
@@ -29,6 +35,8 @@ export const messages = {
             'Запиши то что хочешь выучить и повторяй каждый день. Проще некуда!',
         index_copy_2: 'Попробуйте что-нибудь из доступных коллекций или зарегистрируйтесь чтобы создать свою.',
         by: 'от',
+        name: 'имя',
+        name_placeholder: 'Как вас называть?',
         email: 'эл. почта',
         email_placeholder: 'Ваш адрес эл. почты',
         password: 'пароль',
@@ -36,5 +44,9 @@ export const messages = {
         invalid_email: 'Пожалуйста, введите правильный адрес эл. почты.',
         invalid_password: 'Пожалуйста, введите пароль.',
         cancel: 'Отмена',
+        consent_1: 'Я согласен с',
+        consent_2: 'правилами сервиса',
+        terms: 'Правила сервиса',
+        contact_me: 'Напишите мне!'
     }
 };

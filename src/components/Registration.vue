@@ -1,28 +1,28 @@
 <template>
     <div class="mx-auto max-w-sm bg-background-secondary rounded-lg mt-10">
         <div class="border-2 border-border-primary rounded-t-lg">
-            <p class="section-header">Register</p>
+            <p class="section-header">{{$t('register')}}</p>
         </div>
         <form class="border-2 border-border-primary rounded-b-lg border-t-0" autocomplete="off"
               @submit.prevent="registerUser">
             <div class="p-4">
-                <label class="form-label" for="name">NAME</label>
+                <label class="form-label" for="name">{{$t('name')}}</label>
                 <input class="form-field focus:outline-none focus:border-purple-400"
-                       id="name" type="text" placeholder="How you want us to call you" v-model.trim.lazy="$v.name.$model" :class="{ 'border-red-400': $v.name.$error }">
+                       id="name" type="text" :placeholder="$t('name_placeholder')" v-model.trim.lazy="$v.name.$model" :class="{ 'border-red-400': $v.name.$error }">
                 <p class="error-msg" v-if="$v.name.$error && !$v.name.required">Please, enter your name.</p>
                 <p class="error-msg" v-if="!$v.name.maxLength">Name should be 50 characters maximum.</p>
             </div>
             <div class="p-4">
-                <label class="form-label" for="email">EMAIL</label>
+                <label class="form-label" for="email">{{$t('email')}}</label>
                 <input class="form-field focus:outline-none focus:border-purple-400"
-                       id="email" type="text" placeholder="Your email" v-model.trim.lazy="$v.email.$model" :class="{ 'border-red-400': $v.email.$error }">
+                       id="email" type="text" :placeholder="$t('email_placeholder')" v-model.trim.lazy="$v.email.$model" :class="{ 'border-red-400': $v.email.$error }">
                 <p class="error-msg" v-if="$v.email.$error || !$v.email.email">Please, enter valid email
                     address.</p>
             </div>
             <div class="p-4">
-                <label class="form-label" for="password">PASSWORD</label>
+                <label class="form-label" for="password">{{$t('password')}}</label>
                 <input class="form-field focus:outline-none focus:border-purple-400"
-                       id="password" type="password" placeholder="Create a password" v-model.trim.lazy="$v.password.$model" :class="{ 'border-red-400': $v.password.$error }">
+                       id="password" type="password" :placeholder="$t('password_placeholder')" v-model.trim.lazy="$v.password.$model" :class="{ 'border-red-400': $v.password.$error }">
                 <p class="error-msg" v-if="$v.password.$error && !$v.password.required">Please, enter your
                     password.</p>
                 <p class="error-msg" v-if="!$v.password.minLength || !$v.password.maxLength">Password should be 5 to 30 characters long.</p>
@@ -30,7 +30,7 @@
             <div class="p-4">
                 <label class="block text-copy-secondary font-bold">
                     <input class="mr-2 ml-1 leading-tight" type="checkbox" v-model.lazy="$v.consent.$model">
-                    <span class="font-thin">I agree with <router-link class="underline" :to="{name: 'Terms', params: {reg_name: name, reg_email: email}}">terms of use</router-link>.</span>
+                    <span class="font-thin">{{$t('consent_1')}} <router-link class="underline" :to="{name: 'Terms', params: {reg_name: name, reg_email: email}}">{{$t('consent_2')}}</router-link>.</span>
                 </label>
                 <p class="error-msg" v-if="$v.consent.$error">Sorry, but you must agree with them.</p>
             </div>
@@ -39,9 +39,9 @@
             </div>
             <div class="flex justify-end p-4 content-center">
                 <p class="secondary-btn mr-4 hover:border-border-s-btn-hover" title="Cancel"
-                   @click="goBack">Cancel</p>
+                   @click="goBack">{{$t('cancel')}}</p>
                 <button class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover"
-                        title="Register">Register
+                        title="Register">{{$t('register')}}
                 </button>
             </div>
         </form>
