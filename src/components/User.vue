@@ -42,14 +42,25 @@
                             <p class="error-msg" v-if="$v.email.$error || !$v.email.email">Please, enter valid email
                                 address.</p>
                         </div>
-                        <div class="flex justify-end p-4 content-center">
-                            <p class="secondary-btn mr-4 hover:border-border-s-btn-hover" title="Cancel"
-                               @click="editing = !editing">Cancel</p>
-                            <button class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover"
+                        <div class="flex justify-between items-center px-4 pt-8 pb-4">
+                            <p class="ml-1 tertiary-btn hover:text-gray-600" @click="showModal">
+                                Delete my account
+                            </p>
+                            <div class="flex justify-end p-4 content-center">
+                                <p class="secondary-btn mr-4 hover:border-border-s-btn-hover" title="Cancel"
+                                    @click="editing = !editing">Cancel
+                                </p>
+                                <button class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover"
                                     title="Save" @click="updateUser">Save
-                            </button>
+                                </button>
+                            </div>
                         </div>
                     </div>
+                    <ConfirmationModal v-show="is_confirm_visible" @close="closeModal" @confirm="deleteUser">
+                        <template v-slot:header>Delete Account</template>
+                        <template v-slot:body>
+                            Are you sure you want to delete your account and all your decks?</template>
+                    </ConfirmationModal>
                 </div>
                 <div v-else>
                     <div class="block md:flex justify-around items-center my-10 md:my-20">
@@ -84,21 +95,29 @@
 <script>
     import Spinner from "./Spinner";
     import {required, email, maxLength} from 'vuelidate/lib/validators'
+    import ConfirmationModal from './ConfirmationModal'
     export default {
         name: "User",
         components: {
-            Spinner
+            Spinner, ConfirmationModal
         },
         data() {
             return {
                 editing: false,
                 name: "",
-                email: ""
+                email: "",
+                is_confirm_visible: false
             }
         },
         methods: {
             goBack() {
                 this.$router.back()
+            },
+            showModal() {
+                this.is_confirm_visible = true;
+            },
+            closeModal() {
+                this.is_confirm_visible = false;
             },
             edit() {
                 this.name = this.user.name;
@@ -115,6 +134,9 @@
                     email: this.email
                 });
                 this.editing = !this.editing
+            },
+            deleteUser() {
+                this.$store.dispatch('DELETE_USER')
             },
             resend() {
                 this.$store.dispatch('RESEND_CONFIRMATION')

@@ -345,6 +345,20 @@ export const store = new Vuex.Store({
                     context.commit('loading', false)
                 })
         },
+        DELETE_USER: (context) => {
+            ApiService.delete("users")
+                .then(() => {
+                    UserService.logout();
+                    context.commit('setUser', null);
+                    context.commit('logoutSuccess')
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+                .finally(() => {
+                    router.push({name: 'Index'})
+                })
+        },
         CLEAR_USER: (context) => {
             context.commit('setUser', null)
         },
