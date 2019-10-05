@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Index from './components/Index'
-import Registration from "./components/Registration"
-import Login from "./components/Login"
-import User from "./components/User";
-import Terms from "./components/Terms"
-import VerifyEmail from "./components/VerifyEmail";
-import Decks from "./components/Decks"
-import AddDeck from "./components/AddDeck"
-import FlashcardsList from "./components/FlashcardsList"
-import EditFlashcard from "./components/EditFlashcard"
-import PracticeMode from "./components/PracticeMode"
+import Index from './views/Index'
+import Registration from "./views/user/Registration"
+import Login from "./views/user/Login"
+import User from "./views/user/User"
+import Terms from "./views/Terms"
+import VerifyEmail from "./views/user/VerifyEmail"
+import Decks from "./views/deck/Decks"
+import AddDeck from "./views/deck/AddDeck"
+import FlashcardsList from "./views/flashcard/FlashcardsList"
+import EditFlashcard from "./views/flashcard/EditFlashcard"
+import PracticeMode from "./views/PracticeMode"
 
 import {TokenService} from "./services/token"
 

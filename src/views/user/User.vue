@@ -93,9 +93,9 @@
 </template>
 
 <script>
-    import Spinner from "./Spinner";
+    import Spinner from "../../components/Spinner";
     import {required, email, maxLength} from 'vuelidate/lib/validators'
-    import ConfirmationModal from './ConfirmationModal'
+    import ConfirmationModal from '../../components/ConfirmationModal'
     export default {
         name: "User",
         components: {

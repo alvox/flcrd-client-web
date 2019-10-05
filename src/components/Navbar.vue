@@ -66,7 +66,7 @@
 </template>
 
 <script>
-    import DropdownLink from './elements/DropdownLink'
+    import DropdownLink from './DropdownLink'
     export default {
         name: "Navbar",
         components: {DropdownLink},

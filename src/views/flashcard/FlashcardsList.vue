@@ -64,7 +64,7 @@
                      :class="{'rounded-b-lg': !deckBelongsToUser}">
                     <div class="md:flex sm:block self-stretch items-center">
                         <img class="mx-auto object-fit md:ml-10 mt-10 md:mb-16"
-                             src="../assets/img/undraw_add_cards.svg" width="250px" height="250px" alt="add flashcards"/>
+                             src="../../assets/img/undraw_add_cards.svg" width="250px" height="250px" alt="add flashcards"/>
                         <div class="m-10 text-copy-secondary text-base leading-relaxed">
                             <p class="mt-5">Cool, now add some flashcards!<br/> Use form below <span class="text-2xl">👇</span></p>
                         </div>
@@ -118,8 +118,8 @@
 
 <script>
     import {required, maxLength} from 'vuelidate/lib/validators'
-    import Spinner from './Spinner'
-    import Card from './elements/Card'
+    import Spinner from '../../components/Spinner'
+    import Card from '../../components/elements/Card'
 
     export default {
         name: "FlashcardsList",

@@ -76,7 +76,7 @@
 
 <script>
     import {required, maxLength} from 'vuelidate/lib/validators'
-    import ConfirmationModal from './ConfirmationModal'
+    import ConfirmationModal from '../../components/ConfirmationModal'
 
     export default {
         name: "AddDeck",
