@@ -72,9 +72,9 @@
                         <div class="text-center mt-10 md:mt-0">
                             <p class="font-thin md:mb-4">You created</p>
                             <div class="flex items-center justify-center">
-                                <p class="font-thin"><span class="font-black text-4xl">7</span> Decks</p>
+                                <p class="font-thin"><span class="font-black text-4xl">{{user.stats.decks_count}}</span> Decks</p>
                                 <p class="text-2xl mx-4">/</p>
-                                <p class="font-thin"><span class="font-black text-4xl">354</span> Cards</p>
+                                <p class="font-thin"><span class="font-black text-4xl">{{user.stats.cards_count}}</span> Cards</p>
                             </div>
                         </div>
                     </div>
