@@ -115,27 +115,19 @@ export const store = new Vuex.Store({
             deck.cards = deck.cards.filter(card => card.id !== payload.card_id);
             deck.cards_count--
         },
-        authRequest(state) {
-            state.authenticating = true;
+        clearError(state) {
             state.errorCode = '';
             state.errorMessage = '';
         },
         authSuccess(state, payload) {
             state.userName = payload.userName;
             state.userId = payload.userId;
-            state.authenticating = false;
             state.errorCode = '';
             state.errorMessage = '';
         },
-        authError(state, payload) {
-            state.authenticating = false;
+        apiError(state, payload) {
             state.errorCode = payload.errorCode;
             state.errorMessage = payload.errorMessage
-        },
-        authCancel(state) {
-            state.authenticating = false;
-            state.errorCode = '';
-            state.errorMessage = '';
         },
         logoutSuccess(state) {
             state.accessToken = null;
@@ -201,8 +193,14 @@ export const store = new Vuex.Store({
             }).then(result => {
                 let deck = result.data;
                 context.commit('saveDeck', {deck: deck});
+                context.commit('clearError');
                 let visibility = deck.public ? 'public' : 'private';
                 router.push({name: 'FlashcardsList', params: {deck_id: deck.id, visibility: visibility}})
+            }).catch(e => {
+                context.commit('apiError', {
+                    errorCode: e.response.data.code,
+                    errorMessage: e.response.data.message
+                })
             })
         },
         UPDATE_DECK: (context, payload) => {
@@ -246,7 +244,6 @@ export const store = new Vuex.Store({
             })
         },
         REGISTER_USER: (context, payload) => {
-            context.commit('authRequest');
             UserService.register(payload.name, payload.email, payload.password)
                 .then(result => {
                     context.commit('authSuccess', result);
@@ -256,7 +253,7 @@ export const store = new Vuex.Store({
                 .catch(e => {
                     let r = e.response;
                     if (r.status === 400 || r.status === 500) {
-                        context.commit('authError', {
+                        context.commit('apiError', {
                             errorCode: e.response.data.code,
                             errorMessage: e.response.data.message
                         })
@@ -264,7 +261,6 @@ export const store = new Vuex.Store({
                 })
         },
         LOGIN_USER: (context, payload) => {
-            context.commit('authRequest');
             UserService.login(payload.email, payload.password)
                 .then(result => {
                     context.commit('authSuccess', result);
@@ -274,7 +270,7 @@ export const store = new Vuex.Store({
                 .catch(e => {
                     let r = e.response;
                     if (r.status === 401 || r.status === 400 || r.status === 500) {
-                        context.commit('authError', {
+                        context.commit('apiError', {
                             errorCode: r.data.code,
                             errorMessage: r.data.message
                         })

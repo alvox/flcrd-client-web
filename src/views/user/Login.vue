@@ -68,7 +68,7 @@
             password: {required}
         },
         beforeDestroy() {
-            this.$store.commit('authCancel');
+            this.$store.commit('clearError');
         }
     }
 </script>

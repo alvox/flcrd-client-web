@@ -94,7 +94,7 @@
             this.email = this.reg_email;
         },
         beforeDestroy() {
-            this.$store.commit('authCancel');
+            this.$store.commit('clearError');
         }
     }
 </script>

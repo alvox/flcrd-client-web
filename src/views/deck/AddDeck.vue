@@ -50,6 +50,9 @@
                     <input class="mr-2 ml-1 leading-tight" type="checkbox" v-model="is_public">
                     <span class="text-xs font-bold uppercase">{{$t('make_it_public')}}</span>
                 </label>
+                <div v-if="errorMessage !== ''">
+                    <p class="error-msg text-center mt-4"> {{ errorMessage | capitalize }} </p>
+                </div>
                 <div class="flex justify-between items-center px-4 pt-8 pb-4">
                     <p v-if="editMode"
                        class="tertiary-btn hover:text-gray-600"
@@ -130,7 +133,10 @@
             },
             deck() {
                 return this.$store.getters.deck(this.$route.params.deck_id)
-            }
+            },
+            errorMessage() {
+                return this.$store.getters.errorMessage
+            },
         },
         created() {
             if (this.editMode) {
@@ -141,6 +147,9 @@
                 this.description = this.deck.description;
                 this.is_public = this.deck.public;
             }
+        },
+        beforeDestroy() {
+            this.$store.commit('clearError');
         },
         validations: {
             name: {required, maxLength: maxLength(50)},
