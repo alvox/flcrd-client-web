@@ -212,7 +212,13 @@ export const store = new Vuex.Store({
             }).then(result => {
                 let deck = result.data;
                 context.commit('updateDeck', {deck: deck});
+                context.commit('clearError');
                 router.back();
+            }).catch(e => {
+                context.commit('apiError', {
+                    errorCode: e.response.data.code,
+                    errorMessage: e.response.data.message
+                })
             })
         },
         DELETE_DECK: (context, payload) => {
