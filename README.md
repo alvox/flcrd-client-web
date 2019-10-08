@@ -1,29 +1,9 @@
-# flcrd-client-web
+## Frontend for the [flashcards.rocks](https://flashcards.rocks) site
 
-## Project setup
-```
-npm install
-```
+🌎 https://flashcards.rocks
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Run for development
+`npm run serve`
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Build container for deployment
+`cd env && ./build.sh`
