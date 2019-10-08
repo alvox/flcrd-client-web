@@ -5,7 +5,8 @@ import router from "../router"
 export const DeckState = {
     state: {
         decks: [],
-        publicDecks: []
+        publicDecks: [],
+        publicTotal: 0
     },
     getters: {
         decks: state => {
@@ -13,6 +14,9 @@ export const DeckState = {
         },
         publicDecks: state => {
             return state.publicDecks
+        },
+        publicTotal: state => {
+            return state.publicTotal
         },
         deck: (state) => (id) => {
             let decks = state.decks.filter(deck => deck.id === id)
@@ -26,8 +30,9 @@ export const DeckState = {
         saveDecks(state, decks) {
             state.decks = decks
         },
-        savePublicDecks(state, decks) {
-            state.publicDecks = decks
+        savePublicDecks(state, payload) {
+            state.publicDecks = payload.decks
+            state.publicTotal = payload.total
         },
         saveDeck(state, payload) {
             state.decks.push(payload.deck)
@@ -67,10 +72,11 @@ export const DeckState = {
         }
     },
     actions: {
-        GET_PUBLIC_DECKS: (context) => {
-            ApiService.get("public/decks")
+        GET_PUBLIC_DECKS: (context, payload) => {
+            ApiService.get("public/decks?page=2&per_page=2")
                 .then(result => {
-                    context.commit('savePublicDecks', result.data)
+                    let total = result.headers["x-total-count"]
+                    context.commit('savePublicDecks', {decks: result.data, total: total})
                 })
         },
         GET_DECKS: (context) => {
