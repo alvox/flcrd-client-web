@@ -35,6 +35,10 @@
                         </div>
                     </router-link>
                 </div>
+                <div class="flex justify-center mb-5">
+                    <button class="focus:outline-none secondary-btn hover:bg-background-primary rounded-r-none border-r-0">Previous</button>
+                    <button class="focus:outline-none secondary-btn mr-4 hover:bg-background-primary rounded-l-none">Next</button>
+                </div>
             </div>
         </div>
     </div>
