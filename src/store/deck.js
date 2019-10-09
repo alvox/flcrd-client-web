@@ -73,7 +73,9 @@ export const DeckState = {
     },
     actions: {
         GET_PUBLIC_DECKS: (context, payload) => {
-            ApiService.get("public/decks?page=2&per_page=2")
+            let url = `/public/decks?page=${payload.page}&per_page=${payload.per_page}`
+            console.log(url)
+            ApiService.get(url)
                 .then(result => {
                     let total = result.headers["x-total-count"]
                     context.commit('savePublicDecks', {decks: result.data, total: total})

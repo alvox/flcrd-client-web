@@ -36,8 +36,8 @@
                     </router-link>
                 </div>
                 <div class="flex justify-center mb-5">
-                    <button class="focus:outline-none secondary-btn hover:bg-background-primary rounded-r-none border-r-0">Previous</button>
-                    <button class="focus:outline-none secondary-btn mr-4 hover:bg-background-primary rounded-l-none">Next</button>
+                    <button class="focus:outline-none secondary-btn hover:bg-background-primary rounded-r-none border-r-0" @click="previousPage" :disabled="page === 1">Previous</button>
+                    <button class="focus:outline-none secondary-btn mr-4 hover:bg-background-primary rounded-l-none" @click="nextPage" :disabled="lastPage">Next</button>
                 </div>
             </div>
         </div>
@@ -48,11 +48,30 @@
     export default {
         name: 'Index',
         data() {
-            return {}
+            return {
+                page: 1,
+                per_page: 3
+            }
+        },
+        methods: {
+            nextPage() {
+                this.page = this.page + 1
+                this.$store.dispatch('GET_PUBLIC_DECKS', {page: this.page, per_page: this.per_page})
+            },
+            previousPage() {
+                this.page = this.page - 1
+                this.$store.dispatch('GET_PUBLIC_DECKS', {page: this.page, per_page: this.per_page})
+            },
         },
         computed: {
+            lastPage() {
+                return this.total < this.page * this.per_page
+            },
             decks() {
                 return this.$store.getters.publicDecks
+            },
+            total() {
+                return this.$store.getters.publicTotal
             },
             nonEmptyDecks() {
                 return this.decks.filter(d => {
@@ -61,7 +80,7 @@
             }
         },
         created() {
-            this.$store.dispatch('GET_PUBLIC_DECKS')
+            this.$store.dispatch('GET_PUBLIC_DECKS', {page: this.page, per_page: this.per_page})
         }
     }
 </script>
