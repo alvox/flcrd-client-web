@@ -36,13 +36,21 @@ export const messages = {
         make_it_public: 'Make it visible to another users',
         delete_deck: 'Delete deck',
         delete_deck_confirm: 'Do you want to delete this deck?',
+        delete_card: 'Delete card',
+        delete_card_confirm: 'Delete this flashcard?',
         my_decks: 'My Decks',
         decks_empty_p1: 'Nothing here yet..',
         decks_empty_p2: 'Start by creating a new deck!',
+        edit_flashcard: 'Edit Flashcard',
+        front_side: 'front side',
+        rear_side: 'rear side',
 
         err_deck_name_empty: 'Deck should have a name',
         err_deck_name_length: 'Deck name should be 50 characters maximum',
-        err_deck_desc_length: 'Description should be 250 characters maximum'
+        err_deck_desc_length: 'Description should be 250 characters maximum',
+        err_card_front_empty: 'Card should have something on the front side',
+        err_card_rear_empty: 'Rear side should be in place too',
+        err_card_length: 'You can put here only 250 characters maximum.'
     },
     ru: {
         lang_emoji: '🇷🇺',
@@ -81,12 +89,20 @@ export const messages = {
         make_it_public: 'Сделать видимой другим пользователям',
         delete_deck: 'Удалить коллекцию',
         delete_deck_confirm: 'Вы правда хотите удалить эту коллекцию?',
+        delete_card: 'Удалить карточку',
+        delete_card_confirm: 'Вы правда хотите удалить эту карточку?',
         my_decks: 'Мои Коллекции',
         decks_empty_p1: 'Здесь пока пусто...',
         decks_empty_p2: 'Начните с создания новой коллекции!',
+        edit_flashcard: 'Редактировать Карточку',
+        front_side: 'лицевая сторона',
+        rear_side: 'обратная сторона',
 
         err_deck_name_empty: 'У коллекции должно быть имя',
         err_deck_name_length: 'Имя может быть длинной 50 символов максимум',
-        err_deck_desc_length: 'Описание может быть длинной 250 символов максимум'
+        err_deck_desc_length: 'Описание может быть длинной 250 символов максимум',
+        err_card_front_empty: 'На лицевой стороне надо что-нибудь написать',
+        err_card_rear_empty: 'На обратной стороне тоже должно быть что-нибудь написано',
+        err_card_length: 'Здесь может поместиться только 250 символов'
     }
 };
