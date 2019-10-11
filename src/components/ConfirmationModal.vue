@@ -6,23 +6,19 @@
              aria-describedby="modalDescription">
             <div class="bg-background-ternary text-copy-primary shadow-md flex flex-col rounded-lg">
                 <header class="p-4 border-b-2 border-border-primary font-extrabold" id="modalTitle">
-                    <slot name="header">
-                        Delete deck
-                    </slot>
+                    <slot name="header"></slot>
                 </header>
                 <section class="p-4 text-center font-thin" id="modalDescription">
-                    <slot name="body">
-                        Delete this deck?
-                    </slot>
+                    <slot name="body"></slot>
                 </section>
                 <footer class="p-4 flex justify-end">
                     <slot name="footer">
                         <button type="button" class="secondary-btn hover:border-border-s-btn-hover mr-4"
                                 @click="close" aria-label="Close modal">
-                            Cancel
+                            {{$t('cancel')}}
                         </button>
                         <button type="button" class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover" @click="confirm" aria-label="Confirm modal">
-                            Yes, delete
+                            {{$t('delete')}}
                         </button>
                     </slot>
                 </footer>

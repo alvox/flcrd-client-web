@@ -3,7 +3,7 @@
         <Spinner v-if="isLoading"></Spinner>
         <div v-else class="mx-auto max-w-2xl rounded-lg">
             <div class="flex justify-between border-2 rounded-t-lg border-b-0 border-border-primary bg-background-secondary">
-                <p class="section-header">My Decks</p>
+                <p class="section-header">{{$t('my_decks')}}</p>
                 <a href="" class="m-4" title="Create new collection">
                     <router-link :to="{name: 'AddDeck', params: {deck_id: 'new'}}">
                         <svg class="fill-current text-copy-secondary inline-block h-6 w-6 hover:text-copy-hover"
@@ -22,8 +22,7 @@
                                 <p class="font-thin"> {{ deck.description }}</p>
                                 <p class="absolute bottom-0 left-0 py-2 px-4 text-copy-secondary text-xs font-bold">
                                     <span class="text-2xl font-extrabold">{{deck.cards_count}} </span>
-                                    <span v-if="deck.cards_count === 1">FLASHCARD</span>
-                                    <span v-else>FLASHCARDS</span>
+                                    <span class="uppercase">{{$tc('flashcard', deck.cards_count)}}</span>
                                 </p>
                             </div>
                         </router-link>
@@ -34,8 +33,8 @@
                         <img class="md:object-left sm:object-top object-fit m-20"
                              src="../../assets/img/undraw_add_content.svg" width="200px" height="200px" alt="add content"/>
                         <div class="m-10 md:ml-0 sm:ml-10 text-copy-secondary text-base leading-relaxed">
-                            <p class="font-bold text-lg tracking-wide">Nothing here yet...</p>
-                            <p class="mt-5">Start by creating a new deck!</p>
+                            <p class="font-bold text-lg tracking-wide">{{$t('decks_empty_p1')}}</p>
+                            <p class="mt-5">{{$t('decks_empty_p2')}}</p>
                         </div>
                     </div>
                 </div>
@@ -73,7 +72,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

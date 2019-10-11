@@ -7,6 +7,7 @@ export const messages = {
         register: 'Register',
         public_decks: 'Public Decks',
         flashcards: 'Flashcards',
+        flashcard: 'flashcard | flashcards',
         index_copy_1: '– is one of the most natural methods to memorize things. ' +
             'Just put what you want to learn on it and practice every day. Easy!',
         index_copy_2: 'Check out public cards decks below or register to create your own.',
@@ -21,6 +22,7 @@ export const messages = {
         invalid_password: 'Please, enter your password.',
         save: 'Save',
         cancel: 'Cancel',
+        delete: 'Delete',
         consent_1: 'I agree with',
         consent_2: 'terms of use',
         terms: 'Terms and Privacy',
@@ -33,6 +35,14 @@ export const messages = {
         deck_desc_placeholder: 'You can also add some brief description',
         make_it_public: 'Make it visible to another users',
         delete_deck: 'Delete deck',
+        delete_deck_confirm: 'Do you want to delete this deck?',
+        my_decks: 'My Decks',
+        decks_empty_p1: 'Nothing here yet..',
+        decks_empty_p2: 'Start by creating a new deck!',
+
+        err_deck_name_empty: 'Deck should have a name',
+        err_deck_name_length: 'Deck name should be 50 characters maximum',
+        err_deck_desc_length: 'Description should be 250 characters maximum'
     },
     ru: {
         lang_emoji: '🇷🇺',
@@ -42,6 +52,7 @@ export const messages = {
         register: 'Регистрация',
         public_decks: 'Доступные коллекции',
         flashcards: 'Флешкарты',
+        flashcard: 'flashcard | flashcards',
         index_copy_1: '– самый эффективный способ запоминать информацию. ' +
             'Запиши то что хочешь выучить и повторяй каждый день. Проще некуда!',
         index_copy_2: 'Попробуйте что-нибудь из доступных коллекций или зарегистрируйтесь чтобы создать свою.',
@@ -56,6 +67,7 @@ export const messages = {
         invalid_password: 'Пожалуйста, введите пароль.',
         save: 'Сохранить',
         cancel: 'Отмена',
+        delete: 'Удалить',
         consent_1: 'Я согласен с',
         consent_2: 'правилами сервиса',
         terms: 'Правила сервиса',
@@ -68,5 +80,13 @@ export const messages = {
         deck_desc_placeholder: 'Вы так же можете дать ей краткое описание',
         make_it_public: 'Сделать видимой другим пользователям',
         delete_deck: 'Удалить коллекцию',
+        delete_deck_confirm: 'Вы правда хотите удалить эту коллекцию?',
+        my_decks: 'Мои Коллекции',
+        decks_empty_p1: 'Здесь пока пусто...',
+        decks_empty_p2: 'Начните с создания новой коллекции!',
+
+        err_deck_name_empty: 'У коллекции должно быть имя',
+        err_deck_name_length: 'Имя может быть длинной 50 символов максимум',
+        err_deck_desc_length: 'Описание может быть длинной 250 символов максимум'
     }
 };

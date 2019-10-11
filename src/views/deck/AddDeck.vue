@@ -29,10 +29,10 @@
                            id="name" type="text" :placeholder="$t('deck_name_placeholder')" v-model.trim.lazy="$v.name.$model"
                            :class="{'border-red-400': $v.name.$error}">
                     <p class="error-msg" v-if="$v.name.$error && !$v.name.required">
-                        Collection should have a name.
+                        {{$t('err_deck_name_empty')}}
                     </p>
                     <p class="error-msg" v-if="!$v.name.maxLength">
-                        Collection name should be 50 characters maximum.
+                        {{$t('err_deck_name_length')}}
                     </p>
                 </div>
                 <div class="p-4 pt-6">
@@ -43,7 +43,7 @@
                             v-model.trim.lazy="$v.description.$model"
                             :class="{ 'border-red-400': $v.description.$error }"></textarea>
                     <p class="error-msg" v-if="!$v.description.maxLength">
-                        Description should be 250 characters maximum.
+                        {{$t('err_deck_desc_length')}}
                     </p>
                 </div>
                 <label class="block text-copy-secondary font-bold pl-4">
@@ -72,7 +72,10 @@
                     </div>
                 </div>
             </form>
-            <ConfirmationModal v-show="is_confirm_visible" @close="closeModal" @confirm="deleteDeck"></ConfirmationModal>
+            <ConfirmationModal v-show="is_confirm_visible" @close="closeModal" @confirm="deleteDeck">
+                <template v-slot:header>{{$t('delete_deck')}}</template>
+                <template v-slot:body>{{$t('delete_deck_confirm')}}</template>
+            </ConfirmationModal>
         </div>
     </div>
 </template>
