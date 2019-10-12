@@ -18,7 +18,7 @@
                 <div class="flex m-2 mr-4 items-center justify-between">
                     <router-link v-if="deck.cards != null && deck.cards.length > 0" :to="{name: 'PracticeMode'}">
                         <p class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover ml-2">
-                            Practice!
+                            {{$t('practice')}}
                         </p>
                     </router-link>
                     <div v-else></div>
@@ -66,7 +66,7 @@
                         <img class="mx-auto object-fit md:ml-10 mt-10 md:mb-16"
                              src="../../assets/img/undraw_add_cards.svg" width="250px" height="250px" alt="add flashcards"/>
                         <div class="m-10 text-copy-secondary text-base leading-relaxed">
-                            <p class="mt-5">Cool, now add some flashcards!<br/> Use form below <span class="text-2xl">👇</span></p>
+                            <p class="mt-5">{{$t('cards_copy_p1')}}<br/> {{$t('cards_copy_p2')}} <span class="text-2xl">👇</span></p>
                         </div>
                     </div>
                 </div>
@@ -74,36 +74,32 @@
 <!--CREATE CARD FORM-->
             <div v-if="deckBelongsToUser" class="border-2 rounded-b-lg border-t-0 border-border-primary bg-background-secondary">
             <form v-if="!deckIsPacked" @submit.prevent="saveCard">
-                <p class="font-bold px-5 pt-4 text-copy-secondary text-xs">ADD NEW CARD:</p>
+                <p class="font-bold px-5 pt-4 text-copy-secondary text-xs uppercase">{{$t('add_new_card')}}</p>
                 <div class="md:flex">
                     <div class="flex-1 m-2 mx-4 md:mr-2">
                         <label class="block text-gray-500 text-sm font-bold hidden" for="front">Front side</label>
                         <textarea
                                 class="front appearance-none outline-none focus:outline-none resize-y border-2 border-border-primary rounded-lg py-2 px-3 w-full bg-background-ternary text-copy-secondary leading-tight focus:border-purple-400"
-                                id="front" placeholder="Front..." rows="4" v-model.trim.lazy="$v.front.$model"
+                                id="front" :placeholder="$t('front_side')" rows="4" v-model.trim.lazy="$v.front.$model"
                                 :class="{ 'border-red-400': $v.front.$error }"></textarea>
-                        <p class="error-msg" v-if="$v.front.$error && !$v.front.required">Card should have
-                            something on the front side.</p>
-                        <p class="error-msg" v-if="!$v.front.maxLength">Card side should be 250 characters
-                            maximum.</p>
+                        <p class="error-msg" v-if="$v.front.$error && !$v.front.required">{{$t('err_card_front_empty')}}</p>
+                        <p class="error-msg" v-if="!$v.front.maxLength">{{$t('err_card_length')}}</p>
                     </div>
                     <div class="flex-1 m-2 mx-4 md:ml-2">
                         <label class="block text-gray-500 text-sm font-bold hidden" for="rear">Rear side</label>
                         <textarea
                                 class="appearance-none outline-none focus:outline-none resize-y border-2 border-border-primary rounded-lg py-2 px-3 w-full bg-background-ternary text-copy-secondary leading-tight focus:border-purple-400"
-                                id="rear" placeholder="Rear..." rows="4" v-model.trim.lazy="$v.rear.$model"
+                                id="rear" :placeholder="$t('rear_side')" rows="4" v-model.trim.lazy="$v.rear.$model"
                                 :class="{ 'border-red-400': $v.rear.$error }"></textarea>
-                        <p class="error-msg" v-if="$v.rear.$error && !$v.rear.required">Rear side should be
-                            in place too.</p>
-                        <p class="error-msg" v-if="!$v.rear.maxLength">Card side should be 250 characters
-                            maximum.</p>
+                        <p class="error-msg" v-if="$v.rear.$error && !$v.rear.required">{{$t('err_card_rear_empty')}}</p>
+                        <p class="error-msg" v-if="!$v.rear.maxLength">{{$t('err_card_length')}}</p>
                     </div>
                 </div>
                 <div class="flex justify-between items-center pr-4 pl-5 pb-4">
                     <p class="text-sm text-copy-secondary">You can add {{cardsLeft}} more {{cardsLeft === 1 ? 'card' : 'cards'}}.</p>
                     <button class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover"
                             title="Create card">
-                        Save
+                        {{$t('save')}}
                     </button>
                 </div>
             </form>
