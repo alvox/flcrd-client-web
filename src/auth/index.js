@@ -66,7 +66,7 @@ export const useAuth0 = ({
                 return this.auth0Client.getTokenWithPopup(o)
             },
             logout(o) {
-                return this.auth0client.logout(o)
+                return this.auth0Client.logout(o)
             }
         },
         async created() {

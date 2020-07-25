@@ -24,19 +24,22 @@
 <!--                        Curated-->
 <!--                    </a>-->
                 </div>
-                <div v-if="loggedIn" class="flex items-center">
-                    <router-link :to="{name: 'User'}">
-                        <p class="mr-4 text-sm text-copy-primary underline">{{ userName }}</p>
-                    </router-link>
-                    <p class="secondary-btn hover:border-border-s-btn-hover" @click="logoutUser">{{$t('logout')}}</p>
-                </div>
-                <div v-else>
-                    <router-link :to="{name: 'Login'}">
-                        <a href="#" class="tertiary-btn hover:text-gray-600 mr-4">{{$t('login')}}</a>
-                    </router-link>
-                    <router-link :to="{name: 'Registration'}">
-                        <a href="" class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover">{{$t('register')}}</a>
-                    </router-link>
+                <div v-if="!$auth.loading">
+                    <div v-if="$auth.isAuthenticated" class="flex items-center">
+                        <router-link :to="{name: 'User'}">
+                            <p class="mr-4 text-sm text-copy-primary underline">{{ userName }}</p>
+                        </router-link>
+                        <p class="secondary-btn hover:border-border-s-btn-hover" @click="logoutUser">{{$t('logout')}}</p>
+                    </div>
+                    <div v-if="!$auth.isAuthenticated">
+<!--                        <router-link :to="{name: 'Login'}">-->
+<!--                            <a href="#" class="tertiary-btn hover:text-gray-600 mr-4">{{$t('login')}}</a>-->
+<!--                        </router-link>-->
+                        <p class="secondary-btn hover:border-border-s-btn-hover" @click="loginUser">{{$t('login')}}</p>
+<!--                        <router-link :to="{name: 'Registration'}">-->
+<!--                            <a href="" class="primary-btn-outline hover:bg-background-p-btn-hover hover:text-copy-p-btn-hover">{{$t('register')}}</a>-->
+<!--                        </router-link>-->
+                    </div>
                 </div>
                 <div class="flex items-center justify-between mt-4 md:mt-0 md:ml-4">
                     <a href="" class="text-copy-secondary block" @click.prevent="switchTheme">
@@ -80,7 +83,8 @@
                 return this.$store.getters.loggedIn
             },
             userName() {
-                return this.$store.getters.userName
+                // return this.$store.getters.userName
+                return this.$auth.user.name
             },
             theme() {
                 return this.$store.getters.theme
@@ -90,8 +94,14 @@
             }
         },
         methods: {
+            loginUser() {
+                this.$auth.loginWithRedirect();
+            },
             logoutUser() {
-                this.$store.dispatch('LOGOUT_USER')
+                // this.$store.dispatch('LOGOUT_USER')
+                this.$auth.logout({
+                    returnTo: window.location.origin
+                })
             },
             toggle() {
                 this.open = !this.open
