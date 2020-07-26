@@ -29,7 +29,7 @@
                                     <span v-if="deck.cards_count === 1">FLASHCARD</span>
                                     <span v-else>FLASHCARDS</span>
                                     <span class="px-2">•</span>
-                                    <span class="font-normal">{{$t('by')}} {{deck.created_by.name}}</span>
+                                    <span class="font-normal">{{$t('by')}} {{deck.created_by.email}}</span>
                                 </p>
                             </div>
                         </div>

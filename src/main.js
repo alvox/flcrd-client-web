@@ -7,9 +7,8 @@ import {store} from './store/store'
 import {i18n} from './services/i18n'
 
 import ApiService from './services/api'
-import {TokenService} from "./services/token"
 
-import {domain, clientId} from '../auth_config.json'
+import {domain, clientId, audience} from '../auth_config.json'
 import {Auth0Plugin} from './auth'
 
 Vue.config.productionTip = false;
@@ -17,6 +16,7 @@ Vue.use(Vuelidate);
 Vue.use(Auth0Plugin, {
     domain,
     clientId,
+    audience,
     onRedirectCallback: appState => {
         router.push(
             appState && appState.targetUrl
@@ -27,10 +27,6 @@ Vue.use(Auth0Plugin, {
 })
 
 ApiService.init(process.env.VUE_APP_BASE_API_URL);
-if (TokenService.getAccessToken()) {
-    ApiService.setHeader();
-    ApiService.mount401Interceptor()
-}
 
 Vue.filter('capitalize', function (value) {
     if (!value) {

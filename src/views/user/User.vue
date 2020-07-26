@@ -65,8 +65,8 @@
                 <div v-else>
                     <div class="block md:flex justify-around items-center my-10 md:my-20">
                         <div class="text-center">
-                            <p class="font-black text-5xl md:mb-2">{{user.name}}</p>
-                            <p class="font-thin">{{user.email}}</p>
+                            <p class="font-black text-5xl md:mb-2">{{$auth.user.name}}</p>
+                            <p class="font-thin">{{$auth.user.email}}</p>
                         </div>
                         <div class="hidden md:block border-l-2 border-border-primary h-20"></div>
                         <div class="text-center mt-10 md:mt-0">
@@ -78,14 +78,14 @@
                             </div>
                         </div>
                     </div>
-                    <div v-if="user.status === 'PENDING'" class="flex items-center justify-center">
-                        <svg class="text-purple-500 fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zM9 5v6h2V5H9zm0 8v2h2v-2H9z"/>
-                        </svg>
-                        <p class="font-thin">
-                            Please, confirm your email. Click <a href="" class="underline text-blue-500" @click.prevent="resend">here</a> if you didn't get verification link.
-                        </p>
-                    </div>
+<!--                    <div v-if="user.status === 'PENDING'" class="flex items-center justify-center">-->
+<!--                        <svg class="text-purple-500 fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">-->
+<!--                            <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zM9 5v6h2V5H9zm0 8v2h2v-2H9z"/>-->
+<!--                        </svg>-->
+<!--                        <p class="font-thin">-->
+<!--                            Please, confirm your email. Click <a href="" class="underline text-blue-500" @click.prevent="resend">here</a> if you didn't get verification link.-->
+<!--                        </p>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>

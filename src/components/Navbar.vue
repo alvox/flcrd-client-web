@@ -1,7 +1,7 @@
 <template>
     <div class="font-sans antialiased">
         <nav class="flex items-center justify-between flex-wrap bg-background-secondary py-2 px-4 mx-auto max-w-2xl min-w-2xl border-2 border-t-0 rounded-b-lg border-border-primary">
-            <router-link v-if="loggedIn" :to="{name: 'Decks'}">
+            <router-link v-if="$auth.isAuthenticated" :to="{name: 'Decks'}">
                 <img class="object-fit h-12" :src="logoImg()" alt="logo"/>
             </router-link>
             <router-link v-else :to="{name: 'Index'}">
@@ -14,15 +14,6 @@
             </div>
             <div :class="open ? 'block py-4' : 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
                 <div class="text-sm sm:flex-grow">
-<!--                    <a href="#responsive-header" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white mr-4">-->
-<!--                        Public-->
-<!--                    </a>-->
-<!--                    <a href="#responsive-header" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white mr-4">-->
-<!--                        Popular-->
-<!--                    </a>-->
-<!--                    <a href="#responsive-header" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white">-->
-<!--                        Curated-->
-<!--                    </a>-->
                 </div>
                 <div v-if="!$auth.loading">
                     <div v-if="$auth.isAuthenticated" class="flex items-center">
@@ -79,11 +70,7 @@
             }
         },
         computed: {
-            loggedIn() {
-                return this.$store.getters.loggedIn
-            },
             userName() {
-                // return this.$store.getters.userName
                 return this.$auth.user.name
             },
             theme() {
@@ -98,7 +85,6 @@
                 this.$auth.loginWithRedirect();
             },
             logoutUser() {
-                // this.$store.dispatch('LOGOUT_USER')
                 this.$auth.logout({
                     returnTo: window.location.origin
                 })

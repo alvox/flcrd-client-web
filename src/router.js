@@ -13,7 +13,7 @@ import FlashcardsList from "./views/flashcard/FlashcardsList"
 import EditFlashcard from "./views/flashcard/EditFlashcard"
 import PracticeMode from "./views/PracticeMode"
 
-import {TokenService} from "./services/token"
+import { authGuard } from "./auth/authGuard"
 
 Vue.use(Router);
 
@@ -51,22 +51,26 @@ const router = new Router({
         {
             path: '/user',
             name: 'User',
-            component: User
+            component: User,
+            beforeEnter: authGuard
         },
         {
             path: '/confirm/:code',
             name: 'VerifyEmail',
-            component: VerifyEmail
+            component: VerifyEmail,
+            beforeEnter: authGuard
         },
         {
             path: '/decks',
             name: 'Decks',
-            component: Decks
+            component: Decks,
+            beforeEnter: authGuard
         },
         {
             path: '/add-deck/:deck_id',
             name: 'AddDeck',
-            component: AddDeck
+            component: AddDeck,
+            beforeEnter: authGuard
         },
         {
             path: '/:deck_id/:visibility/flashcards/list',
@@ -80,7 +84,8 @@ const router = new Router({
             path: '/:deck_id/edit-flashcard',
             name: 'EditFlashcard',
             component: EditFlashcard,
-            props: true
+            props: true,
+            beforeEnter: authGuard
         },
         {
             path: '/:deck_id/practice',
@@ -100,24 +105,6 @@ const router = new Router({
             }
         }
     ]
-});
-
-router.beforeEach((to, from, next) => {
-    const isPublic = to.matched.some(record => record.meta.public);
-    const onlyWhenLoggedOut = to.matched.some(record => record.meta.onlyWhenLoggedOut);
-    const loggedIn = !!TokenService.getAccessToken();
-
-    if (!isPublic && !loggedIn) {
-        return next({
-            path: '/login',
-            query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
-        });
-    }
-    // Do not allow user to visit login page or register page if they are logged in
-    if (loggedIn && onlyWhenLoggedOut) {
-        return next('/')
-    }
-    next();
 });
 
 export default router;

@@ -1,6 +1,5 @@
 import axios from 'axios';
-import {TokenService} from "./token";
-import {store} from '../store/store'
+import {getInstance} from "../auth/index";
 
 const ApiService = {
 
@@ -10,87 +9,45 @@ const ApiService = {
         axios.defaults.baseURL = baseURL;
     },
 
-    setHeader() {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${TokenService.getAccessToken()}`
+    async getPublic(resource) {
+        return await axios.get(resource)
     },
 
-    removeHeader() {
-        axios.defaults.headers.common = {}
-    },
-
-    get(resource) {
-        return axios.get(resource)
-    },
-
-    post(resource, data) {
-        return axios.post(resource, data)
-    },
-
-    put(resource, data) {
-        return axios.put(resource, data)
-    },
-
-    delete(resource) {
-        return axios.delete(resource)
-    },
-
-    /**
-     * Perform a custom Axios request.
-     *
-     * data is an object containing the following properties:
-     *  - method
-     *  - url
-     *  - data ... request payload
-     *  - auth (optional)
-     *    - username
-     *    - password
-     **/
-    customRequest(data) {
-        return axios(data)
-    },
-
-    mount401Interceptor() {
-        this._401interceptor = axios.interceptors.response.use(
-            (response) => {
-                return response
-            },
-            async (error) => {
-                if (error.request.status === 401) {
-                    console.log('401. Refreshing...');
-                    if (error.config.url.includes('/refresh')) {
-                        // Refresh token has failed. Logout the user.
-                        await store.dispatch('LOGOUT_USER');
-                        throw error
-                    } else {
-                        // Refresh the access token
-                        try {
-                            await store.dispatch('REFRESH_TOKEN', {
-                                accessToken: TokenService.getAccessToken(),
-                                refreshToken: TokenService.getRefreshToken()
-                            });
-                            // Retry the original request
-                            console.log('Retrying original request...');
-                            return this.customRequest({
-                                method: error.config.method,
-                                url: error.config.url,
-                                data: error.config.data
-                            })
-                        } catch (e) {
-                            console.log(e);
-                            // Refresh has failed - reject the original request
-                            throw error
-                        }
-                    }
-                }
-                // If error was not 401 just reject as is
-                throw error
+    async get(resource) {
+        const token = await getInstance().getTokenSilently()
+        return await axios.get(resource, {
+            headers: {
+                Authorization: `Bearer ${token}`
             }
-        )
+        })
     },
 
-    unmount401Interceptor() {
-        axios.interceptors.response.eject(this._401interceptor)
-    }
+    async post(resource, data) {
+        const token = await getInstance().getTokenSilently()
+        return await axios.post(resource, data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    },
+
+    async put(resource, data) {
+        const token = getInstance().getTokenSilently()
+        return await axios.put(resource, data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    },
+
+    async delete(resource) {
+        const token = await getInstance().getTokenSilently()
+        return await axios.delete(resource, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    },
 
 };
 

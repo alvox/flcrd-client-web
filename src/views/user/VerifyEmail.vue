@@ -57,7 +57,7 @@
         components: {Spinner},
         computed: {
             userName() {
-                return this.$store.getters.userName
+                return this.$auth.user.name
             },
             code() {
                 return this.$route.params.code

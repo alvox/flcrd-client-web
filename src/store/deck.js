@@ -75,7 +75,7 @@ export const DeckState = {
         GET_PUBLIC_DECKS: (context, payload) => {
             let url = `/public/decks?page=${payload.page}&per_page=${payload.per_page}`
             console.log(url)
-            ApiService.get(url)
+            ApiService.getPublic(url)
                 .then(result => {
                     let total = result.headers["x-total-count"]
                     context.commit('savePublicDecks', {decks: result.data, total: total})
@@ -93,7 +93,7 @@ export const DeckState = {
         },
         GET_CARDS_FOR_PUBLIC_DECK: (context, payload) => {
             context.commit('loading', true, {root: true})
-            ApiService.get("public/decks/" + payload.deck_id + "/flashcards")
+            ApiService.getPublic("public/decks/" + payload.deck_id + "/flashcards")
                 .then(result => {
                     context.commit('saveFlashcardsForPublicDeck', {
                         deck_id: payload.deck_id,

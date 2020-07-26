@@ -3,7 +3,7 @@
         <div class="md:flex items-center mt-10 mb-5 text-copy-secondary text-xs font-thin tracking-wide">
             <p class="text-sm">🚧</p>
             <p>
-                WIP by <a class="underline" href="https://alexanderpopov.me" target="_blank" rel="noopener">Alexander Popov</a>
+                WIP by <a class="underline" href="https://alexanderpopov.me" target="_blank" rel="noopener">Alex Pop</a>
             </p>
             <p class="md:px-2 text-base">•</p>
             <router-link :to="{name: 'Terms'}">
