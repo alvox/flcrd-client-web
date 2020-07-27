@@ -11,7 +11,7 @@ export const getInstance = () => instance
 
 export const useAuth0 = ({
     onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
-    redirectUri = window.location.origin,
+    redirectUri = window.location.origin + "/decks",
     ...options
 }) => {
     if (instance) {
