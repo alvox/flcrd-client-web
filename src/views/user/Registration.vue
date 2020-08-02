@@ -49,7 +49,7 @@
 </template>
 
 <script>
-    import {required, email, minLength, maxLength, sameAs} from 'vuelidate/lib/validators'
+    import {required, email, minLength, maxLength, sameAs} from "vuelidate/lib/validators"
 
     export default {
         name: "Registration",

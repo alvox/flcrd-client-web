@@ -14,15 +14,6 @@
             </div>
             <div :class="open ? 'block py-4' : 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
                 <div class="text-sm sm:flex-grow">
-<!--                    <a href="#responsive-header" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white mr-4">-->
-<!--                        Public-->
-<!--                    </a>-->
-<!--                    <a href="#responsive-header" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white mr-4">-->
-<!--                        Popular-->
-<!--                    </a>-->
-<!--                    <a href="#responsive-header" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white">-->
-<!--                        Curated-->
-<!--                    </a>-->
                 </div>
                 <div v-if="loggedIn" class="flex items-center">
                     <router-link :to="{name: 'User'}">

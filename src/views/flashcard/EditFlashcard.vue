@@ -1,15 +1,6 @@
 <template>
     <div>
-<!--BACK BUTTON-->
-        <div class="mx-auto max-w-2xl min-w-2xl hidden md:flex">
-            <div class="flex items-center my-4 cursor-pointer text-copy-secondary hover:text-copy-hover" @click="goBack">
-                <svg class="fill-current inline-block h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 20 20">
-                    <path d="M3.828 9l6.071-6.071-1.414-1.414L0 10l.707.707 7.778 7.778 1.414-1.414L3.828 11H20V9H3.828z"/>
-                </svg>
-                <p class="font-thin ml-2">{{$t('back')}}</p>
-            </div>
-        </div>
+        <BackButton @goBack="goBack"></BackButton>
         <div class="mx-auto max-w-sm bg-background-secondary rounded-lg mt-10 md:mt-0">
 <!--HEADER-->
             <div class="border-2 border-border-primary rounded-t-lg">
@@ -60,12 +51,14 @@
 </template>
 
 <script>
-    import {required, maxLength} from 'vuelidate/lib/validators'
-    import ConfirmationModal from '../../components/ConfirmationModal'
+    import {required, maxLength} from "vuelidate/lib/validators"
+    import BackButton from "@/components/BackButton"
+    import ConfirmationModal from "@/components/ConfirmationModal"
 
     export default {
         name: "EditFlashcard",
         components: {
+            BackButton,
             ConfirmationModal
         },
         data() {
