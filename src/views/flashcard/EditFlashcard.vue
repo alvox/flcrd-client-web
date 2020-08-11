@@ -9,10 +9,10 @@
             <!--FORM-->
             <form class="border-2 border-border-primary rounded-b-lg border-t-0 block" autocomplete="off"
                   @submit.prevent="updateCard">
-                <div class="md:flex">
+                <div class="md:flex p-4">
 
                     <!--FRONT-->
-                    <div class="flex-1 m-4 md:mr-2">
+                    <div class="flex-1 md:mr-2">
                         <label class="block text-gray-500 text-sm font-bold hidden" for="front">Front side</label>
                         <div class="h-56">
                             <div class="h-full" v-if="frontImage != null || frontText.startsWith('http')">
@@ -38,7 +38,7 @@
                     </div>
 
                     <!--REAR-->
-                    <div class="flex-1 m-4 md:ml-2">
+                    <div class="flex-1 mt-4 md:mt-0 md:ml-2">
                         <label class="block text-gray-500 text-sm font-bold hidden" for="rear">Rear side</label>
                         <div class="h-56">
                             <div class="h-full" v-if="rearImage != null || rearText.startsWith('http')">
@@ -142,7 +142,6 @@ export default {
             }
         },
         updateCard() {
-            console.log("SUBMITTT!!!")
             this.$v.$touch();
             if (this.$v.$invalid) {
                 return
