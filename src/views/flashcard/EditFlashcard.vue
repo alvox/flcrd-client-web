@@ -15,8 +15,8 @@
                     <div class="flex-1 md:mr-2">
                         <label class="block text-gray-500 text-sm font-bold hidden" for="front">Front side</label>
                         <div class="h-56">
-                            <div class="h-full" v-if="frontImage != null || frontText.startsWith('http')">
-                                <img :src="frontText" alt="front" class="h-full w-full object-contain object-center"/>
+                            <div class="h-full" v-if="frontImage != null || frontType === 'IMAGE'">
+                                <img :src="'https://flcrd-img-orig.s3.amazonaws.com/'+frontText" alt="front" class="h-full w-full object-contain object-center"/>
                             </div>
                             <div v-else class="h-full">
                                 <textarea
@@ -41,8 +41,8 @@
                     <div class="flex-1 mt-4 md:mt-0 md:ml-2">
                         <label class="block text-gray-500 text-sm font-bold hidden" for="rear">Rear side</label>
                         <div class="h-56">
-                            <div class="h-full" v-if="rearImage != null || rearText.startsWith('http')">
-                                <img :src="rearText" alt="rear" class="h-full w-full object-contain object-center"/>
+                            <div class="h-full" v-if="rearImage != null || rearType === 'IMAGE'">
+                                <img :src="'https://flcrd-img-orig.s3.amazonaws.com/'+rearText" alt="rear" class="h-full w-full object-contain object-center"/>
                             </div>
                             <div v-else class="h-full">
                                 <textarea
@@ -103,8 +103,10 @@ export default {
         return {
             frontText: "",
             frontImage: null,
+            frontType: "",
             rearText: "",
             rearImage: null,
+            rearType: "",
             is_confirm_visible: false
         }
     },
@@ -180,8 +182,10 @@ export default {
         if (!deck) {
             this.$router.back();
         } else {
-            this.frontText = this.card.front;
-            this.rearText = this.card.rear;
+            this.frontText = this.card.front
+            this.frontType = this.card.front_type
+            this.rearText = this.card.rear
+            this.rearType = this.card.rear_type
         }
     },
     validations: {
