@@ -63,7 +63,9 @@ export const DeckState = {
             let deck = state.decks.filter(deck => deck.id === payload.deck_id)[0]
             let card = deck.cards.filter(c => c.id === payload.id)[0]
             card.front = payload.front
+            card.front_type = payload.front_type
             card.rear = payload.rear
+            card.rear_type = payload.rear_type
         },
         deleteCard(state, payload) {
             let deck = state.decks.filter(deck => deck.id === payload.deck_id)[0]
@@ -165,16 +167,47 @@ export const DeckState = {
                 })
         },
         CREATE_CARD: (context, payload) => {
-            ApiService.post("decks/" + payload.deck_id + "/flashcards", {
-                    front: payload.front,
-                    rear: payload.rear
-                })
+            let fd = new FormData();
+            fd.append("front", payload.front)
+            fd.append("rear", payload.rear)
+            if (payload.frontImage != null) {
+                fd.append("front_type", "IMAGE")
+                fd.append("front_image", payload.frontImage, payload.frontImage.name)
+            } else {
+                fd.append("front_type", "TEXT")
+            }
+            if (payload.rearImage != null) {
+                fd.append("rear_type", "IMAGE")
+                fd.append("rear_image", payload.rearImage, payload.rearImage.name)
+            } else {
+                fd.append("rear_type", "TEXT")
+            }
+
+            ApiService.post("decks/" + payload.deck_id + "/flashcards", fd)
                 .then(result => {
                     context.commit('saveCard', {deck_id: payload.deck_id, card: result.data})
                 })
+                .catch(err => {
+                    console.log(err.response)
+                })
         },
         UPDATE_CARD: (context, payload) => {
-            ApiService.put("decks/" + payload.deck_id + "/flashcards/" + payload.id, payload)
+            let fd = new FormData();
+            fd.append("front", payload.front)
+            fd.append("rear", payload.rear)
+            if (payload.frontImage != null) {
+                fd.append("front_type", "IMAGE")
+                fd.append("front_image", payload.frontImage, payload.frontImage.name)
+            } else {
+                fd.append("front_type", "TEXT")
+            }
+            if (payload.rearImage != null) {
+                fd.append("rear_type", "IMAGE")
+                fd.append("rear_image", payload.rearImage, payload.rearImage.name)
+            } else {
+                fd.append("rear_type", "TEXT")
+            }
+            ApiService.put("decks/" + payload.deck_id + "/flashcards/" + payload.id, fd)
                 .then(result => {
                     context.commit('updateCard', result.data);
                     router.back()

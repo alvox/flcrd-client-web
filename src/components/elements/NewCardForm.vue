@@ -108,7 +108,9 @@ export default {
             this.$store.dispatch('CREATE_CARD', {
                 deck_id: this.$route.params.deck_id,
                 front: this.frontText,
-                rear: this.rearText
+                frontImage: this.frontImage,
+                rear: this.rearText,
+                rearImage: this.rearImage
             });
             this.frontText = ""
             this.frontImage = null

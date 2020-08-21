@@ -15,7 +15,10 @@
                     <div class="flex-1 md:mr-2">
                         <label class="block text-gray-500 text-sm font-bold hidden" for="front">Front side</label>
                         <div class="h-56">
-                            <div class="h-full" v-if="frontImage != null || frontType === 'IMAGE'">
+                            <div class="h-full" v-if="frontImage != null">
+                                <img :src="frontText" alt="front" class="h-full w-full object-contain object-center"/>
+                            </div>
+                            <div class="h-full" v-else-if="frontType === 'IMAGE'">
                                 <img :src="'https://flcrd-img-orig.s3.amazonaws.com/'+frontText" alt="front" class="h-full w-full object-contain object-center"/>
                             </div>
                             <div v-else class="h-full">
@@ -41,7 +44,10 @@
                     <div class="flex-1 mt-4 md:mt-0 md:ml-2">
                         <label class="block text-gray-500 text-sm font-bold hidden" for="rear">Rear side</label>
                         <div class="h-56">
-                            <div class="h-full" v-if="rearImage != null || rearType === 'IMAGE'">
+                            <div class="h-full" v-if="rearImage != null">
+                                <img :src="rearText" alt="rear" class="h-full w-full object-contain object-center"/>
+                            </div>
+                            <div class="h-full" v-else-if="rearType === 'IMAGE'">
                                 <img :src="'https://flcrd-img-orig.s3.amazonaws.com/'+rearText" alt="rear" class="h-full w-full object-contain object-center"/>
                             </div>
                             <div v-else class="h-full">
@@ -138,9 +144,11 @@ export default {
             if (side === "front") {
                 this.frontText = ""
                 this.frontImage = null
+                this.frontType = "TEXT"
             } else {
                 this.rearText = ""
                 this.rearImage = null
+                this.rearType = "TEXT"
             }
         },
         updateCard() {
@@ -152,7 +160,9 @@ export default {
                 id: this.card_id,
                 deck_id: this.deck_id,
                 front: this.frontText,
-                rear: this.rearText
+                frontImage: this.frontImage,
+                rear: this.rearText,
+                rearImage: this.rearImage
             })
         },
         deleteCard() {

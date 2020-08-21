@@ -1,13 +1,13 @@
-import axios from 'axios';
-import {TokenService} from "./token";
-import {store} from '../store/store'
+import axios from 'axios'
+import {TokenService} from "./token"
+import {store} from '@/store/store'
 
 const ApiService = {
 
     _401interceptor: null,
 
     init(baseURL) {
-        axios.defaults.baseURL = baseURL;
+        axios.defaults.baseURL = baseURL
     },
 
     setHeader() {
@@ -56,10 +56,10 @@ const ApiService = {
             },
             async (error) => {
                 if (error.request.status === 401) {
-                    console.log('401. Refreshing...');
+                    console.log('401. Refreshing...')
                     if (error.config.url.includes('/refresh')) {
                         // Refresh token has failed. Logout the user.
-                        await store.dispatch('LOGOUT_USER');
+                        await store.dispatch('LOGOUT_USER')
                         throw error
                     } else {
                         // Refresh the access token
@@ -69,14 +69,14 @@ const ApiService = {
                                 refreshToken: TokenService.getRefreshToken()
                             });
                             // Retry the original request
-                            console.log('Retrying original request...');
+                            console.log('Retrying original request...')
                             return this.customRequest({
                                 method: error.config.method,
                                 url: error.config.url,
                                 data: error.config.data
                             })
                         } catch (e) {
-                            console.log(e);
+                            console.log(e)
                             // Refresh has failed - reject the original request
                             throw error
                         }
