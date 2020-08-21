@@ -16,17 +16,32 @@
                 <div class="text-center font-extrabold text-sm text-copy-secondary">{{currentIdx+1}} of
                     {{cardsToPractice.length}}
                 </div>
-                <div class="flex justify-between h-64">
+
+                <div class="flex justify-between h-56 mt-4">
                     <div class="hidden md:block w-1/4"></div>
-                    <div class="shadow-lg flex-1 bg-background-ternary border-4 border-border-primary text-lg rounded-lg mt-4 mb-5 p-4 mx-4 md:mx-0 overflow-auto flex flex-wrap justify-around"
-                         :class="{ 'border-green-400': side === 'rear' }">
-                        <p class="whitespace-pre-line text-copy-primary self-center -mt-6">
-                            {{ side === 'front' ? currentCard.front : currentCard.rear }}
-                        </p>
+
+                    <div v-if="side === 'front'" class="flex-1 bg-background-ternary border-2 border-border-primary">
+                        <div v-if="currentCard.front_type === 'IMAGE'" class="h-full">
+                            <img class="object-contain h-full w-full" :src="'https://flcrd-img-orig.s3.amazonaws.com/' + currentCard.front" alt="front"/>
+                        </div>
+                        <div v-else class=" h-full p-4 mx-4 md:mx-0 flex items-center justify-center">
+                            <p class="text-base text-center">{{ currentCard.front }}</p>
+                        </div>
                     </div>
+
+                    <div v-else class="flex-1 bg-background-ternary border-2 border-green-400">
+                        <div v-if="currentCard.rear_type === 'IMAGE'" class="h-full">
+                            <img class="object-contain h-full w-full" :src="'https://flcrd-img-orig.s3.amazonaws.com/' + currentCard.rear" alt="front"/>
+                        </div>
+                        <div v-else class="h-full p-4 mx-4 md:mx-0 flex items-center justify-center">
+                            <p class="text-base text-center">{{ currentCard.rear }}</p>
+                        </div>
+                    </div>
+
                     <div class="hidden md:block w-1/4"></div>
                 </div>
-                <div class="flex justify-between">
+
+                <div class="flex justify-between mt-4">
                     <div class="hidden md:block w-1/4"></div>
                     <div class="flex-1">
                         <div class="block">
