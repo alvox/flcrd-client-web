@@ -31,9 +31,6 @@
             return {
                 s3: process.env.VUE_APP_S3_URL
             }
-        },
-        created() {
-            console.log(process.env.VUE_APP_S3_URL)
         }
     }
 </script>
