@@ -22,7 +22,7 @@
 
                     <div v-if="side === 'front'" class="flex-1 bg-background-ternary border-2 border-border-primary">
                         <div v-if="currentCard.front_type === 'IMAGE'" class="h-full">
-                            <img class="object-contain h-full w-full" :src="'https://flcrd-img-orig.s3.amazonaws.com/' + currentCard.front" alt="front"/>
+                            <img class="object-contain h-full w-full" :src="s3 + currentCard.front" alt="front"/>
                         </div>
                         <div v-else class=" h-full p-4 mx-4 md:mx-0 flex items-center justify-center">
                             <p class="text-base text-center">{{ currentCard.front }}</p>
@@ -31,7 +31,7 @@
 
                     <div v-else class="flex-1 bg-background-ternary border-2 border-green-400">
                         <div v-if="currentCard.rear_type === 'IMAGE'" class="h-full">
-                            <img class="object-contain h-full w-full" :src="'https://flcrd-img-orig.s3.amazonaws.com/' + currentCard.rear" alt="front"/>
+                            <img class="object-contain h-full w-full" :src="s3 + currentCard.rear" alt="front"/>
                         </div>
                         <div v-else class="h-full p-4 mx-4 md:mx-0 flex items-center justify-center">
                             <p class="text-base text-center">{{ currentCard.rear }}</p>
@@ -101,7 +101,8 @@
                 currentIdx: 0,
                 cardsToPractice: [],
                 correctAnswers: [],
-                wrongAnswers: []
+                wrongAnswers: [],
+                s3: process.env.VUE_APP_S3_URL
             }
         },
         methods: {

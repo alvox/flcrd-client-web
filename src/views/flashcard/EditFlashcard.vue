@@ -19,7 +19,7 @@
                                 <img :src="frontText" alt="front" class="h-full w-full object-contain object-center"/>
                             </div>
                             <div class="h-full" v-else-if="frontType === 'IMAGE'">
-                                <img :src="'https://flcrd-img-orig.s3.amazonaws.com/'+frontText" alt="front" class="h-full w-full object-contain object-center"/>
+                                <img :src="s3+frontText" alt="front" class="h-full w-full object-contain object-center"/>
                             </div>
                             <div v-else class="h-full">
                                 <textarea
@@ -48,7 +48,7 @@
                                 <img :src="rearText" alt="rear" class="h-full w-full object-contain object-center"/>
                             </div>
                             <div class="h-full" v-else-if="rearType === 'IMAGE'">
-                                <img :src="'https://flcrd-img-orig.s3.amazonaws.com/'+rearText" alt="rear" class="h-full w-full object-contain object-center"/>
+                                <img :src="s3+rearText" alt="rear" class="h-full w-full object-contain object-center"/>
                             </div>
                             <div v-else class="h-full">
                                 <textarea
@@ -113,7 +113,8 @@ export default {
             rearText: "",
             rearImage: null,
             rearType: "",
-            is_confirm_visible: false
+            is_confirm_visible: false,
+            s3: process.env.VUE_APP_S3_URL
         }
     },
     props: ['deck_id', 'card_id'],
