@@ -1,0 +1,46 @@
+name: Build image
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: npm install, build, and test
+        run: |
+          npm install
+          npm run build --if-present
+          npm test
+        env:
+          CI: true
+
+      - name: Build image
+        run: docker build -t docker.pkg.github.com/alvox/flcrd-client-web/flcrd-webapp:latest .
+      - name: Push image
+        env:
+          PKG_TOKEN: ${{ secrets.github_pkg_token }}
+        run: |
+          docker login docker.pkg.github.com --username alvox --password $PKG_TOKEN
+          docker push docker.pkg.github.com/alvox/flcrd-client-web/flcrd-webapp:latest
+
+      - name: Notify
+        uses: appleboy/telegram-action@master
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.telegram_bot_token }}
+          TELEGRAM_TO: ${{ secrets.telegram_id }}
+        with:
+          args: FLCRD WEBAPP - build finished with ${{ job.status }} status.
