@@ -32,7 +32,7 @@ jobs:
         run: docker build -t docker.pkg.github.com/alvox/flcrd-client-web/flcrd-webapp:latest .
       - name: Push image
         env:
-          PKG_TOKEN: ${{ secrets.github_pkg_token }}
+          PKG_TOKEN: ${{ secrets.pkg_token }}
         run: |
           docker login docker.pkg.github.com --username alvox --password $PKG_TOKEN
           docker push docker.pkg.github.com/alvox/flcrd-client-web/flcrd-webapp:latest
