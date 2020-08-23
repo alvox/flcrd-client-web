@@ -37,6 +37,14 @@ jobs:
           docker login docker.pkg.github.com --username alvox --password $PKG_TOKEN
           docker push docker.pkg.github.com/alvox/flcrd-client-web/flcrd-webapp:latest
 
+      - name: Deploy webapp
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.host }}
+          username: ${{ secrets.username }}
+          key: ${{ secrets.ssh_key }}
+          script: '. ~/.profile; sh deploy-webapp.sh'
+
       - name: Notify
         uses: appleboy/telegram-action@master
         env:
