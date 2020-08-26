@@ -2,6 +2,25 @@
 
 @tailwind components;
 
+body {
+    background: #F8E754;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+.divider {
+    height: 1px;
+}
+.bg-alpha {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
 .section-header {
     @apply text-base font-extrabold text-copy-primary m-4;
 }
@@ -33,7 +52,7 @@
 @tailwind utilities;
 
 .theme-light {
-    --bg-background-primary: #EDF2F7;
+    --bg-background-primary: #F8E754;
     --bg-background-secondary: white;
     --bg-background-ternary: #F7FAFC;
     --bg-background-hover: #EDF2F7;

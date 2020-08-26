@@ -1,20 +1,17 @@
 <template>
-    <div id="app" class="min-h-screen flex flex-col bg-background-primary content-wrapper" :class="theme">
+    <div id="app" class="min-h-screen max-w-5xl mx-auto flex bg-background-primary" :class="theme">
         <Navbar/>
-        <div class="flex-grow">
+        <div class="w-3/4">
             <router-view/>
         </div>
-        <Footer/>
     </div>
 </template>
 
 <script>
     import Navbar from "@/components/Navbar"
-    import Footer from "@/components/Footer"
     export default {
         components: {
-            Navbar,
-            Footer
+            Navbar
         },
         computed: {
             theme() {
