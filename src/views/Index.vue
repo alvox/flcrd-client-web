@@ -6,9 +6,7 @@
         </div>
         <div class="mt-8 mb-10 flex flex-col">
             <div v-for="deck in decks" :key="deck.id">
-                <!--                <router-link :to="{name: 'FlashcardsList', params: {deck_id: deck.id, visibility: 'public'}}">-->
                 <Deck :deck="deck"/>
-                <!--                </router-link>-->
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@
                     </router-link>
                     <div v-else></div>
                     <div v-if="deckBelongsToUser" class="ml-4">
-                        <router-link :to="{name: 'AddDeck', params: {deck_id: this.$route.params.deck_id}}">
+                        <router-link :to="{name: 'AddDeck', params: {deck_id: deckId}}">
                             <p class="cursor-pointer inline-block" title="Edit collection">
                                 <svg class="fill-current text-copy-secondary inline-block h-5 w-5 hover:text-copy-hover"
                                      xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +64,7 @@
             </div>
 <!--CREATE CARD FORM-->
             <div v-if="deckBelongsToUser" class="border-2 rounded-b-lg border-t-0 border-border-primary bg-background-secondary">
-                <NewCardForm v-if="!deckIsPacked" :deckId="$route.params.deck_id"></NewCardForm>
+                <NewCardForm v-if="!deckIsPacked" :deckId="deckId"></NewCardForm>
                 <div v-else class="font-thin text-center text-copy-secondary p-4">
                     <p>Nice, you got 100 cards here! It's a reasonable limit for a deck to keep it learnable.</p>
                     <p>To continue adding cards, <router-link :to="{name: 'AddDeck', params: {deck_id: 'new'}}"><span class="text-blue-500 underline">create a new deck.</span></router-link></p>
@@ -79,14 +79,19 @@
     import Spinner from "@/components/Spinner"
     import Card from "@/components/elements/Card"
     import NewCardForm from "@/components/elements/NewCardForm"
+    import {SettingsService} from "@/services/settings"
 
     export default {
         name: "FlashcardsList",
         components: {
             NewCardForm, BackButton, Spinner, Card
         },
+        props: ["pDeckId", "pIsPublic"],
         data() {
-            return {}
+            return {
+                deckId: this.pDeckId,
+                isPublic: this.pIsPublic
+            }
         },
         methods: {
             deleteCard(id) {
@@ -96,10 +101,10 @@
                 document.getElementById('front').focus()
             },
             goBack() {
-                if (this.isPrivate) {
-                    this.$router.push({name: 'Decks'});
-                } else {
+                if (this.isPublic) {
                     this.$router.push({name: 'Index'});
+                } else {
+                    this.$router.push({name: 'Decks'});
                 }
             }
         },
@@ -108,7 +113,7 @@
                 return this.$store.getters.isLoading
             },
             deck() {
-                return this.$store.getters.deck(this.$route.params.deck_id)
+                return this.$store.getters.deck(this.deckId)
             },
             sortedCards() {
                 let c = this.deck.cards;
@@ -118,9 +123,6 @@
             },
             deckBelongsToUser() {
                 return this.$store.getters.userId === this.deck.created_by.id
-            },
-            isPrivate() {
-                return this.$route.params.visibility === 'private'
             },
             deckIsPacked() {
                 return this.cardsLeft <= 0
@@ -135,11 +137,12 @@
         created() {
             if (!this.deck) {
                 console.log('page been refreshed');
-                this.$store.dispatch('REFRESH_DATA', {
-                    is_private: this.isPrivate,
-                    deck_id: this.$route.params.deck_id
-                });
+                let deckInfo = SettingsService.getDeckInfo()
+                this.deckId = deckInfo.deckId
+                this.isPublic = deckInfo.isPublic
+                this.$store.dispatch('REFRESH_DATA');
             } else {
+                SettingsService.saveDeckInfo(this.deckId, this.isPublic)
                 if (this.deck.cards == null) {
                     if (this.deckBelongsToUser) {
                         this.$store.dispatch('GET_CARDS_FOR_DECK', {

@@ -1,6 +1,7 @@
 import Vue from "vue"
 import ApiService from "../services/api"
 import router from "../router"
+import {SettingsService} from "@/services/settings";
 
 export const DeckState = {
     state: {
@@ -220,30 +221,38 @@ export const DeckState = {
                     router.back()
             })
         },
-        REFRESH_DATA: (context, payload) => {
-            if (payload.is_private) {
-                ApiService.get("decks")
+        REFRESH_DATA: (context) => {
+            context.commit('loading', true, {root: true})
+            let deckInfo = SettingsService.getDeckInfo()
+            if (deckInfo.isPublic) {
+                ApiService.get("public/decks")
                     .then(result => {
-                        context.commit('saveDecks', result.data)
-                        ApiService.get("decks/" + payload.deck_id + "/flashcards")
+                        context.commit('savePublicDecks', {decks: result.data, total: 0})
+                        ApiService.get("public/decks/" + deckInfo.deckId + "/flashcards")
                             .then(result => {
-                                context.commit('saveFlashcards', {
-                                    deck_id: payload.deck_id,
+                                context.commit('saveFlashcardsForPublicDeck', {
+                                    deck_id: deckInfo.deckId,
                                     flashcards: result.data
                                 })
                             })
                     })
+                    .finally(() => {
+                        context.commit('loading', false, {root: true})
+                    })
             } else {
-                ApiService.get("public/decks")
+                ApiService.get("decks")
                     .then(result => {
-                        context.commit('savePublicDecks', result.data)
-                        ApiService.get("public/decks/" + payload.deck_id + "/flashcards")
+                        context.commit('saveDecks', result.data)
+                        ApiService.get("decks/" + deckInfo.deckId + "/flashcards")
                             .then(result => {
-                                context.commit('saveFlashcardsForPublicDeck', {
-                                    deck_id: payload.deck_id,
+                                context.commit('saveFlashcards', {
+                                    deck_id: deckInfo.deckId,
                                     flashcards: result.data
                                 })
                             })
+                    })
+                    .finally(() => {
+                        context.commit('loading', false, {root: true})
                     })
             }
         }

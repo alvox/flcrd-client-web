@@ -69,9 +69,10 @@ const router = new Router({
             component: AddDeck
         },
         {
-            path: '/:deck_id/:visibility/flashcards/list',
+            path: '/cards',
             name: 'FlashcardsList',
             component: FlashcardsList,
+            props: true,
             meta: {
                 public: true
             }
