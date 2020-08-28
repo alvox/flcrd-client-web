@@ -1,5 +1,5 @@
 <template>
-    <nav class="w-1/4 pt-8 flex flex-col max-h-screen sidebar">
+    <nav class="w-1/4 pt-4 flex flex-col max-h-screen sidebar">
 
         <!--logo-->
         <router-link v-if="loggedIn" :to="{name: 'Decks'}">

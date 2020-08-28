@@ -94,9 +94,6 @@
             }
         },
         methods: {
-            deleteCard(id) {
-                this.$store.dispatch('DELETE_CARD', {deck_id: this.deck.id, card_id: id})
-            },
             focusOnTextarea() {
                 document.getElementById('front').focus()
             },
@@ -117,6 +114,9 @@
             },
             sortedCards() {
                 let c = this.deck.cards;
+                if (c == null || c.length === 0) {
+                    return []
+                }
                 return c.sort((f, s) => {
                     return s.created - f.created
                 })

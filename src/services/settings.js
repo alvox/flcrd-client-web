@@ -49,9 +49,11 @@ const SettingsService = {
         localStorage.setItem(IS_DECK_PUBLIC, isPublic)
     },
     getDeckInfo() {
+        let publicSetting = localStorage.getItem(IS_DECK_PUBLIC)
+        let isPublic = (publicSetting === "true")
         return {
             deckId: localStorage.getItem(DECK_ID),
-            isPublic: localStorage.getItem(IS_DECK_PUBLIC)
+            isPublic: isPublic
         }
     }
 };
