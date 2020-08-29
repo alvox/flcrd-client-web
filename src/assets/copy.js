@@ -44,7 +44,7 @@ export const messages = {
         edit_flashcard: 'Edit Flashcard',
         front_side: 'Front side',
         rear_side: 'Rear side',
-        add_new_card: 'add new card',
+        add_new_card: 'Add new card',
         cards_copy_p1: 'Cool, now add some flashcards!',
         cards_copy_p2: 'Use form below',
         practice: 'Practice!',
