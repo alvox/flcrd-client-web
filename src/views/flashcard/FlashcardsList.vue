@@ -1,11 +1,11 @@
 <template>
     <div>
         <Spinner v-if="isLoading"></Spinner>
-        <div v-else class="mt-6 ml-12">
-            <p class="text-3xl ml-10">{{ deck.name }}</p>
+        <div v-else class="mt-6">
+            <p class="text-3xl">{{ deck.name }}</p>
 
             <!--cards-->
-            <div v-if="sortedCards.length > 0" class="p-10 flex flex-col">
+            <div v-if="sortedCards.length > 0" class="flex flex-col">
                 <div v-for="card in sortedCards" :key="card.id">
                     <router-link :to="{name: 'EditFlashcard', params: {deckId: deck.id, cardId: card.id}}">
                         <Card :card=card></Card>
@@ -23,7 +23,7 @@
 
             <!--new card form-->
             <div v-if="deckBelongsToUser" class="mb-10">
-                <NewCardForm v-if="!deckIsPacked" :deckId="deckId" class="px-10"></NewCardForm>
+                <NewCardForm v-if="!deckIsPacked" :deckId="deckId" class=""></NewCardForm>
                 <div v-else class="font-thin text-center text-copy-secondary p-4">
                     <p>Nice, you got 100 cards here! It's a reasonable limit for a deck to keep it learnable.</p>
                     <p>To continue adding cards,

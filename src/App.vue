@@ -1,7 +1,7 @@
 <template>
     <div id="app" class="min-h-screen max-w-5xl mx-auto flex bg-background-primary" :class="theme">
         <Navbar/>
-        <div class="w-3/4">
+        <div class="w-3/4 pl-32">
             <router-view/>
         </div>
     </div>
