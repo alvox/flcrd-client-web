@@ -124,7 +124,7 @@
         },
         computed: {
             editMode() {
-                return this.$route.params.deck_id !== "new"
+                return this.$route.path.endsWith("edit-deck")
             },
             deck() {
                 return this.$store.getters.deck(this.$store.getters.currentDeckId)

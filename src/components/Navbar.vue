@@ -27,6 +27,10 @@
                 <NavButton title="Add card" @clicked="focusOnTextarea" class="mb-4"/>
                 <NavButton title="Edit deck" @clicked="$router.push({name: 'EditDeck'})"/>
             </div>
+            <div v-if="loggedIn && $route.path.endsWith('decks')">
+                <NavButton title="Create new deck" @clicked="$router.push({name: 'AddDeck'})"/>
+            </div>
+
         </div>
 
         <div class="flex-grow"></div>
