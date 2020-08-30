@@ -20,6 +20,15 @@
             <NavButton title="Register" class="mt-4" @clicked="$router.push({name: 'Registration'})"/>
         </div>
 
+        <!--conditional navigation-->
+        <div class="mt-6 px-4">
+            <NavButton v-if="shouldShowPracticeButton" title="Practice" @clicked="$router.push({name: 'PracticeMode'})" class="mb-4"/>
+            <div v-if="loggedIn && $route.path.endsWith('cards')">
+                <NavButton title="Add card" @clicked="focusOnTextarea" class="mb-4"/>
+                <NavButton title="Edit deck" @clicked="$router.push({name: 'EditDeck'})"/>
+            </div>
+        </div>
+
         <div class="flex-grow"></div>
 
         <!--profile/logout buttons-->
@@ -55,6 +64,20 @@ export default {
         },
         theme() {
             return this.$store.getters.theme
+        },
+        shouldShowPracticeButton() {
+            if (!this.$route.path.endsWith('cards')) {
+                return false
+            }
+            let currentDeckId = this.$store.getters.currentDeckId
+            if (currentDeckId == null) {
+                return false
+            }
+            let deck = this.$store.getters.deck(currentDeckId)
+            if (deck == null) {
+                return false
+            }
+            return deck.cards != null && deck.cards.length > 0
         }
     },
     methods: {
@@ -64,7 +87,10 @@ export default {
         logoImg() {
             return this.theme === 'theme-light'
                 ? require('../assets/img/logo-light.svg')
-                : require('../assets/img/logo-dark.svg');
+                : require('../assets/img/logo-dark.svg')
+        },
+        focusOnTextarea() {
+            document.getElementById('front').focus()
         }
     }
 }
