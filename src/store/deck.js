@@ -5,11 +5,15 @@ import {SettingsService} from "@/services/settings";
 
 export const DeckState = {
     state: {
+        currentDeckId: null,
         decks: [],
         publicDecks: [],
         publicTotal: 0
     },
     getters: {
+        currentDeckId: state => {
+            return state.currentDeckId
+        },
         decks: state => {
             return state.decks
         },
@@ -28,6 +32,10 @@ export const DeckState = {
         }
     },
     mutations: {
+        setCurrentDeckId(state, payload) {
+            state.currentDeckId = payload.deckId
+            SettingsService.saveDeckInfo(payload.deckId, payload.isPublic)
+        },
         saveDecks(state, decks) {
             state.decks = decks
         },
@@ -238,6 +246,7 @@ export const DeckState = {
                     })
                     .finally(() => {
                         context.commit('loading', false, {root: true})
+                        context.commit('setCurrentDeckId', {deckId: deckInfo.deckId, isPublic: deckInfo.isPublic})
                     })
             } else {
                 ApiService.get("decks")
@@ -253,6 +262,7 @@ export const DeckState = {
                     })
                     .finally(() => {
                         context.commit('loading', false, {root: true})
+                        context.commit('setCurrentDeckId', {deckId: deckInfo.deckId, isPublic: deckInfo.isPublic})
                     })
             }
         }

@@ -90,12 +90,14 @@
 
 <script>
     import BackButton from "@/components/BackButton"
+    import {SettingsService} from "@/services/settings";
 
     export default {
         name: "PracticeMode",
         components: {BackButton},
         data() {
             return {
+                deckId: "",
                 isDone: false,
                 side: "front",
                 currentIdx: 0,
@@ -152,7 +154,7 @@
         },
         computed: {
             deck() {
-                return this.$store.getters.deck(this.$route.params.deck_id)
+                return this.$store.getters.deck(this.deckId)
             },
             currentCard() {
                 return this.cardsToPractice[this.currentIdx]
@@ -162,9 +164,8 @@
             },
         },
         created() {
+            this.deckId = SettingsService.getDeckInfo().deckId
             this.cardsToPractice = this.shuffleCards(this.deck.cards)
         }
     }
 </script>
-
-<style></style>

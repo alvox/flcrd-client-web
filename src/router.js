@@ -64,8 +64,13 @@ const router = new Router({
             component: Decks
         },
         {
-            path: '/add-deck/:deck_id',
+            path: '/add-deck',
             name: 'AddDeck',
+            component: AddDeck
+        },
+        {
+            path: '/edit-deck/',
+            name: 'EditDeck',
             component: AddDeck
         },
         {
@@ -78,13 +83,13 @@ const router = new Router({
             }
         },
         {
-            path: '/:deck_id/edit-flashcard',
+            path: '/edit-flashcard',
             name: 'EditFlashcard',
             component: EditFlashcard,
             props: true
         },
         {
-            path: '/:deck_id/practice',
+            path: '/practice',
             name: 'PracticeMode',
             component: PracticeMode,
             meta: {

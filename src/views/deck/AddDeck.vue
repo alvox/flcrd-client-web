@@ -127,7 +127,7 @@
                 return this.$route.params.deck_id !== "new"
             },
             deck() {
-                return this.$store.getters.deck(this.$route.params.deck_id)
+                return this.$store.getters.deck(this.$store.getters.currentDeckId)
             },
             errorMessage() {
                 return this.$store.getters.errorMessage

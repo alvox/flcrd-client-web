@@ -46,7 +46,7 @@ body {
 }
 
 .error-msg {
-    @apply text-sm text-red-400 ml-1;
+    @apply text-sm text-red-400;
 }
 
 @tailwind utilities;

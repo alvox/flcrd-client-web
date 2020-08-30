@@ -117,7 +117,7 @@ export default {
             s3: process.env.VUE_APP_S3_URL
         }
     },
-    props: ['deck_id', 'card_id'],
+    props: ['deckId', 'cardId'],
     methods: {
         imageSelected(event, side) {
             if (event.target.files.length === 0) {
@@ -158,8 +158,8 @@ export default {
                 return
             }
             this.$store.dispatch('UPDATE_CARD', {
-                id: this.card_id,
-                deck_id: this.deck_id,
+                id: this.cardId,
+                deck_id: this.deckId,
                 front: this.frontText,
                 frontImage: this.frontImage,
                 rear: this.rearText,
@@ -168,8 +168,8 @@ export default {
         },
         deleteCard() {
             this.$store.dispatch('DELETE_CARD', {
-                deck_id: this.deck_id,
-                card_id: this.card_id
+                deck_id: this.deckId,
+                card_id: this.cardId
             })
         },
         goBack() {
@@ -184,12 +184,12 @@ export default {
     },
     computed: {
         card() {
-            let deck = this.$store.getters.deck(this.deck_id);
-            return deck.cards.filter(c => c.id === this.card_id)[0]
+            let deck = this.$store.getters.deck(this.deckId);
+            return deck.cards.filter(c => c.id === this.cardId)[0]
         }
     },
     created() {
-        let deck = this.$store.getters.deck(this.deck_id);
+        let deck = this.$store.getters.deck(this.deckId);
         if (!deck) {
             this.$router.back();
         } else {
