@@ -18,6 +18,7 @@ export const store = new Vuex.Store({
         loading: false,
         errorCode: '',
         errorMessage: '',
+        loginModalVisible: false
     },
     getters: {
         theme: state => {
@@ -29,9 +30,12 @@ export const store = new Vuex.Store({
         isLoading: state => {
             return state.loading
         },
-        errorMessage: (state) => {
+        errorMessage: state => {
             return state.errorMessage
         },
+        isLoginModalVisible: state => {
+            return state.loginModalVisible
+        }
     },
     mutations: {
         switchTheme(state, t) {
@@ -50,6 +54,12 @@ export const store = new Vuex.Store({
         apiError(state, payload) {
             state.errorCode = payload.errorCode
             state.errorMessage = payload.errorMessage
+        },
+        showLoginModal(state) {
+            state.loginModalVisible = true
+        },
+        hideLoginModal(state) {
+            state.loginModalVisible = false
         }
     },
     actions: {

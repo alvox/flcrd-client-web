@@ -16,7 +16,7 @@
 
         <!--login/register buttons-->
         <div v-if="!loggedIn" class="mt-6 px-4">
-            <NavButton title="Login" @clicked="$router.push({name: 'Login'})"/>
+            <NavButton title="Login" @clicked="$store.commit('showLoginModal')"/>
             <NavButton title="Register" class="mt-4" @clicked="$router.push({name: 'Registration'})"/>
         </div>
 
@@ -42,6 +42,8 @@
         </div>
 
         <Footer/>
+
+        <LoginModal v-show="loginModalVisible"/>
     </nav>
 </template>
 
@@ -50,13 +52,14 @@ import Footer from "@/components/Footer"
 import NavButton from "@/components/NavButton"
 import LangSelect from "@/components/LangSelect"
 import ThemeSwitch from "@/components/ThemeSwitch"
+import LoginModal from "@/components/LoginModal"
 
 export default {
     name: "Navbar",
-    components: {Footer, NavButton, LangSelect, ThemeSwitch},
+    components: {Footer, NavButton, LangSelect, ThemeSwitch, LoginModal},
     data() {
         return {
-            open: false,
+            open: false
         }
     },
     computed: {
@@ -68,6 +71,9 @@ export default {
         },
         theme() {
             return this.$store.getters.theme
+        },
+        loginModalVisible() {
+            return this.$store.getters.isLoginModalVisible
         },
         shouldShowPracticeButton() {
             if (!this.$route.path.endsWith('cards')) {

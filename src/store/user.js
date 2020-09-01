@@ -65,6 +65,7 @@ export const UserState = {
                 .then(result => {
                     context.commit('authSuccess', result)
                     context.commit('clearError', null, {root: true})
+                    context.commit('hideLoginModal', {root: true})
                     router.push({name: 'Decks'})
                 })
                 .catch(err => {
