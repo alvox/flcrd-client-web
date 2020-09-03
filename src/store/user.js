@@ -1,7 +1,7 @@
-import {UserService} from "../services/user"
+import {UserService} from "@/services/user"
 import router from "../router"
 import ApiService from "../services/api"
-import {TokenService} from "../services/token"
+import {TokenService} from "@/services/token"
 
 export const UserState = {
     state: {
@@ -48,6 +48,7 @@ export const UserState = {
                 .then(result => {
                     context.commit('authSuccess', result)
                     context.commit('clearError', null, {root: true})
+                    context.commit('hideRegistrationModal', {root: true})
                     router.push({name: 'VerifyEmail', params: {code: 'email'}})
                 })
                 .catch(err => {

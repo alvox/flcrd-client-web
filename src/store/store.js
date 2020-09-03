@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import {SettingsService} from '../services/settings'
-import {i18n} from "../services/i18n"
+import Vue from "vue"
+import Vuex from "vuex"
+import {SettingsService} from "@/services/settings"
+import {i18n} from "@/services/i18n"
 import {UserState} from "./user"
 import {DeckState} from "./deck"
 
@@ -18,7 +18,8 @@ export const store = new Vuex.Store({
         loading: false,
         errorCode: '',
         errorMessage: '',
-        loginModalVisible: false
+        loginModalVisible: false,
+        registrationModalVisible: false
     },
     getters: {
         theme: state => {
@@ -35,6 +36,9 @@ export const store = new Vuex.Store({
         },
         isLoginModalVisible: state => {
             return state.loginModalVisible
+        },
+        isRegistrationModalVisible: state => {
+            return state.registrationModalVisible
         }
     },
     mutations: {
@@ -60,16 +64,22 @@ export const store = new Vuex.Store({
         },
         hideLoginModal(state) {
             state.loginModalVisible = false
+        },
+        showRegistrationModal(state) {
+            state.registrationModalVisible = true
+        },
+        hideRegistrationModal(state) {
+            state.registrationModalVisible = false
         }
     },
     actions: {
         SWITCH_THEME: (context) => {
-            context.commit('switchTheme', SettingsService.switchTheme())
+            context.commit("switchTheme", SettingsService.switchTheme())
         },
         SELECT_LANG: (context, payload) => {
             i18n.locale = payload.lang
             SettingsService.setLang(payload.lang)
-            context.commit('setLang', payload.lang)
+            context.commit("setLang", payload.lang)
         }
     }
 })

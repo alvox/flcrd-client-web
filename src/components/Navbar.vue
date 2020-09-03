@@ -17,7 +17,7 @@
         <!--login/register buttons-->
         <div v-if="!loggedIn" class="mt-6 px-4">
             <NavButton title="Login" @clicked="$store.commit('showLoginModal')"/>
-            <NavButton title="Register" class="mt-4" @clicked="$router.push({name: 'Registration'})"/>
+            <NavButton title="Register" class="mt-4" @clicked="$store.commit('showRegistrationModal')"/>
         </div>
 
         <!--conditional navigation-->
@@ -44,6 +44,7 @@
         <Footer/>
 
         <LoginModal v-show="loginModalVisible"/>
+        <RegistrationModal v-show="registrationModalVisible"/>
     </nav>
 </template>
 
@@ -53,10 +54,11 @@ import NavButton from "@/components/NavButton"
 import LangSelect from "@/components/LangSelect"
 import ThemeSwitch from "@/components/ThemeSwitch"
 import LoginModal from "@/components/LoginModal"
+import RegistrationModal from "@/components/RegistrationModal"
 
 export default {
     name: "Navbar",
-    components: {Footer, NavButton, LangSelect, ThemeSwitch, LoginModal},
+    components: {Footer, NavButton, LangSelect, ThemeSwitch, LoginModal, RegistrationModal},
     data() {
         return {
             open: false
@@ -74,6 +76,9 @@ export default {
         },
         loginModalVisible() {
             return this.$store.getters.isLoginModalVisible
+        },
+        registrationModalVisible() {
+            return this.$store.getters.isRegistrationModalVisible
         },
         shouldShowPracticeButton() {
             if (!this.$route.path.endsWith('cards')) {
