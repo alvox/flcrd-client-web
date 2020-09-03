@@ -2,8 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Index from './views/Index'
-import Registration from "./views/user/Registration"
-import Login from "./views/user/Login"
 import User from "./views/user/User"
 import Terms from "./views/Terms"
 import VerifyEmail from "./views/user/VerifyEmail"
@@ -27,25 +25,6 @@ const router = new Router({
             component: Index,
             meta: {
                 public: true
-            }
-        },
-        {
-            path: '/registration',
-            name: 'Registration',
-            component: Registration,
-            props: true,
-            meta: {
-                public: true,
-                onlyWhenLoggedOut: true
-            }
-        },
-        {
-            path: '/login',
-            name: 'Login',
-            component: Login,
-            meta: {
-                public: true,
-                onlyWhenLoggedOut: true
             }
         },
         {
