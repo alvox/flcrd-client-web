@@ -1,6 +1,6 @@
 <template>
     <transition name="modal-fade">
-        <div class="fixed inset-0 flex justify-center items-center bg-alpha"
+        <div class="fixed inset-0 flex justify-center items-center bg-alpha z-50"
              role="dialog"
              aria-labelledby="modalTitle"
              aria-describedby="modalDescription">

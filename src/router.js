@@ -6,7 +6,6 @@ import User from "./views/user/User"
 import Terms from "./views/Terms"
 import VerifyEmail from "./views/user/VerifyEmail"
 import Decks from "./views/deck/Decks"
-import AddDeck from "./views/deck/AddDeck"
 import FlashcardsList from "./views/flashcard/FlashcardsList"
 import EditFlashcard from "./views/flashcard/EditFlashcard"
 import PracticeMode from "./views/PracticeMode"
@@ -41,16 +40,6 @@ const router = new Router({
             path: '/decks',
             name: 'Decks',
             component: Decks
-        },
-        {
-            path: '/new-deck',
-            name: 'AddDeck',
-            component: AddDeck
-        },
-        {
-            path: '/edit-deck/',
-            name: 'EditDeck',
-            component: AddDeck
         },
         {
             path: '/cards',

@@ -19,7 +19,9 @@ export const store = new Vuex.Store({
         errorCode: '',
         errorMessage: '',
         loginModalVisible: false,
-        registrationModalVisible: false
+        registrationModalVisible: false,
+        deckModalVisible: false,
+        deckEditModalVisible: false
     },
     getters: {
         theme: state => {
@@ -39,6 +41,12 @@ export const store = new Vuex.Store({
         },
         isRegistrationModalVisible: state => {
             return state.registrationModalVisible
+        },
+        isDeckModalVisible: state => {
+            return state.deckModalVisible
+        },
+        isDeckEditModalVisible: state => {
+            return state.deckEditModalVisible
         }
     },
     mutations: {
@@ -70,6 +78,18 @@ export const store = new Vuex.Store({
         },
         hideRegistrationModal(state) {
             state.registrationModalVisible = false
+        },
+        showDeckModal(state) {
+            state.deckModalVisible = true
+        },
+        hideDeckModal(state) {
+            state.deckModalVisible = false
+        },
+        showDeckEditModal(state) {
+            state.deckEditModalVisible = true
+        },
+        hideDeckEditModal(state) {
+            state.deckEditModalVisible = false
         }
     },
     actions: {

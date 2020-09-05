@@ -1,6 +1,6 @@
 <template>
     <div class="fl-button">
-        <button class="w-full h-10 px-4 bg-white text-xl appearance-none outline-none" @click="$emit('clicked')">
+        <button class="w-full h-10 px-4 bg-white text-xl appearance-none outline-none focus:outline-none" @click="$emit('clicked')">
             {{ title }}
         </button>
         <div class="fl-button-shadow w-full h-10"></div>

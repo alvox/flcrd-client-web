@@ -17,16 +17,18 @@
                 <p class="mt-5">{{ $t('decks_empty_p2') }}</p>
             </div>
         </div>
+        <DeckModal v-show="deckModalVisible" mode="new"></DeckModal>
     </div>
 </template>
 
 <script>
 import Spinner from "@/components/Spinner"
 import Deck from "@/components/Deck"
+import DeckModal from "@/components/DeckModal"
 
 export default {
     name: "Decks",
-    components: {Spinner, Deck},
+    components: {Spinner, Deck, DeckModal},
     computed: {
         decks() {
             return this.$store.getters.decks
@@ -39,6 +41,9 @@ export default {
         },
         isLoading() {
             return this.$store.getters.isLoading
+        },
+        deckModalVisible() {
+            return this.$store.getters.isDeckModalVisible
         }
     },
     created() {

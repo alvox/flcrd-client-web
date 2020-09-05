@@ -131,15 +131,15 @@ export const DeckState = {
         CREATE_DECK: (context, payload) => {
             ApiService.post("decks", {
                     name: payload.name,
-                    description: payload.description,
-                    public: payload.is_public,
+                    description: payload.description
                 })
                 .then(result => {
                     let deck = result.data;
                     context.commit('saveDeck', {deck: deck})
+                    context.commit('setCurrentDeckId', {deckId: deck.id, isPublic: deck.public})
                     context.commit('clearError', null, {root: true})
-                    let visibility = deck.public ? 'public' : 'private'
-                    router.push({name: 'FlashcardsList', params: {deck_id: deck.id, visibility: visibility}})
+                    context.commit('hideDeckModal', {root: true})
+                    router.push({name: 'FlashcardsList', params: {deck_id: deck.id, visibility: "private"}})
                 })
                 .catch(err => {
                     context.commit('apiError', {
@@ -159,7 +159,7 @@ export const DeckState = {
                     let deck = result.data
                     context.commit('updateDeck', {deck: deck})
                     context.commit('clearError', null, {root: true})
-                    router.back()
+                    context.commit('hideDeckEditModal', {root: true})
                 })
                 .catch(err => {
                     context.commit('apiError', {
@@ -172,6 +172,8 @@ export const DeckState = {
             ApiService.delete("decks/" + payload.deck_id)
                 .then(result => {
                     context.commit('deleteDeck', {deck_id: payload.deck_id})
+                    context.commit('clearError', null, {root: true})
+                    context.commit('hideDeckEditModal', {root: true})
                     router.push({name: 'Decks'})
                 })
         },

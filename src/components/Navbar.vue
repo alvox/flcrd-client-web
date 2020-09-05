@@ -25,10 +25,10 @@
             <NavButton v-if="shouldShowPracticeButton" title="Practice" @clicked="$router.push({name: 'PracticeMode'})" class="mb-4"/>
             <div v-if="loggedIn && $route.path.endsWith('cards')">
                 <NavButton title="Add card" @clicked="focusOnTextarea" class="mb-4"/>
-                <NavButton title="Edit deck" @clicked="$router.push({name: 'EditDeck'})"/>
+                <NavButton title="Edit deck" @clicked="$store.commit('showDeckEditModal')"/>
             </div>
             <div v-if="loggedIn && $route.path.endsWith('decks')">
-                <NavButton title="Create new deck" @clicked="$router.push({name: 'AddDeck'})"/>
+                <NavButton title="Create new deck" @clicked="$store.commit('showDeckModal')"/>
             </div>
 
         </div>

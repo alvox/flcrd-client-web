@@ -33,6 +33,7 @@
                 </div>
             </div>
         </div>
+        <DeckModal v-show="deckEditModalVisible" mode="edit"></DeckModal>
     </div>
 </template>
 
@@ -40,12 +41,13 @@
 import Spinner from "@/components/Spinner"
 import Card from "@/components/elements/Card"
 import NewCardForm from "@/components/elements/NewCardForm"
+import DeckModal from "@/components/DeckModal"
 import {SettingsService} from "@/services/settings"
 
 export default {
     name: "FlashcardsList",
     components: {
-        NewCardForm, Spinner, Card
+        NewCardForm, Spinner, Card, DeckModal
     },
     props: ["pDeckId", "pIsPublic"],
     data() {
@@ -86,6 +88,9 @@ export default {
                 return 100
             }
             return 100 - this.deck.cards.length
+        },
+        deckEditModalVisible() {
+            return this.$store.getters.isDeckEditModalVisible
         }
     },
     created() {
