@@ -68,7 +68,6 @@ import NavButton from "@/components/NavButton";
 export default {
     name: "NewCardForm",
     components: {NavButton},
-    props: ['deckId'],
     data() {
         return {
             frontText: "",
@@ -129,6 +128,9 @@ export default {
         }
     },
     computed: {
+        deckId() {
+            return this.$store.getters.currentDeckId
+        },
         deck() {
             return this.$store.getters.deck(this.deckId)
         },

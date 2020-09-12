@@ -1,5 +1,5 @@
 <template>
-    <Modal>
+    <Modal modalWidth="max-w-sm">
         <template v-slot:header>
             <p v-if="mode === 'edit'">
                 {{$t('edit_deck')}}

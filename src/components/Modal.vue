@@ -4,7 +4,7 @@
              role="dialog"
              aria-labelledby="modalTitle"
              aria-describedby="modalDescription">
-            <div class="flex-1 bg-white shadow-md mx-8 p-6 max-w-sm">
+            <div class="flex-1 bg-white shadow-md mx-8 p-6" :class="modalWidth">
                 <header class="text-center font-thin text-2xl mt-4" id="modalTitle">
                     <slot name="header">title</slot>
                 </header>
@@ -23,7 +23,8 @@
 
 <script>
 export default {
-    name: "Modal"
+    name: "Modal",
+    props: ["modalWidth"]
 }
 </script>
 

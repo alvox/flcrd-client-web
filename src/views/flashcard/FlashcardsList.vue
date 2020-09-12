@@ -31,8 +31,8 @@
                 </div>
             </div>
         </div>
-        <DeckModal v-show="deckEditModalVisible" mode="edit"></DeckModal>
-        <CardModal v-show="cardModalVisible"></CardModal>
+        <DeckModal v-if="deckEditModalVisible" mode="edit"></DeckModal>
+        <CardModal v-if="cardModalVisible"></CardModal>
     </div>
 </template>
 

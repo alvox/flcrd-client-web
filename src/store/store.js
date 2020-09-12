@@ -22,7 +22,8 @@ export const store = new Vuex.Store({
         registrationModalVisible: false,
         deckModalVisible: false,
         deckEditModalVisible: false,
-        cardModalVisible: false
+        cardModalVisible: false,
+        currentCard: null,
     },
     getters: {
         theme: state => {
@@ -51,6 +52,9 @@ export const store = new Vuex.Store({
         },
         isCardModalVisible: state => {
             return state.cardModalVisible
+        },
+        currentCard: state => {
+            return state.currentCard
         }
     },
     mutations: {
@@ -95,7 +99,8 @@ export const store = new Vuex.Store({
         hideDeckEditModal(state) {
             state.deckEditModalVisible = false
         },
-        showCardModal(state) {
+        showCardModal(state, card) {
+            state.currentCard = card
             state.cardModalVisible = true
         },
         hideCardModal(state) {

@@ -221,7 +221,7 @@ export const DeckState = {
             ApiService.put("decks/" + payload.deck_id + "/flashcards/" + payload.id, fd)
                 .then(result => {
                     context.commit('updateCard', result.data);
-                    router.back()
+                    context.commit('hideCardModal')
                 })
         },
         DELETE_CARD: (context, payload) => {

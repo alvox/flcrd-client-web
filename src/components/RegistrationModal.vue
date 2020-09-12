@@ -1,5 +1,5 @@
 <template>
-    <Modal>
+    <Modal modalWidth="max-w-sm">
         <template v-slot:header>REGISTRATION</template>
         <template v-slot:body>
 

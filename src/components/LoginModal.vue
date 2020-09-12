@@ -1,5 +1,5 @@
 <template>
-    <Modal>
+    <Modal modalWidth="max-w-sm">
         <template v-slot:header>LOGIN</template>
         <template v-slot:body>
             <div class="mt-6 block">
