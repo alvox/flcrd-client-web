@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-40 bg-white shadow-md flex mt-4">
+    <div class="w-full h-40 bg-white shadow-md flex mt-4" @click="$store.commit('showCardModal')">
         <div class="flex-1">
             <div v-if="card.front_type === 'IMAGE'" class="h-full">
                 <img class="object-contain h-full w-full" :src="s3+card.front" alt="rear"/>

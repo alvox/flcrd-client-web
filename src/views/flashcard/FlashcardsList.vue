@@ -7,9 +7,7 @@
             <!--cards-->
             <div v-if="sortedCards.length > 0" class="flex flex-col">
                 <div v-for="card in sortedCards" :key="card.id">
-                    <router-link :to="{name: 'EditFlashcard', params: {deckId: deck.id, cardId: card.id}}">
-                        <Card :card=card></Card>
-                    </router-link>
+                    <Card :card=card></Card>
                 </div>
             </div>
 
@@ -34,6 +32,7 @@
             </div>
         </div>
         <DeckModal v-show="deckEditModalVisible" mode="edit"></DeckModal>
+        <CardModal v-show="cardModalVisible"></CardModal>
     </div>
 </template>
 
@@ -42,12 +41,13 @@ import Spinner from "@/components/Spinner"
 import Card from "@/components/elements/Card"
 import NewCardForm from "@/components/elements/NewCardForm"
 import DeckModal from "@/components/DeckModal"
+import CardModal from "@/components/CardModal"
 import {SettingsService} from "@/services/settings"
 
 export default {
     name: "FlashcardsList",
     components: {
-        NewCardForm, Spinner, Card, DeckModal
+        CardModal, NewCardForm, Spinner, Card, DeckModal
     },
     props: ["pDeckId", "pIsPublic"],
     data() {
@@ -91,6 +91,9 @@ export default {
         },
         deckEditModalVisible() {
             return this.$store.getters.isDeckEditModalVisible
+        },
+        cardModalVisible() {
+            return this.$store.getters.isCardModalVisible
         }
     },
     created() {
