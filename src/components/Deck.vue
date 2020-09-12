@@ -2,7 +2,7 @@
     <div class="mb-48 relative mt-10">
         <router-link :to="{name: 'FlashcardsList', params: {pDeckId: deck.id, pIsPublic: deck.public}}">
             <div>
-                <div class="absolute z-20 w-full h-40 p-4 bg-white border border-yellow-800">
+                <div class="absolute z-20 w-full h-40 p-4 bg-white border-2 border-gray-500">
                     <p class="font-bold text-2xl">{{ deck.name }}</p>
                     <p>{{ deck.description }}</p>
 
@@ -14,8 +14,8 @@
                         </p>
                     </div>
                 </div>
-                <div class="absolute z-10 w-full h-40 bg-gray-200 border border-yellow-800 ml-2 mt-2"></div>
-                <div class="absolute z-0 w-full h-40 bg-gray-300 border border-yellow-800 ml-4 mt-4"></div>
+                <div class="absolute z-10 w-full h-40 bg-gray-200 border-2 border-gray-500 ml-2 mt-2"></div>
+                <div class="absolute z-0 w-full h-40 bg-gray-300 border-2 border-gray-500 ml-4 mt-4"></div>
             </div>
         </router-link>
     </div>
