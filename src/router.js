@@ -7,7 +7,6 @@ import Terms from "./views/Terms"
 import VerifyEmail from "./views/user/VerifyEmail"
 import Decks from "./views/deck/Decks"
 import FlashcardsList from "./views/flashcard/FlashcardsList"
-import EditFlashcard from "./views/flashcard/EditFlashcard"
 import PracticeMode from "./views/PracticeMode"
 
 import {TokenService} from "./services/token"
@@ -49,12 +48,6 @@ const router = new Router({
             meta: {
                 public: true
             }
-        },
-        {
-            path: '/edit-flashcard',
-            name: 'EditFlashcard',
-            component: EditFlashcard,
-            props: true
         },
         {
             path: '/practice',
