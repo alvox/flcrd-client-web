@@ -10,6 +10,10 @@ const UserService = {
         return localStorage.getItem(NAME_KEY);
     },
 
+    setUserName(name) {
+        return localStorage.setItem(NAME_KEY, name)
+    },
+
     getUserId() {
         return localStorage.getItem(ID_KEY);
     },

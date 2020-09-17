@@ -30,7 +30,9 @@
             <div v-if="loggedIn && $route.path.endsWith('decks')">
                 <NavButton title="Create new deck" @clicked="$store.commit('showDeckModal')"/>
             </div>
-
+            <div v-if="loggedIn && $route.path.endsWith('profile')">
+                <NavButton title="Edit profile" @clicked="$store.commit('showProfileModal')"/>
+            </div>
         </div>
 
         <div class="flex-grow"></div>
@@ -67,9 +69,6 @@ export default {
     computed: {
         loggedIn() {
             return this.$store.getters.loggedIn
-        },
-        userName() {
-            return this.$store.getters.userName
         },
         theme() {
             return this.$store.getters.theme

@@ -23,6 +23,7 @@ export const store = new Vuex.Store({
         deckModalVisible: false,
         deckEditModalVisible: false,
         cardModalVisible: false,
+        profileModalVisible: false,
         currentDeckId: null,
         currentCard: null,
     },
@@ -53,6 +54,9 @@ export const store = new Vuex.Store({
         },
         isCardModalVisible: state => {
             return state.cardModalVisible
+        },
+        isProfileModalVisible: state => {
+            return state.profileModalVisible
         },
         currentDeckId: state => {
             return state.currentDeckId
@@ -109,6 +113,12 @@ export const store = new Vuex.Store({
         },
         hideCardModal(state) {
             state.cardModalVisible = false
+        },
+        showProfileModal(state) {
+            state.profileModalVisible = true
+        },
+        hideProfileModal(state) {
+            state.profileModalVisible = false
         },
         setCurrentDeckId(state, payload) {
             state.currentDeckId = payload.deckId

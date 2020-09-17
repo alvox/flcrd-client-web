@@ -38,9 +38,13 @@ export const UserState = {
         refreshTokenPromise(state, promise) {
             state.refreshTokenPromise = promise
         },
-        setUser(state, payload) {
-            state.user = payload
-        }
+        setUser(state, user) {
+            state.user = user
+            if (user != null) {
+                UserService.setUserName(user.name)
+                state.userName = user.name
+            }
+        },
     },
     actions: {
         REGISTER_USER: (context, payload) => {
@@ -136,6 +140,8 @@ export const UserState = {
             ApiService.put("users", payload)
                 .then(result => {
                     context.commit('setUser', result.data)
+                    context.commit('clearError', null, {root: true})
+                    context.commit('hideProfileModal', {root: true})
                 })
                 .catch(err => {
                     console.log(err)
@@ -148,14 +154,18 @@ export const UserState = {
             ApiService.delete("users")
                 .then(() => {
                     UserService.logout()
+                    router.push({name: 'Index'})
                     context.commit('setUser', null)
                     context.commit('logoutSuccess')
+                    context.commit('clearError', null, {root: true})
+                    context.commit('clearCurrentDeckId', {root: true})
+                    context.commit('hideProfileModal', {root: true})
                 })
                 .catch(err => {
                     console.log(err)
                 })
                 .finally(() => {
-                    router.push({name: 'Index'})
+                    // router.push({name: 'Index'})
                 })
         },
         CLEAR_USER: (context) => {
