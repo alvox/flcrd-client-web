@@ -1,5 +1,5 @@
 <template>
-    <Modal modalWidth="max-w-sm">
+    <Modal modalWidth="max-w-sm" @closeModal="close">
         <template v-slot:header>REGISTRATION</template>
         <template v-slot:body>
 
@@ -45,8 +45,7 @@
             </div>
         </template>
         <template v-slot:footer>
-            <div class="flex justify-between">
-                <NavButton title="Cancel" @clicked="close"/>
+            <div class="flex justify-end">
                 <NavButton title="Register" @clicked="registerUser"/>
             </div>
         </template>

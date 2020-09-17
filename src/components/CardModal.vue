@@ -1,5 +1,5 @@
 <template>
-    <Modal modalWidth="max-w-2xl">
+    <Modal modalWidth="max-w-2xl" @closeModal="close">
         <template v-slot:header>
             {{ $t('edit_flashcard') }}
         </template>
@@ -57,7 +57,6 @@
         <template v-slot:footer>
             <div v-if="!isDeleteConfirmVisible" class="flex justify-between">
                 <NavButton title="Delete" @clicked="isDeleteConfirmVisible = true"/>
-                <NavButton title="Cancel" @clicked="close"/>
                 <NavButton title="Save" @clicked="saveCard"/>
             </div>
             <div v-else class="flex justify-between">

@@ -1,5 +1,5 @@
 <template>
-    <Modal modalWidth="max-w-sm">
+    <Modal modalWidth="max-w-sm" @closeModal="close">
         <template v-slot:header>LOGIN</template>
         <template v-slot:body>
             <div class="mt-6 block">
@@ -24,8 +24,7 @@
             </div>
         </template>
         <template v-slot:footer>
-            <div class="flex justify-between">
-                <NavButton title="Cancel" @clicked="close"/>
+            <div class="flex justify-end">
                 <NavButton title="Login" @clicked="loginUser"/>
             </div>
         </template>

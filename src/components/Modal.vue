@@ -5,7 +5,16 @@
              aria-labelledby="modalTitle"
              aria-describedby="modalDescription">
             <div class="flex-1 bg-white shadow-md mx-8 p-6" :class="modalWidth">
-                <header class="text-center font-thin text-2xl mt-4" id="modalTitle">
+                <div class="flex justify-end">
+<!--                  <CloseButton />-->
+
+                    <button @click="$emit('closeModal')" class="appearance-none outline-none focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current inline-block h-5 w-5">
+                            <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/>
+                        </svg>
+                    </button>
+                </div>
+                <header class="text-center font-thin text-2xl" id="modalTitle">
                     <slot name="header">title</slot>
                 </header>
                 <div class="divider bg-gray-400"></div>
@@ -22,9 +31,12 @@
 </template>
 
 <script>
+// import CloseButton from "@/components/CloseButton"
+
 export default {
     name: "Modal",
-    props: ["modalWidth"]
+    props: ["modalWidth"],
+    // components: { CloseButton }
 }
 </script>
 

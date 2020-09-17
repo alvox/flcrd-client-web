@@ -1,5 +1,5 @@
 <template>
-    <Modal modalWidth="max-w-sm">
+    <Modal modalWidth="max-w-sm" @closeModal="close">
         <template v-slot:header>
             <p v-if="mode === 'edit'">
                 {{$t('edit_deck')}}
@@ -42,7 +42,6 @@
         <template v-slot:footer>
             <div v-if="!isDeleteConfirmVisible" class="flex justify-between">
                 <NavButton title="Delete" @clicked="isDeleteConfirmVisible = true"/>
-                <NavButton title="Cancel" @clicked="close"/>
                 <NavButton title="Save" @clicked="saveDeck"/>
             </div>
             <div v-else class="flex justify-between">
