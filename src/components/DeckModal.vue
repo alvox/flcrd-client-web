@@ -40,8 +40,9 @@
             </div>
         </template>
         <template v-slot:footer>
-            <div v-if="!isDeleteConfirmVisible" class="flex justify-between">
-                <NavButton title="Delete" @clicked="isDeleteConfirmVisible = true"/>
+            <div v-if="!isDeleteConfirmVisible" class="flex"
+                 :class="{'justify-between': mode === 'edit', 'justify-end': mode !== 'edit'}">
+                <NavButton v-if="mode === 'edit'" title="Delete" @clicked="isDeleteConfirmVisible = true"/>
                 <NavButton title="Save" @clicked="saveDeck"/>
             </div>
             <div v-else class="flex justify-between">
@@ -95,6 +96,7 @@ export default {
             this.$store.commit('hideDeckModal')
             this.$store.commit('hideDeckEditModal')
             this.$v.$reset()
+            this.isDeleteConfirmVisible = false
         }
     },
     computed: {
