@@ -98,6 +98,7 @@ export default {
     methods: {
         logoutUser() {
             this.$store.dispatch('LOGOUT_USER')
+            this.$store.commit('saveDecks', [])
         },
         logoImg() {
             return this.theme === 'theme-light'

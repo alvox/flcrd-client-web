@@ -99,6 +99,7 @@ export const UserState = {
         LOGOUT_USER: (context) => {
             UserService.logout()
             context.commit('logoutSuccess')
+            context.commit('clearCurrentDeckId', {root: true})
             router.push('/')
         },
         CONFIRM_EMAIL: (context, payload) => {

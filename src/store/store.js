@@ -23,6 +23,7 @@ export const store = new Vuex.Store({
         deckModalVisible: false,
         deckEditModalVisible: false,
         cardModalVisible: false,
+        currentDeckId: null,
         currentCard: null,
     },
     getters: {
@@ -52,6 +53,9 @@ export const store = new Vuex.Store({
         },
         isCardModalVisible: state => {
             return state.cardModalVisible
+        },
+        currentDeckId: state => {
+            return state.currentDeckId
         },
         currentCard: state => {
             return state.currentCard
@@ -105,6 +109,14 @@ export const store = new Vuex.Store({
         },
         hideCardModal(state) {
             state.cardModalVisible = false
+        },
+        setCurrentDeckId(state, payload) {
+            state.currentDeckId = payload.deckId
+            SettingsService.saveDeckInfo(payload.deckId, payload.isPublic)
+        },
+        clearCurrentDeckId(state) {
+            state.currentDeckId = null
+            SettingsService.clearDeckInfo()
         }
     },
     actions: {

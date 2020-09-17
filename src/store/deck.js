@@ -5,15 +5,11 @@ import {SettingsService} from "@/services/settings";
 
 export const DeckState = {
     state: {
-        currentDeckId: null,
         decks: [],
         publicDecks: [],
         publicTotal: 0
     },
     getters: {
-        currentDeckId: state => {
-            return state.currentDeckId
-        },
         decks: state => {
             return state.decks
         },
@@ -32,10 +28,6 @@ export const DeckState = {
         }
     },
     mutations: {
-        setCurrentDeckId(state, payload) {
-            state.currentDeckId = payload.deckId
-            SettingsService.saveDeckInfo(payload.deckId, payload.isPublic)
-        },
         saveDecks(state, decks) {
             state.decks = decks
         },
@@ -136,7 +128,7 @@ export const DeckState = {
                 .then(result => {
                     let deck = result.data;
                     context.commit('saveDeck', {deck: deck})
-                    context.commit('setCurrentDeckId', {deckId: deck.id, isPublic: deck.public})
+                    context.commit('setCurrentDeckId', {deckId: deck.id, isPublic: deck.public}, {root: true})
                     context.commit('clearError', null, {root: true})
                     context.commit('hideDeckModal', {root: true})
                     router.push({name: 'FlashcardsList', params: {deck_id: deck.id, visibility: "private"}})
@@ -248,7 +240,7 @@ export const DeckState = {
                     })
                     .finally(() => {
                         context.commit('loading', false, {root: true})
-                        context.commit('setCurrentDeckId', {deckId: deckInfo.deckId, isPublic: deckInfo.isPublic})
+                        context.commit('setCurrentDeckId', {deckId: deckInfo.deckId, isPublic: deckInfo.isPublic}, {root: true})
                     })
             } else {
                 ApiService.get("decks")
@@ -264,7 +256,7 @@ export const DeckState = {
                     })
                     .finally(() => {
                         context.commit('loading', false, {root: true})
-                        context.commit('setCurrentDeckId', {deckId: deckInfo.deckId, isPublic: deckInfo.isPublic})
+                        context.commit('setCurrentDeckId', {deckId: deckInfo.deckId, isPublic: deckInfo.isPublic}, {root: true})
                     })
             }
         }

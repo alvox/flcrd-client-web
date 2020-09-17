@@ -55,9 +55,11 @@ const SettingsService = {
             deckId: localStorage.getItem(DECK_ID),
             isPublic: isPublic
         }
+    },
+    clearDeckInfo() {
+        localStorage.removeItem(IS_DECK_PUBLIC)
+        localStorage.removeItem(DECK_ID)
     }
 };
-
-
 
 export {SettingsService}
