@@ -1,5 +1,5 @@
 <template>
-    <div class="mb-4 text-center">
+    <div class="mb-4 text-center text-purple-900">
             <p>
                 WIP by <a class="underline" href="https://alexanderpopov.me" target="_blank" rel="noopener">Alex Pop</a>
             </p>
