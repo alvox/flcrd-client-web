@@ -2,8 +2,8 @@
     <div class="mt-6">
         <p class="text-3xl mb-6">Practicing {{ deck.name }}</p>
 
-        <div v-if="!isDone" class="block">
-            <div class="text-center text-base text-copy-secondary my-6 mx-10">
+        <div v-if="!isDone" class="my-10">
+            <div class="text-base text-copy-secondary mt-6 mb-10">
                 <p>
                     Look at the card and try to remember what was at the rear side.
                     <br/>
@@ -11,14 +11,10 @@
                 </p>
             </div>
 
-            <div class="text-center font-extrabold text-lg text-copy-secondary">{{ currentIdx + 1 }} of
-                {{ cardsToPractice.length }}
-            </div>
+            <div class="h-12"></div>
 
-            <div class="flex justify-between h-40 mt-4">
-                <div class="hidden md:block w-1/4"></div>
-
-                <div v-if="side === 'front'" class="flex-1 bg-background-ternary shadow-md">
+            <div class="flex justify-center h-40">
+                <div v-if="side === 'front'" class="w-2/4 bg-background-ternary shadow-md cursor-pointer" @click="flip">
                     <div v-if="currentCard.front_type === 'IMAGE'" class="h-full">
                         <img class="object-contain h-full w-full" :src="s3 + currentCard.front" alt="front"/>
                     </div>
@@ -27,7 +23,7 @@
                     </div>
                 </div>
 
-                <div v-else class="flex-1 bg-background-ternary shadow-md">
+                <div v-else class="w-2/4 bg-background-ternary shadow-md cursor-pointer" @click="flip">
                     <div v-if="currentCard.rear_type === 'IMAGE'" class="h-full">
                         <img class="object-contain h-full w-full" :src="s3 + currentCard.rear" alt="front"/>
                     </div>
@@ -35,27 +31,28 @@
                         <p class="text-base text-center">{{ currentCard.rear }}</p>
                     </div>
                 </div>
-
-                <div class="hidden md:block w-1/4"></div>
             </div>
 
-            <div class="flex justify-between mt-10">
-                <div class="hidden md:block w-1/4"></div>
-                <div class="flex-1">
-                    <div class="block">
-                        <NavButton title="Flip card" @clicked="flip"/>
-                        <div class="flex justify-around mt-10 mx-4 md:mx-0">
-                            <p class="mr-4 font-semibold text-xl text-copy-green">{{ correctAnswers.length }}</p>
-                            <p class="ml-4 font-semibold text-xl text-copy-red">{{ wrongAnswers.length }}</p>
+            <div class="flex justify-center mt-10">
+                <div class="my-6 w-2/4">
+                    <p class="text-center text-lg pt-4 pb-4">
+                        Card {{ currentIdx + 1 }} of {{ cardsToPractice.length }}
+                    </p>
+                    <div class="flex justify-around px-6">
+                        <div class="flex flex-col items-center">
+                            <p class="text-green-600 text-5xl font-bold">{{ correctAnswers.length }}</p>
+                            <NavButton title="+" @clicked="next(true)"/>
                         </div>
-                        <div class="flex justify-between mt-2 mb-10 mx-4 md:mx-0">
-                            <NavButton title="I was right!" @clicked="next(true)" class="flex-1"/>
-                            <NavButton title="I was wrong(" @clicked="next(false)" class="flex-1"/>
+                        <p class="text-5xl">:</p>
+                        <div class="flex flex-col items-center">
+                            <p class="text-red-600 text-5xl font-bold">{{ wrongAnswers.length }}</p>
+                            <NavButton title="+" @clicked="next(false)"/>
                         </div>
                     </div>
+
                 </div>
-                <div class="hidden md:block w-1/4"></div>
             </div>
+
         </div>
         <!-- RESULTS -->
         <div v-else class="block text-copy-secondary text-center">
