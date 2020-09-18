@@ -2,11 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Index from './views/Index'
-import User from "./views/user/User"
+import User from "./views/User"
 import Terms from "./views/Terms"
-import VerifyEmail from "./views/user/VerifyEmail"
-import Decks from "./views/deck/Decks"
-import FlashcardsList from "./views/flashcard/FlashcardsList"
+import VerifyEmail from "./views/VerifyEmail"
+import Decks from "./views/Decks"
+import FlashcardsList from "./views/FlashcardsList"
 import PracticeMode from "./views/PracticeMode"
 
 import {TokenService} from "./services/token"

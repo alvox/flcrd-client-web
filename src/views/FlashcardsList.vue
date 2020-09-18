@@ -38,8 +38,8 @@
 
 <script>
 import Spinner from "@/components/Spinner"
-import Card from "@/components/elements/Card"
-import NewCardForm from "@/components/elements/NewCardForm"
+import Card from "@/components/Card"
+import NewCardForm from "@/components/NewCardForm"
 import DeckModal from "@/components/DeckModal"
 import CardModal from "@/components/CardModal"
 import {SettingsService} from "@/services/settings"
