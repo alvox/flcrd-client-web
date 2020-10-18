@@ -2,12 +2,12 @@
     <div class="mt-6">
         <Spinner v-if="isLoading"></Spinner>
         <div v-else>
-            <p class="text-3xl">{{ $t('my_decks') }}</p>
+            <p class="text-3xl mb-10">{{ $t('my_decks') }}</p>
 
             <!--decks-->
-            <div v-if="decks.length > 0" class="mt-8 mb-10 flex flex-col">
-                <div v-for="deck in sortedDecks" :key="deck.id">
-                    <Deck :deck="deck"/>
+            <div v-if="decks.length > 0" class="flex flex-col">
+                <div v-for="deck in sortedDecks" :key="deck.id" class="mb-6">
+                    <SimpleDeck :deck="deck"/>
                 </div>
             </div>
 
@@ -23,12 +23,12 @@
 
 <script>
 import Spinner from "@/components/Spinner"
-import Deck from "@/components/Deck"
+import SimpleDeck from "@/components/SimpleDeck"
 import DeckModal from "@/components/DeckModal"
 
 export default {
     name: "Decks",
-    components: {Spinner, Deck, DeckModal},
+    components: {Spinner, SimpleDeck, DeckModal},
     computed: {
         decks() {
             return this.$store.getters.decks
