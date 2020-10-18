@@ -7,8 +7,8 @@
             </p>
         </div>
 
-        <div class="md:flex h-40 shadow-md">
-            <div class="flex-1 h-full">
+        <div class="sm:flex sm:h-40 shadow-md">
+            <div class="flex-1 bg-background-ternary h-40">
 
                 <label class="block text-gray-500 text-sm font-bold hidden" for="front">Front side</label>
                 <div class="bg-white h-full" v-if="frontImage != null">
@@ -25,9 +25,9 @@
                 <p class="error-msg" v-if="!$v.frontText.maxLength">{{ $t('err_card_length') }}</p>
             </div>
 
-            <div class="bg-white w-1 border-2 border-dashed card-divider"></div>
+            <div class="bg-background-ternary sm:w-1 border-2 border-dashed card-divider"></div>
 
-            <div class="flex-1">
+            <div class="flex-1 bg-background-ternary h-40">
                 <label class="block text-gray-500 text-sm font-bold hidden" for="rear">Rear side</label>
                 <div class="bg-white h-full" v-if="rearImage != null">
                     <img :src="rearText" alt="rear" class="h-full w-full object-contain object-center"/>
