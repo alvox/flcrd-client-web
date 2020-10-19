@@ -9,15 +9,20 @@
                 <Deck :deck="deck"/>
             </div>
         </div>
+
+        <LoginModal v-show="loginModalVisible"/>
+        <RegistrationModal v-show="registrationModalVisible"/>
     </div>
 </template>
 
 <script>
 import Deck from "@/components/Deck"
+import LoginModal from "@/components/LoginModal"
+import RegistrationModal from "@/components/RegistrationModal"
 
 export default {
     name: 'Index',
-    components: {Deck},
+    components: {Deck, LoginModal, RegistrationModal},
     data() {
         return {
             page: 1,
@@ -48,7 +53,13 @@ export default {
             return this.decks.filter(d => {
                 return d.cards_count > 0;
             })
-        }
+        },
+        loginModalVisible() {
+            return this.$store.getters.isLoginModalVisible
+        },
+        registrationModalVisible() {
+            return this.$store.getters.isRegistrationModalVisible
+        },
     },
     created() {
         this.$store.dispatch('GET_PUBLIC_DECKS', {page: this.page, per_page: this.per_page})

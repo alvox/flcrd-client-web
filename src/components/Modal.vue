@@ -4,7 +4,7 @@
              role="dialog"
              aria-labelledby="modalTitle"
              aria-describedby="modalDescription">
-            <div class="flex-1 bg-white shadow-md mx-8 p-6" :class="modalWidth">
+            <div class="flex-1 bg-white shadow-md mx-2 sm:mx-8 p-6" :class="modalWidth">
                 <div class="flex justify-end">
                     <button @click="$emit('closeModal')" class="appearance-none outline-none focus:outline-none text-purple-900 hover:text-purple-600">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current inline-block h-5 w-5">

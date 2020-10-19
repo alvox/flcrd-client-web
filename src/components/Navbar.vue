@@ -44,9 +44,6 @@
         </div>
 
         <Footer/>
-
-        <LoginModal v-show="loginModalVisible"/>
-        <RegistrationModal v-show="registrationModalVisible"/>
     </nav>
 </template>
 
@@ -55,12 +52,10 @@ import Footer from "@/components/Footer"
 import NavButton from "@/components/NavButton"
 import LangSelect from "@/components/LangSelect"
 import ThemeSwitch from "@/components/ThemeSwitch"
-import LoginModal from "@/components/LoginModal"
-import RegistrationModal from "@/components/RegistrationModal"
 
 export default {
     name: "Navbar",
-    components: {Footer, NavButton, LangSelect, ThemeSwitch, LoginModal, RegistrationModal},
+    components: {Footer, NavButton, LangSelect, ThemeSwitch},
     data() {
         return {
             open: false
